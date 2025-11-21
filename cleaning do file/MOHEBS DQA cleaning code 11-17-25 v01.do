@@ -48,9 +48,13 @@ cd "${gsdCode}\MOHEBS\cleaning do file"
 
 do "dropping_irrelevant_vars.do"
 
-**************************************
-**Variable Renaming
-*****************************************************************************************************************
+*Replacing UNDEFINED && SKIPPED
+ds, has(type string)
+foreach var in `r(varlist)'{
+	replace `var' = "" if `var' == "SKIPPED"
+	replace `var' = "." if `var' == "UNDEFINED"
+	replace `var' = "." if `var' == "orphaned"
+}
 
 *Enumerator
 label define enum 1  "Ousmane Mbengue" 2  "Rabia Sy" 3  "Aissatou Dieng" 4  "Diegou Diouf" 5  "Victorine Therese Sarr" 6  "Aissatou Diam" 7  "Abdou Aziz Diallo" 8  "Ibrahima Ndiaye" 9  "Seydou Diallo" 10 "Baye Mor Mbaye" 11 "Bineta Gningue" 12 "Boubacar Soumano" 13 "Ndeye Fatou Diop" 14 "Sackou Mbaye" 15 "Sette Niang" 16 "Souleymane Sène" 17 "Thiara Diene" 18 "Robert Armand Thiaré" 19 "Baba Adama Ndiaye" 20 "Mouhamet Diop" 21 "Oumar Thioye" 22 "Ramatoulaye Dramé" 23 "Elhadji Malick Diouf" 24 "Jeanne Bernadette Ndour" 25 "Mamadou Basse" 26 "Marie Noel Sène" 27 "Ndiambale Sarr" 28 "Abdou Khadre Diaby" 29 "Nogaye Dieng" 30 "Abdou Aziz Diagne" 31 "Adama Ba" 32 "Astou Kane" 33 "Mariama Diakhaté" 34 "Marieme Fall" 35 "Ngoné Mbodj" 36 "Salla Diara" 37 "Souhaibou Diop"
@@ -81,7 +85,41 @@ lab var Duration_mins"Interview Duration (Minutes)"
 order INT_STARTTIME INT_ENDTIME Duration_mins,after(INT_DATE)
 
 *assessment_type
-lab var assessment_type"
+lab define asse_ty 1"Individual assessment" 2 "Assessment in pair"
+lab values assessment_type asse_ty
+
+*Location
+do "Location.do"
+
+*Official language
+recode official_language (3=4)(2=3)(1=2)
+
+lab values official_language lan
+
+*teaching_language
+lab values teaching_language lan
+
+*student_langugae_1
+lab define yes_no 1 "Yes" 0 "No"
+
+destring student_langugae_1	student_langugae_2	student_langugae_3	student_langugae_4,replace
+
+lab values student_langugae_1	student_langugae_2	student_langugae_3	student_langugae_4 yes_no
+
+order  student_langugae_1	student_langugae_2	student_langugae_3	student_langugae_4, after(teaching_language)
+
+*consent
+replace Consent = "1" if Consent == "yes"
+replace Consent = "0" if Consent == "no"
+
+destring Consent,replace
+lab values Consent yes_no
+
+*
+
+**************************************
+**Variable Renaming
+****************************************
 
 ***Renaming of variables
 ren letter_knowledge_prnumber_of_ite letter_knowledge_prnum_corr
@@ -117,16 +155,7 @@ ren v608 substraction_grid_3num_att
 **Value labelling
 *****************************************************************************************************************
 
-*Replacing UNDEFINED && SKIPPED
-ds, has(type string)
-foreach var in `r(varlist)'{
-	replace `var' = "" if `var' == "SKIPPED"
-	replace `var' = "." if `var' == "UNDEFINED"
-	replace `var' = "." if `var' == "orphaned"
-}
 
-*Location
-do "Location.do"
 
 
 
@@ -135,14 +164,7 @@ do "Location.do"
 lab define stat 1"Student present" 2"Student absent"
 lab values status stat
 
-*consent
-lab define yes_no 1 "Yes" 2 "No"
 
-replace consent = "1" if consent == "yes"
-replace consent = "2" if consent == "no"
-
-destring consent,replace
-lab values consent yes_no
 
 
 

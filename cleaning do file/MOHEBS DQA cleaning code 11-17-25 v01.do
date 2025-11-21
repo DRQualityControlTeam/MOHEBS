@@ -36,6 +36,7 @@ drop INT_DATE
 ren INT_DATE1 INT_DATE
 
 order INT_DATE, after(_id)
+lab var INT_DATE"Interview date"
 
 *filter out older dates
 drop if INT_DATE < td(21nov2025)
@@ -59,9 +60,11 @@ foreach var in `r(varlist)'{
 *Enumerator
 label define enum 1  "Ousmane Mbengue" 2  "Rabia Sy" 3  "Aissatou Dieng" 4  "Diegou Diouf" 5  "Victorine Therese Sarr" 6  "Aissatou Diam" 7  "Abdou Aziz Diallo" 8  "Ibrahima Ndiaye" 9  "Seydou Diallo" 10 "Baye Mor Mbaye" 11 "Bineta Gningue" 12 "Boubacar Soumano" 13 "Ndeye Fatou Diop" 14 "Sackou Mbaye" 15 "Sette Niang" 16 "Souleymane Sène" 17 "Thiara Diene" 18 "Robert Armand Thiaré" 19 "Baba Adama Ndiaye" 20 "Mouhamet Diop" 21 "Oumar Thioye" 22 "Ramatoulaye Dramé" 23 "Elhadji Malick Diouf" 24 "Jeanne Bernadette Ndour" 25 "Mamadou Basse" 26 "Marie Noel Sène" 27 "Ndiambale Sarr" 28 "Abdou Khadre Diaby" 29 "Nogaye Dieng" 30 "Abdou Aziz Diagne" 31 "Adama Ba" 32 "Astou Kane" 33 "Mariama Diakhaté" 34 "Marieme Fall" 35 "Ngoné Mbodj" 36 "Salla Diara" 37 "Souhaibou Diop"
 
+lab var ENUM_NAME"Enumerator Name"
 lab values ENUM_NAME enum
 
 **Survey Language
+lab var survey_language"Enumerator: Record the language of instruction being used to administer the survey"
 lab define sur_lan 1"French" 2 "Wolof" 3 "Serer" 4 "Pulaar"
 destring survey_language, replace
 lab values survey_language sur_lan
@@ -85,6 +88,7 @@ lab var Duration_mins"Interview Duration (Minutes)"
 order INT_STARTTIME INT_ENDTIME Duration_mins,after(INT_DATE)
 
 *assessment_type
+lab var assessment_type"Is this an individual or pair assessment?"
 lab define asse_ty 1"Individual assessment" 2 "Assessment in pair"
 lab values assessment_type asse_ty
 
@@ -92,14 +96,23 @@ lab values assessment_type asse_ty
 do "Location.do"
 
 *Official language
+lab var official_language"What is the Senegalese language in this school?"
 recode official_language (3=4)(2=3)(1=2)
 
 lab values official_language lan
 
 *teaching_language
+lab var teaching_language"What is the language teachers actually use to actually teach in the school?"
 lab values teaching_language lan
 
 *student_langugae_1
+gen student_langugae =""
+order student_langugae,before(student_langugae_1)
+lab var student_langugae"What languages are you most comfortable speaking and reading in? (Select all that apply)"
+lab var student_langugae_1 "French"
+lab var student_langugae_2 "Wolof"
+lab var student_langugae_3 "Serere"
+lab var student_langugae_4 "Pulaar"
 lab define yes_no 1 "Yes" 0 "No"
 
 destring student_langugae_1	student_langugae_2	student_langugae_3	student_langugae_4,replace
@@ -109,13 +122,173 @@ lab values student_langugae_1	student_langugae_2	student_langugae_3	student_lang
 order  student_langugae_1	student_langugae_2	student_langugae_3	student_langugae_4, after(teaching_language)
 
 *consent
+lab var Consent "Are you ready to start?"
 replace Consent = "1" if Consent == "yes"
 replace Consent = "0" if Consent == "no"
 
 destring Consent,replace
 lab values Consent yes_no
 
-*
+*B1a and B1b
+lab var B1a"First name"
+lab var B1b"Last name"
+gen Student_Name = B1a + " " + B1b
+order Student_Name,after(B1b)
+lab var Student_Name"Student's Full names"
+
+*B2
+lab var B2"B2. What is your gender?:"
+lab define gend 1"Boy" 2"Girl" 96"Other"
+lab values B2 gend
+
+*B3
+lab var B3"B3. How old are you?"
+
+*B4
+lab var B4"B4. What grade are you in now ?"
+lab define b4 1"CI" 2"CP" 3"CE1"
+lab values B4 b4
+
+*B5
+lab var B5"B5. Did you attend a learning program (preschool/ Ecole maternelle ou préscolaire) before grade 1?"
+lab define b5 1"Yes" 0"No" 98"Don't know/no answer"
+lab values B5 b5
+
+*B6
+gen B6=""
+order B6, before(B6_1)
+lab var B6 "B6.	What language(s) do you speak at home? Tell me all the languages you speak at home."
+lab var B6_1 "French"
+lab var B6_2 "Wolof"
+lab var B6_3 "Serere"
+lab var B6_4 "Pulaar"
+lab var B6_96 "Otherspecify"
+lab var B6_S "Please specify Other"
+lab values B6_1	B6_2 B6_3 B6_4 B6_96 yes_no
+
+*B7
+gen B7=""
+order B7, before(B7_1)
+lab var B7 "B7.	What language do you use when you play with your friends at school? Tell me about all the languages  you use when playing with your friends at school."
+lab var B7_1 "French"
+lab var B7_2 "Wolof"
+lab var B7_3 "Serere"
+lab var B7_4 "Pulaar"
+lab var B7_96 "Otherspecify"
+lab var B7_S "Please specify Other"
+lab values B7_1	B7_2 B7_3 B7_4 B7_96 yes_no
+
+*B8
+lab var B8"B8. How many days of school did you miss in the last week?"
+label define b8 1 "0 days, I attended school every day." 2 "1 day" 3 "2 days" 4 "3 days" 5 "4 days" 6 "5 days, I missed every day of school last week." 98 "Didn't Know/No Response"
+
+lab values B8 b8
+
+*B9
+gen B9 = ""
+lab var B9"B9. Why did you miss school? (Only ask if the student has missed days. Do not read the answer choices."
+order B9,after(B8)
+
+lab var B9_1"B9_1. I was sick."
+lab var B9_2"B9_2. It was raining/The weather was bad."
+lab var B9_3"B9_3. The teacher was not coming."
+lab var B9_4"B9_4. I didn't want to go to school."
+lab var B9_5"B9_5. I couldn't afford the course materials or pay my tuition."
+lab var B9_6"B9_6.  I should have helped my mom or someone else with the housework."
+lab var B9_7"B9_7. We need to help our parents find gainful employment or the earning potential of their parents."
+lab var B9_8"B9_8. Transportation issues/or lack of transportation facilities"
+lab var B9_9"B9_9.  Take care of your siblings."
+lab var B9_10"B9_10.  No one helps me to go to school."
+lab var B9_96"B9_96. Other, specify"
+lab var B9_S"Please specify other"
+
+destring B9_1	B9_2	B9_3	B9_4	B9_5	B9_6	B9_7	B9_8	B9_9	B9_10	B9_96,replace
+lab values B9_1	B9_2	B9_3	B9_4	B9_5	B9_6	B9_7	B9_8	B9_9	B9_10	B9_96 yes_no
+
+*B10
+lab var B10"B10. Have you eaten today?"
+lab define b10 1"Yes" 0"No" 99 "No response"
+lab values B10 b10
+
+*B12
+lab var B12"B12. During this school year, are you taking any extra tutoring outside of the school day?"
+lab values B12 b10
+
+
+*************************************************************************
+**Semantic section
+*************************************************************************
+gen languages_spoken = ""
+order languages_spoken, before(languages_spoken_1)
+lab var languages_spoken "Enumerator: Select all the languages mentioned by the student in B6 and B7"
+lab var languages_spoken_1 "French"
+lab var languages_spoken_2 "Wolof"
+lab var languages_spoken_3 "Serere"
+lab var languages_spoken_4 "Pulaar"
+lab var languages_spoken_96 "Otherspecify - 1" 
+lab var languages_spoken_996 "Otherspecify - 2" 
+lab var languages_spoken_9996 "Otherspecify - 3" 
+lab var languages_spoken_S1 "Please specify Other - 1"
+lab var languages_spoken_S2 "Please specify Other - 2"
+lab var languages_spoken_S3 "Please specify Other - 3"
+foreach x in languages_spoken_1 languages_spoken_2 languages_spoken_3	languages_spoken_4 languages_spoken_96 languages_spoken_996	languages_spoken_9996{
+	lab values `x' yes_no
+}
+
+*semantic_test_language1
+foreach x in semantic_test_language1 semantic_test_language2{
+	lab var `x'"Which language are you testing in?"
+}
+
+lab define sema_lan 1"French" 2"Wolof" 3"Serer" 4"Pulaar" 96"Other 1" 996"Other 2" 9996"Other 3"
+destring semantic_test_language1 semantic_test_language2,replace
+lab values semantic_test_language1 semantic_test_language2 sema_lan
+
+ren (v105 v121) (semantic_lan_timer1items_att semantic_lan_timer2items_att)
+
+
+*************************************************************************
+**Phonological section
+*************************************************************************
+ren v152 phonological_awareness_srnum_att
+ren v933 phonological_awareness_wfnum_att
+ren v1419 phonological_awareness_frnum_att
+ren v2034 phonological_awareness_prnum_att
+
+destring interviewer_phonological_stop_sr phonological_awareness_srautoSto phonological_awareness_srnum_att phonological_awareness_srnumber_ phonological_awareness_sr_* phonological_awareness_wf_* phonological_awareness_wfnum_att phonological_awareness_wfnumber_ interviewer_phonological_stop_wf phonological_awareness_wfautoSto phonological_awareness_fr_*  phonological_awareness_frnum_att phonological_awareness_frnumber_ phonological_awareness_frautoSto  interviewer_phonological_stop_fr phonological_awareness_prnum_att phonological_awareness_prautoSto phonological_awareness_prnumber_ interviewer_phonological_stop_pr,replace
+
+*interviewer_phonological_stop_sr
+lab values interviewer_phonological_stop_sr interviewer_phonological_stop_pr interviewer_phonological_stop_fr interviewer_phonological_stop_wf yes_no
+
+order phonological_awareness_fr_* phonological_awareness_frnumber_ phonological_awareness_frnum_att phonological_awareness_frgridAut phonological_awareness_frautoSto interviewer_phonological_stop_fr  phonological_awareness_wf_* phonological_awareness_wfnumber_ phonological_awareness_wfnum_att phonological_awareness_wfgridAut phonological_awareness_wfautoSto interviewer_phonological_stop_wf phonological_awareness_sr_* phonological_awareness_srnumber_ phonological_awareness_srnum_att phonological_awareness_srgridAut phonological_awareness_srautoSto interviewer_phonological_stop_sr,before(v230)
+
+*************************************************************************
+**Oral Vocabulary section
+*************************************************************************
+ren (v230 v235 v240 v245 v250 v255 v260 v265 v270 v275 v280	v285 v290 v295 v300 v305 v310 v1425 v1428 v1431 v1434 v1437 v1440 v1443 v1446 v1449 v1452 v1455 v1458 v1461 v1464 v1467 v1470 v1473 v939 v942 v945 v948 v951 v954 v957 v960 v963 v966 v969 v972 v975 v978 v981 v984 v987 v2040	v2043	v2046	v2049	v2052	v2055	v2058	v2061	v2064	v2067	v2070	v2073	v2076	v2079	v2082	v2085	v2088) (sr_oral_vocabulary_example_1  sr_oral_vocabulary_example_2 sr_ov_picture_matching_q1 sr_ov_picture_matching_q2 sr_ov_picture_matching_q3 sr_ov_picture_matching_q4 sr_ov_picture_matching_q5 sr_ov_picture_matching_q6 sr_ov_picture_matching_q7 sr_ov_picture_matching_q8 sr_ov_picture_matching_q9 sr_ov_picture_matching_q10 sr_ov_picture_matching_q11 sr_ov_picture_matching_q12 sr_ov_picture_matching_q13 sr_ov_picture_matching_q14 sr_ov_picture_matching_q15 fr_oral_vocabulary_example_1  fr_oral_vocabulary_example_2 fr_ov_picture_matching_q1 fr_ov_picture_matching_q2 fr_ov_picture_matching_q3 fr_ov_picture_matching_q4 fr_ov_picture_matching_q5 fr_ov_picture_matching_q6 fr_ov_picture_matching_q7 fr_ov_picture_matching_q8 fr_ov_picture_matching_q9 fr_ov_picture_matching_q10 fr_ov_picture_matching_q11 fr_ov_picture_matching_q12 fr_ov_picture_matching_q13 fr_ov_picture_matching_q14 fr_ov_picture_matching_q15 wf_oral_vocabulary_example_1  wf_oral_vocabulary_example_2 wf_ov_picture_matching_q1 wf_ov_picture_matching_q2 wf_ov_picture_matching_q3 wf_ov_picture_matching_q4 wf_ov_picture_matching_q5 wf_ov_picture_matching_q6 wf_ov_picture_matching_q7 wf_ov_picture_matching_q8 wf_ov_picture_matching_q9 wf_ov_picture_matching_q10 wf_ov_picture_matching_q11 wf_ov_picture_matching_q12 wf_ov_picture_matching_q13 wf_ov_picture_matching_q14 wf_ov_picture_matching_q15 pr_oral_vocabulary_example_1  pr_oral_vocabulary_example_2 pr_ov_picture_matching_q1 pr_ov_picture_matching_q2 pr_ov_picture_matching_q3 pr_ov_picture_matching_q4 pr_ov_picture_matching_q5 pr_ov_picture_matching_q6 pr_ov_picture_matching_q7 pr_ov_picture_matching_q8 pr_ov_picture_matching_q9 pr_ov_picture_matching_q10 pr_ov_picture_matching_q11 pr_ov_picture_matching_q12 pr_ov_picture_matching_q13 pr_ov_picture_matching_q14 pr_ov_picture_matching_q15)
+
+destring sr_oral_vocabulary_example_1 sr_oral_vocabulary_example_2 sr_ov_picture_matching_q1 sr_ov_picture_matching_q2 sr_ov_picture_matching_q3 sr_ov_picture_matching_q4 sr_ov_picture_matching_q5 sr_ov_picture_matching_q6 sr_ov_picture_matching_q7 sr_ov_picture_matching_q8 sr_ov_picture_matching_q9 sr_ov_picture_matching_q10 sr_ov_picture_matching_q11 sr_ov_picture_matching_q12 sr_ov_picture_matching_q13 sr_ov_picture_matching_q14 sr_ov_picture_matching_q15 fr_oral_vocabulary_example_1  fr_oral_vocabulary_example_2 fr_ov_picture_matching_q1 fr_ov_picture_matching_q2 fr_ov_picture_matching_q3 fr_ov_picture_matching_q4 fr_ov_picture_matching_q5 fr_ov_picture_matching_q6 fr_ov_picture_matching_q7 fr_ov_picture_matching_q8 fr_ov_picture_matching_q9 fr_ov_picture_matching_q10 fr_ov_picture_matching_q11 fr_ov_picture_matching_q12 fr_ov_picture_matching_q13 fr_ov_picture_matching_q14 fr_ov_picture_matching_q15 wf_oral_vocabulary_example_1  wf_oral_vocabulary_example_2 wf_ov_picture_matching_q1 wf_ov_picture_matching_q2 wf_ov_picture_matching_q3 wf_ov_picture_matching_q4 wf_ov_picture_matching_q5 wf_ov_picture_matching_q6 wf_ov_picture_matching_q7 wf_ov_picture_matching_q8 wf_ov_picture_matching_q9 wf_ov_picture_matching_q10 wf_ov_picture_matching_q11 wf_ov_picture_matching_q12 wf_ov_picture_matching_q13 wf_ov_picture_matching_q14 wf_ov_picture_matching_q15 pr_oral_vocabulary_example_1  pr_oral_vocabulary_example_2 pr_ov_picture_matching_q1 pr_ov_picture_matching_q2 pr_ov_picture_matching_q3 pr_ov_picture_matching_q4 pr_ov_picture_matching_q5 pr_ov_picture_matching_q6 pr_ov_picture_matching_q7 pr_ov_picture_matching_q8 pr_ov_picture_matching_q9 pr_ov_picture_matching_q10 pr_ov_picture_matching_q11 pr_ov_picture_matching_q12 pr_ov_picture_matching_q13 pr_ov_picture_matching_q14 pr_ov_picture_matching_q15, replace
+
+order fr_oral_vocabulary_example_1  fr_oral_vocabulary_example_2 fr_ov_picture_matching_q1 fr_ov_picture_matching_q2 fr_ov_picture_matching_q3 fr_ov_picture_matching_q4 fr_ov_picture_matching_q5 fr_ov_picture_matching_q6 fr_ov_picture_matching_q7 fr_ov_picture_matching_q8 fr_ov_picture_matching_q9 fr_ov_picture_matching_q10 fr_ov_picture_matching_q11 fr_ov_picture_matching_q12 fr_ov_picture_matching_q13 fr_ov_picture_matching_q14 fr_ov_picture_matching_q15 sr_oral_vocabulary_example_1 wf_oral_vocabulary_example_1  wf_oral_vocabulary_example_2 wf_ov_picture_matching_q1 wf_ov_picture_matching_q2 wf_ov_picture_matching_q3 wf_ov_picture_matching_q4 wf_ov_picture_matching_q5 wf_ov_picture_matching_q6 wf_ov_picture_matching_q7 wf_ov_picture_matching_q8 wf_ov_picture_matching_q9 wf_ov_picture_matching_q10 wf_ov_picture_matching_q11 wf_ov_picture_matching_q12 wf_ov_picture_matching_q13 wf_ov_picture_matching_q14 wf_ov_picture_matching_q15 sr_oral_vocabulary_example_2 sr_ov_picture_matching_q1 sr_ov_picture_matching_q2 sr_ov_picture_matching_q3 sr_ov_picture_matching_q4 sr_ov_picture_matching_q5 sr_ov_picture_matching_q6 sr_ov_picture_matching_q7 sr_ov_picture_matching_q8 sr_ov_picture_matching_q9 sr_ov_picture_matching_q10 sr_ov_picture_matching_q11 sr_ov_picture_matching_q12 sr_ov_picture_matching_q13 sr_ov_picture_matching_q14 sr_ov_picture_matching_q15 pr_oral_vocabulary_example_1  pr_oral_vocabulary_example_2 pr_ov_picture_matching_q1 pr_ov_picture_matching_q2 pr_ov_picture_matching_q3 pr_ov_picture_matching_q4 pr_ov_picture_matching_q5 pr_ov_picture_matching_q6 pr_ov_picture_matching_q7 pr_ov_picture_matching_q8 pr_ov_picture_matching_q9 pr_ov_picture_matching_q10 pr_ov_picture_matching_q11 pr_ov_picture_matching_q12 pr_ov_picture_matching_q13 pr_ov_picture_matching_q14 pr_ov_picture_matching_q15,after(interviewer_phonological_stop_sr)
+
+
+*************************************************************************
+**Letter Knowledge section
+*************************************************************************
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 **************************************
 **Variable Renaming
@@ -302,73 +475,6 @@ order substraction_strategy,before(substraction_strategy_1)
 destring substraction_strategy_*,replace
 lab values substraction_strategy_* yesno
 
-*B1
-lab define gend 1 "Boy" 2 "Girl"
-ren B1 Gender
-destring Gender,replace
-lab values Gender gend
-
-*B2
-destring B2,replace
-ren B2 Age
-
-*B3
-lab define grd 1 "CP" 2 "CE1" 3 "CE2"
-ren B3 Grade
-destring Grade,replace
-lab values Grade grd
-
-*B4
-lab define B4 1 "Yes" 2 "No" 3 "Don't know/no answer"
-destring B4,replace
-lab values B4 B4
-
-*B5 & B6
-gen B5 = ""
-
-foreach x in B5_1 B5_2 B5_3 B5_4 B5_5 B5_6 B5_7 B6_1 B6_2 B6_3 B6_4 B6_5 B6_6 B6_7{
-	replace `x' = "2" if `x'=="0"
-}
-
-lab var B5 "What language(s) do you speak at home?"
-lab var B5_1 "French"
-lab var B5_2 "Wolof"
-lab var B5_3 "Serere"
-lab var B5_4 "Pulaar"
-lab var B5_5 "Otherspecify - 1"
-lab var B5_6 "Otherspecify - 2"
-lab var B5_7 "Otherspecify - 3"
-
-destring B5_1 - B5_7,replace
-lab values B5_1 - B5_7 yesno
-
-order B5, before(B5_1)
-
-gen B6 = ""
-lab var B6 "What language(s) do you speak when playing with your friends?"
-lab var B6_1 "French"
-lab var B6_2 "Wolof"
-lab var B6_3 "Serere"
-lab var B6_4 "Pulaar"
-lab var B6_5 "Otherspecify - 1"
-lab var B6_6 "Otherspecify - 2"
-lab var B6_7 "Otherspecify - 3"
-
-destring B6_1 - B6_7,replace
-lab values B6_1 - B6_7 yesno
-order B6, before(B6_1)
-
-*B7
-lab define B7 1 "0 day, I was at school everyday" 2 "1 day" 3 "2 days" 4 "3 days" 5 "4 days" 6 "5 days, I missed every day of school" 7 "Don't know/Did not answer"
-
-destring B7,replace
-lab values B7 B7
-
-*B8
-lab define B8 1"Yes" 2"No" 3"No response"
-
-destring B8,replace
-lab values B8 B8
 
 *B9
 lab define B9 1 "Yes" 2 "No" 3 "Don't know/No answer"
@@ -880,8 +986,7 @@ keep if (correct_substraction_grid_2 == 1 & substraction_grid_2num_corr>1) | (co
 cap export excel $var_kept substraction_grid_2* correct_substraction_grid_2 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(substraction_grid_2_issues,replace)firstrow(variables)
 restore
 
-****Comparison to Baseline
-***Average against Endline
+****Baseline
 summ letter_knowledge_attempt letter_knowledge_correct
 summ reading_familiar_attempt reading_familiar_correct
 summ oral_reading_attempt oral_reading_correct

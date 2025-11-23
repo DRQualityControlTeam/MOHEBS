@@ -689,9 +689,11 @@ destring reading_famila_word_pr_Bnum_att,replace
 *************************************************************************
 drop if Consent == 2
 
-save "${gsdData}\Pilot\Student\MOHEBS Baseline Raw sorted Dataset 23-11 v01.dta",replace
+*saving data
+cd "${gsdData}\Raw"
+save "Pilot\Student\MOHEBS Baseline Raw sorted Dataset 23-11 v01.dta",replace
 
-
+---------------END STUDENT SORT----------------------------------------
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************
 * QC files

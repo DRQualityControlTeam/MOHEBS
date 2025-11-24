@@ -719,63 +719,63 @@ capture mkdir "`folder'"
 * QC files
 cd "${dates}"
 
-// * var_kept
-// global var_kept "interview_ID interview_date SUP_NAME ENUM_NAME IEF Commune Ecole Niveau Eleve_nom n_classes CLASSE_NUM Sexe status Gender Age Grade survey_language"
-//
-// ** generate a Comment based on the issue raised
-// gen issue_comment = ""
-//
-// ***************************************************************************
-// **Duration of interview check
-// preserve
-// replace issue_comment ="interview duration is Longer or Shorter, kindly clarify"
-// keep if !inrange(duration_mins,30,60)
-// cap export excel $var_kept start_time end_time duration_mins issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
-// restore
-//
-// *Lag time check
-//
-// *Step 2: Sort by enumerator and time
-// bysort interview_date ENUM_NAME (start_time): gen gap_mins = (start_time - end_time[_n-1]) / 60000 if _n > 1
-//
-// preserve
-// replace issue_comment ="Time taken to the next interview is way wierd, seems the interview started earlier or overlapped the other interview, kindly clarify"
-// keep if !inrange(gap_mins,0,10)
-// cap export excel $var_kept start_time end_time gap_mins issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(lag_time_issues,replace)firstrow(variables)
-// restore
-//
-// **GPS Accuracy
-// preserve
-// replace issue_comment ="The GPS Accuracy captured is low"
-// keep if gpsaccuracy> 20
-// cap export excel $var_kept gps* issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(gpsaccuracy_issues,replace)firstrow(variables)
-// restore
-//
-// **Duplicates GPS
-// duplicates tag gpslatitude gpslongitude, gen (gps_dup)
-//
-// preserve
-// replace issue_comment ="The GPS captured are duplicated, kindly clarify"
-// keep if gps_dup> 0
-// cap export excel $var_kept gps* issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(gps_duplicates_issues,replace)firstrow(variables)
-// restore
-//
-// **Duplicates Interviews_General
-// duplicates tag, gen (Interview_gen_dup)
-//
-// preserve
-// replace issue_comment ="The interviews have duplicates, kindly clarify"
-// keep if Interview_gen_dup> 0
-// cap export excel $var_kept issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(Interv_dupl_gen_issues,replace)firstrow(variables)
-// restore
-//
+* var_kept
+global var_kept "interview_ID INT_DATE INT_STARTTIME INT_ENDTIME survey_language ENUM_NAME assessment_type interviewer_type Region IEF Arrondissement Commune School Groupe Language official_language teaching_language Student_Name B2 B3 B4"
+
+** generate a Comment based on the issue raised
+gen issue_comment = ""
+
+***************************************************************************
+**Duration of interview check
+preserve
+replace issue_comment ="interview duration is Longer or Shorter, kindly clarify"
+keep if !inrange(duration_mins,30,60)
+cap export excel $var_kept Duration_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
+restore
+
+*Lag time check
+
+*Step 2: Sort by enumerator and time
+bysort INT_DATE ENUM_NAME (START_TIME): gen gap_mins = (START_TIME - END_TIME[_n-1]) / 60000 if _n > 1
+
+preserve
+replace issue_comment ="Time taken to the next interview is way wierd, seems the interview started earlier or overlapped the other interview, kindly clarify"
+keep if !inrange(gap_mins,0,10)
+cap export excel $var_kept START_TIME END_TIME gap_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(lag_time_issues,replace)firstrow(variables)
+restore
+
+**GPS Accuracy
+preserve
+replace issue_comment ="The GPS Accuracy captured is low"
+keep if gpsaccuracy> 20
+cap export excel $var_kept GPS* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(gpsaccuracy_issues,replace)firstrow(variables)
+restore
+
+**Duplicates GPS
+duplicates tag GPSlatitude GPSlongitude, gen (gps_dup)
+
+preserve
+replace issue_comment ="The GPS captured are duplicated, kindly clarify"
+keep if gps_dup> 0
+cap export excel $var_kept GPS* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(gps_duplicates_issues,replace)firstrow(variables)
+restore
+
+**Duplicates Interviews_General
+duplicates tag, gen (Interview_gen_dup)
+
+preserve
+replace issue_comment ="The interviews have duplicates, kindly clarify"
+keep if Interview_gen_dup> 0
+cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Interv_dupl_gen_issues,replace)firstrow(variables)
+restore
+
 // **Duplicates Interviews_Main
 // duplicates tag Ecole Eleve_nom Sexe,gen(int_dup)
 //
 // preserve
 // replace issue_comment ="The interviews have duplicates, kindly clarify"
 // keep if int_dup>0
-// cap export excel $var_kept int_dup issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(Interv_dupl_main_issues,replace)firstrow(variables)
+// cap export excel $var_kept int_dup issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Interv_dupl_main_issues,replace)firstrow(variables)
 // restore
 //
 // *Ensuring Replacement info == to the main
@@ -784,14 +784,14 @@ cd "${dates}"
 // preserve
 // replace issue_comment ="The Gender of the student not matching the one sampled, kindly clarify"
 // keep if Sexe != Gender & status == 1
-// cap export excel $var_kept issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(GenderNotMatch_issues,replace)firstrow(variables)
+// cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(GenderNotMatch_issues,replace)firstrow(variables)
 // restore
 //
 // **Grade not matching
 // preserve
 // replace issue_comment ="The Grade of the student not matching the one sampled, kindly clarify"
 // keep if Niveau != Grade & status == 1
-// cap export excel $var_kept issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(GradeNotMatch_issues,replace)firstrow(variables)
+// cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(GradeNotMatch_issues,replace)firstrow(variables)
 // restore
 //
 //
@@ -799,21 +799,21 @@ cd "${dates}"
 // preserve
 // replace issue_comment ="Timer in the letter knowledge was not started or started and stopped immediately, kindly clarify"
 // keep if (letter_knowledge_time_remaining >30 & letter_knowledge_gridAutoStopp == 0)| letter_knowledge_gridAutoStopp == 1 | letter_knowledge_attempt < 10
-// cap export excel $var_kept letter_knowledge* issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(Letter_knowledge_time,replace)firstrow(variables)
+// cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_time,replace)firstrow(variables)
 // restore
 //
 // * reading familiar 
 // preserve
 // replace issue_comment ="Timer in the reading familiar words was not started or started and stopped immediately, kindly clarify"
 // keep if (reading_familiar_remaining >30 & reading_familiar_gridAutoStopp == 0)| reading_familiar_gridAutoStopp == 1 | reading_familiar_attempt < 5
-// cap export excel $var_kept reading_familiar* issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(reading_familiar_time,replace)firstrow(variables)
+// cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_time,replace)firstrow(variables)
 // restore
 //
 // * Oral fluency 
 // preserve
 // replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
 // keep if (oral_reading_remaining >30 & oral_reading_gridAutoStopp == 0)| oral_reading_gridAutoStopp == 1
-// cap export excel $var_kept oral_reading_* issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(oral_fluency_time,replace)firstrow(variables)
+// cap export excel $var_kept oral_reading_* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_time,replace)firstrow(variables)
 // restore
 //
 // **Languages spoken and used home by kid is different from the interview survey language
@@ -863,14 +863,14 @@ cd "${dates}"
 // preserve
 // replace issue_comment = "The language selected for the interview is not among the chosen languages in B5 and B6, kindly clarify"
 // keep if tot_exist == 0
-// cap export excel $var_kept B5_* B6_* tot_exist issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(language_consitency_issues,replace)firstrow(variables)
+// cap export excel $var_kept B5_* B6_* tot_exist issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(language_consitency_issues,replace)firstrow(variables)
 // restore
 //
 // *Surv language
 // preserve
 // replace issue_comment = "The language selected for the interview is not language done during the baseline, kindly clarify"
 // keep if student_lang != survey_language
-// cap export excel $var_kept survey_language student_lang issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(language_consitency_2_issues,replace)firstrow(variables)
+// cap export excel $var_kept survey_language student_lang issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(language_consitency_2_issues,replace)firstrow(variables)
 // restore
 //
 // *Number of correct words do not align with the correct number grid question
@@ -878,56 +878,56 @@ cd "${dates}"
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_number_grid_1 == 1 & number_grid_1num_corr>3) | (correct_number_grid_1 == 2 & number_grid_1num_corr<4)
-// cap export excel $var_kept  number_grid_1* correct_number_grid_1 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(number_grid_1_issues,replace)firstrow(variables)
+// cap export excel $var_kept  number_grid_1* correct_number_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(number_grid_1_issues,replace)firstrow(variables)
 // restore
 //
 // *number_grid_2
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_number_grid_2 == 1 & number_grid_2num_corr>3) | (correct_number_grid_2 == 2 & number_grid_2num_corr<4)
-// cap export excel $var_kept  number_grid_2* correct_number_grid_2 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(number_grid_2_issues,replace)firstrow(variables)
+// cap export excel $var_kept  number_grid_2* correct_number_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(number_grid_2_issues,replace)firstrow(variables)
 // restore
 //
 // *digital_discrimination_1
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_dd_grid_1 == 1 & digital_discrimination_1num_corr>1) | (correct_dd_grid_1 == 2 & digital_discrimination_1num_corr<2)
-// cap export excel $var_kept  digital_discrimination_1* correct_dd_grid_1 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(digital_discrimination_1_issues,replace)firstrow(variables)
+// cap export excel $var_kept  digital_discrimination_1* correct_dd_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_1_issues,replace)firstrow(variables)
 // restore
 //
 // *digital_discrimination_2
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_dd_grid_2 == 1 & digital_discrimination_2num_corr>1) | (correct_dd_grid_2 == 2 & digital_discrimination_2num_corr<2)
-// cap export excel $var_kept  digital_discrimination_2* correct_dd_grid_2 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(digital_discrimination_2_issues,replace)firstrow(variables)
+// cap export excel $var_kept  digital_discrimination_2* correct_dd_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_2_issues,replace)firstrow(variables)
 // restore
 //
 // *addition_grid_1
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_addition_grid_1 == 1 & addition_grid_1num_corr>1) | (correct_addition_grid_1 == 2 & addition_grid_1num_corr<2)
-// cap export excel $var_kept  addition_grid_1* correct_addition_grid_1 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(addition_grid_1_issues,replace)firstrow(variables)
+// cap export excel $var_kept  addition_grid_1* correct_addition_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(addition_grid_1_issues,replace)firstrow(variables)
 // restore
 //
 // *addition_grid_2
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_addition_grid_2 == 1 & addition_grid_2num_corr>1) | (correct_addition_grid_2 == 2 & addition_grid_2num_corr<2)
-// cap export excel $var_kept  addition_grid_2* correct_addition_grid_2 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(addition_grid_2_issues,replace)firstrow(variables)
+// cap export excel $var_kept  addition_grid_2* correct_addition_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(addition_grid_2_issues,replace)firstrow(variables)
 // restore
 //
 // *substraction_grid_1
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_substraction_grid_1 == 1 & substraction_grid_1num_corr>1) | (correct_substraction_grid_1 == 2 & substraction_grid_1num_corr<2)
-// cap export excel $var_kept  substraction_grid_1* correct_substraction_grid_1 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(substraction_grid_1_issues,replace)firstrow(variables)
+// cap export excel $var_kept  substraction_grid_1* correct_substraction_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(substraction_grid_1_issues,replace)firstrow(variables)
 // restore
 //
 // *substraction_grid_2
 // preserve
 // replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 // keep if (correct_substraction_grid_2 == 1 & substraction_grid_2num_corr>1) | (correct_substraction_grid_2 == 2 & substraction_grid_2num_corr<2)
-// cap export excel $var_kept substraction_grid_2* correct_substraction_grid_2 issue_comment using "14-11\UND NDAW WUNE DQA issues 14-11 v01.xlsx", sheet(substraction_grid_2_issues,replace)firstrow(variables)
+// cap export excel $var_kept substraction_grid_2* correct_substraction_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(substraction_grid_2_issues,replace)firstrow(variables)
 // restore
 //
 // ****Baseline

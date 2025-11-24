@@ -674,7 +674,9 @@ lab values translator yes_no
 lab var translator"Was the translator used?"
 order translator INT_ENDTIME,after(word_add_sub_strategy_99)
 
-drop semantic_language_timer1_1 semantic_language_timer2_1 semantic_language_timer3_1 semantic_language_timer1number_o semantic_language_timer2number_o semantic_language_timer3number_o semantic_lan_timer1items_att semantic_lan_timer2items_att semantic_language_timer1items_pe semantic_language_timer2items_pe semantic_language_timer3items_pe
+drop semantic_language_timer1_1 semantic_language_timer2_1 semantic_language_timer3_1 semantic_language_timer1number_o semantic_language_timer2number_o semantic_language_timer3number_o semantic_lan_timer1items_att semantic_lan_timer2items_att semantic_language_timer1items_pe semantic_language_timer2items_pe semantic_language_timer3items_pe semantic_language_timer3time_int
+
+destring reading_famila_word_sr_Bnum_att read_invented_word_sr_Bnum_att,replace
 
 *****************************************************************************************************************
 **Value labelling
@@ -689,17 +691,7 @@ destring reading_famila_word_pr_Bnum_att,replace
 *************************************************************************
 drop if Consent == 2
 
-*saving data
-cd "${gsdData}\Raw"
-save "Pilot\Student\MOHEBS Baseline Raw sorted Dataset 23-11 v01.dta",replace
 
----------------END STUDENT SORT----------------------------------------
-***************************************************************************************QC checks-Flaggings
-***************************************************************************************
-* QC files
-cd "${gsdQChecks}"
-
-**
 * Create the date folders
 ****************************************************************************************************
 
@@ -716,6 +708,16 @@ local folder "${dates}"
 capture rmdir /s /q "`folder'"
 capture mkdir "`folder'"
 
+*saving data
+cd "${gsdData}\Raw"
+save "Pilot\Student\MOHEBS Baseline Raw sorted Dataset ${dates} v01.dta",replace
+
+********************************QC checks-Flaggings
+***************************************************************************************
+* QC files
+cd "${gsdQChecks}"
+
+
 * QC files
 cd "${dates}"
 
@@ -729,26 +731,26 @@ gen issue_comment = ""
 **Duration of interview check
 preserve
 replace issue_comment ="interview duration is Longer or Shorter, kindly clarify"
-keep if !inrange(duration_mins,30,60)
+keep if !inrange(Duration_mins,30,60)
 cap export excel $var_kept Duration_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
 restore
 
 *Lag time check
 
 *Step 2: Sort by enumerator and time
-bysort INT_DATE ENUM_NAME (START_TIME): gen gap_mins = (START_TIME - END_TIME[_n-1]) / 60000 if _n > 1
+bysort INT_DATE ENUM_NAME (INT_STARTTIME): gen gap_mins = (INT_STARTTIME - INT_ENDTIME[_n-1]) / 60000 if _n > 1
 
 preserve
 replace issue_comment ="Time taken to the next interview is way wierd, seems the interview started earlier or overlapped the other interview, kindly clarify"
 keep if !inrange(gap_mins,0,10)
-cap export excel $var_kept START_TIME END_TIME gap_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(lag_time_issues,replace)firstrow(variables)
+cap export excel $var_kept INT_STARTTIME INT_ENDTIME gap_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(lag_time_issues,replace)firstrow(variables)
 restore
 
 **GPS Accuracy
 preserve
 replace issue_comment ="The GPS Accuracy captured is low"
-keep if gpsaccuracy> 20
-cap export excel $var_kept GPS* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(gpsaccuracy_issues,replace)firstrow(variables)
+keep if GPSaccuracy> 20
+cap export excel $var_kept GPS* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(GPSaccuracy_issues,replace)firstrow(variables)
 restore
 
 **Duplicates GPS
@@ -825,31 +827,26 @@ keep if (letter_knowledge_fr_Bduration - letter_knowledge_fr_Btime_remain < 60 &
 cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_B_time,replace)firstrow(variables)
 restore
 
-*phonological_awareness
-*view manually
-*compute average scores/descriptive
-summ phonological_awareness_prnumber_ phonological_awareness_srnumber_ phonological_awareness_wfnumber_ phonological_awareness_frnumber_
-
 * reading familiar 
 *Listen to the recordings
 preserve
 replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
-keep if (read_familiar_words_frduration - read_familiar_words_frtime_remai < 60 & read_familiar_words_frgridAutoSt == 0)| (read_familiar_words_wfduration - read_familiar_words_wftime_remai < 60 & read_familiar_words_wfgridAutoSt == 0) | (read_familiar_words_srduration - read_familiar_words_srtime_remai < 60 & read_familiar_words_srgridAutoSt == 0)| (read_familiar_words_prduration - read_familiar_words_prtime_remai < 60 & read_familiar_words_prgridAutoSt == 0)| read_familiar_words_frgridAutoSt == 1 | reading_familiar_words_frnum_att < 8| read_familiar_words_wfgridAutoSt == 1 | reading_familiar_words_wfnum_att < 8 |read_familiar_words_srgridAutoSt == 1 | reading_familiar_words_srnum_att < 8 | read_familiar_words_prgridAutoSt == 1 | reading_familiar_words_prnum_att < 8
-cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_time,replace)firstrow(variables)
+keep if (read_familiar_words_frduration - read_familiar_words_frtime_remai < 60 & read_familiar_words_frgridAutoSt == 0)|(read_familiar_words_wfduration - read_familiar_words_wftime_remai < 60 & read_familiar_words_wfgridAutoSt == 0) | (read_familiar_words_srduration - read_familiar_words_srtime_remai < 60 & read_familiar_words_srgridAutoSt == 0)| (read_familiar_words_prduration - read_familiar_words_prtime_remai < 60 & read_familiar_words_prgridAutoSt == 0)| read_familiar_words_frgridAutoSt == 1 | reading_familiar_words_frnum_att < 8| read_familiar_words_wfgridAutoSt == 1 | reading_familiar_words_wfnum_att < 8 |read_familiar_words_srgridAutoSt == 1 | reading_familiar_words_srnum_att < 8 | read_familiar_words_prgridAutoSt == 1 | reading_familiar_words_prnum_att < 8
+cap export excel $var_kept read_familiar_words* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_time,replace)firstrow(variables)
 restore
 
 *stops
 preserve
 replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
 keep if (read_familiar_stop_fr != read_familiar_words_frgridAutoSt)|(read_familiar_stop_wf != read_familiar_words_wfgridAutoSt) |(read_familiar_stop_sr != read_familiar_words_srgridAutoSt)|(read_familiar_stop_pr != read_familiar_words_prgridAutoSt)
-cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_stop,replace)firstrow(variables)
+cap export excel $var_kept read_familiar_words* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_stop,replace)firstrow(variables)
 restore
 
 *Familiar part B
 preserve
 replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
-keep if (read_familiar_words_fr_Bduration - read_familiar_words_fr_Btime_rem < 60 & read_familiar_words_fr_BgridAuto == 0)| (read_familiar_words_wf_Bduration - read_familiar_words_wf_Btime_rem < 60 & read_familiar_words_wf_BgridAuto == 0) | (read_familiar_words_srduration - read_familiar_words_srtime_remai < 60 & read_familiar_words_srgridAutoSt == 0)| (read_familiar_words_prduration - read_familiar_words_prtime_remai < 60 & read_familiar_words_prgridAutoSt == 0)| read_familiar_words_fr_BgridAuto == 1 | reading_famila_word_fr_Bnum_att < 8| read_familiar_words_wf_BgridAuto == 1 | reading_famila_word_wf_Bnum_att < 8 |read_familiar_words_sr_BgridAuto == 1 | reading_famila_word_sr_Bnum_att < 8 | read_familiar_words_pr_BgridAuto == 1 | reading_famila_word_pr_Bnum_att < 8
-cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_time,replace)firstrow(variables)
+keep if (read_familiar_words_fr_Bduration - read_familiar_words_fr_Btime_rem < 60 & read_familiar_words_fr_BgridAuto == 0)| (read_familiar_words_wf_Bduration - read_familiar_words_wf_Btime_rem < 60 & read_familiar_words_wf_BgridAuto == 0) | (read_familiar_words_sr_Bduration - read_familiar_words_sr_Btime_rem < 60 & read_familiar_words_sr_BgridAuto == 0)| (read_familiar_words_pr_Bduration - read_familiar_words_pr_Btime_rem < 60 & read_familiar_words_pr_Btime_rem == 0)| read_familiar_words_fr_BgridAuto == 1 | reading_famila_word_fr_Bnum_att < 8| read_familiar_words_wf_BgridAuto == 1 | reading_famila_word_wf_Bnum_att < 8 |read_familiar_words_sr_BgridAuto == 1 | reading_famila_word_sr_Bnum_att < 8 | read_familiar_words_pr_BgridAuto == 1 | reading_famila_word_pr_Bnum_att < 8
+cap export excel $var_kept read_familiar_words* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_time,replace)firstrow(variables)
 restore
 
 * reading Invented
@@ -857,151 +854,114 @@ restore
 preserve
 replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
 keep if (read_invented_words_frduration - read_invented_words_frtime_remai < 60 & read_invented_words_frgridAutoSt == 0)| (read_invented_words_wfduration - read_invented_words_wftime_remai < 60 & read_invented_words_wfgridAutoSt == 0) | (read_invented_words_srduration - read_invented_words_srtime_remai < 60 & read_invented_words_srgridAutoSt == 0)| (read_invented_words_prduration - read_invented_words_prtime_remai < 60 & read_invented_words_prgridAutoSt == 0)| read_invented_words_frgridAutoSt == 1 | read_invented_words_frnum_att < 8| read_invented_words_wfgridAutoSt == 1 | read_invented_words_wfnum_att < 8 |read_invented_words_srgridAutoSt == 1 | read_invented_words_srnum_att < 8 | read_invented_words_prgridAutoSt == 1 | read_invented_words_prnum_att < 8
-cap export excel $var_kept read_invented* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_time,replace)firstrow(variables)
+cap export excel $var_kept read_invented_word* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_time,replace)firstrow(variables)
 restore
 
 *stops
 preserve
 replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
 keep if (read_invented_stop_fr != read_invented_words_frgridAutoSt)|(read_invented_stop_wf != read_invented_words_wfgridAutoSt) |(read_invented_stop_sr != read_invented_words_srgridAutoSt)|(read_invented_stop_pr != read_invented_words_prgridAutoSt)
-cap export excel $var_kept read_invented* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_stop,replace)firstrow(variables)
+cap export excel $var_kept read_invented_word* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_stop,replace)firstrow(variables)
 restore
 
 *Invented part B
 preserve
 replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
-keep if (read_invented_words_frduration - read_invented_words_frtime_remai < 60 & read_invented_words_frgridAutoSt == 0)| (read_invented_words_wfduration - read_invented_words_wftime_remai < 60 & read_invented_words_wfgridAutoSt == 0) | (read_invented_words_srduration - read_invented_words_srtime_remai < 60 & read_invented_words_srgridAutoSt == 0)| (read_invented_words_prduration - read_invented_words_prtime_remai < 60 & read_invented_words_prgridAutoSt == 0)| read_invented_words_fr_BgridAuto == 1 | read_invented_word_fr_Bnum_att < 8| read_invented_words_wf_BgridAuto == 1 | read_invented_word_wf_Bnum_att < 8 |read_invented_words_sr_BgridAuto == 1 | read_invented_word_sr_Bnum_att < 8 | read_invented_words_pr_BgridAuto == 1 | read_invented_word_pr_Bnum_att < 8
-cap export excel $var_kept read_invented* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_time,replace)firstrow(variables)
+keep if (read_invented_words_fr_Bduration - read_invented_words_fr_Btime_rem < 60 & read_invented_words_fr_BgridAuto == 0)| (read_invented_words_wf_Bduration - read_invented_words_wf_Btime_rem < 60 & read_invented_words_wf_BgridAuto == 0) | (read_invented_words_sr_Bduration - read_invented_words_sr_Btime_rem < 60 & read_invented_words_sr_BgridAuto == 0)| (read_invented_words_pr_Bduration - read_invented_words_pr_Btime_rem < 60 & read_invented_words_pr_BgridAuto == 0)| read_invented_words_fr_BgridAuto == 1 | read_invented_word_fr_Bnum_att < 8| read_invented_words_wf_BgridAuto == 1 | read_invented_word_wf_Bnum_att < 8 |read_invented_words_sr_BgridAuto == 1 | read_invented_word_sr_Bnum_att < 8 | read_invented_words_pr_BgridAuto == 1 | read_invented_word_pr_Bnum_att < 8
+cap export excel $var_kept read_invented_word* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_time,replace)firstrow(variables)
 restore
 
 // * Oral fluency 
 preserve
 replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
-keep if (oral_reading_fluency_frtime_rema >30 & oral_reading_fluency_frnum_att < 20) | (oral_reading_fluency_wftime_rema >30 & oral_reading_fluency_wfnum_att < 20)| (oral_reading_fluency_srtime_rema >30 & oral_reading_fluency_srnum_att < 20)| (oral_reading_fluency_prtime_rema >30 & oral_reading_fluency_prnum_att < 20)
+keep if (oral_reading_fluency_frtime_rema >30 & oral_reading_fluency_frnum_att < 20) | (oral_reading_fluency_wftime_rema >30 & oral_reading_fluency_wfnum_att < 20)|(oral_reading_fluency_prtime_rema >30 & oral_reading_fluency_prnum_att < 20)
 cap export excel $var_kept oral_reading_* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_time,replace)firstrow(variables)
 restore
+*update with sr later on when data commes....../////
 
-// **Languages spoken and used home by kid is different from the interview survey language
-// lab define b6 1 "French" 2 "Wolof" 3 "Serere" 4 "Pulaar" 95 "Otherspecify - 1" 96 "Otherspecify - 2" 97 "Otherspecify - 3"
-//
-// replace B6_1 = 1 if B6_1 == 1
-// replace B6_2 = 2 if B6_2 == 1
-// replace B6_3 = 3 if B6_3 == 1
-// replace B6_4 = 4 if B6_4 == 1
-// replace B6_5 = 95 if B6_5 == 1
-// replace B6_6 = 96 if B6_6 == 1
-// replace B6_7 = 97 if B6_7 == 1
-//
-// replace B5_1 = 1 if B5_1 == 1
-// replace B5_2 = 2 if B5_2 == 1
-// replace B5_3 = 3 if B5_3 == 1
-// replace B5_4 = 4 if B5_4 == 1
-// replace B5_5 = 95 if B5_5 == 1
-// replace B5_6 = 96 if B5_6 == 1
-// replace B5_7 = 97 if B5_7 == 1
-//
-// foreach x in B6_1 B6_2 B6_3 B6_4 B6_5 B6_6 B6_7 B5_1 B5_2 B5_3 B5_4 B5_5 B5_6 B5_7{
-//     replace `x' = .  if `x' == 0
-// }
-// lab values B6_1 B6_2 B6_3 B6_4 B6_5 B6_6 B6_7 B5_1 B5_2 B5_3 B5_4 B5_5 B5_6 B5_7 b6
-//
-// gen exists1 = 0
-// gen exists2 = 0
-// gen exists3 = 0
-// gen exists4 = 0
-// gen exists5 = 0
-// gen exists6 = 0
-// gen exists7 = 0
-// gen exists8 = 0
-//
-// replace exists1 = 1 if B5_1 == survey_language
-// replace exists2 = 1 if B5_2 == survey_language
-// replace exists3 = 1 if B5_3 == survey_language
-// replace exists4 = 1 if B5_4 == survey_language
-// replace exists5 = 1 if B6_1 == survey_language
-// replace exists6 = 1 if B6_2 == survey_language
-// replace exists7 = 1 if B6_3 == survey_language
-// replace exists8 = 1 if B6_4 == survey_language
-//
-// gen tot_exist = exists1+exists2+exists3+exists4+exists5+exists6+exists7+exists8
-//
-// preserve
-// replace issue_comment = "The language selected for the interview is not among the chosen languages in B5 and B6, kindly clarify"
-// keep if tot_exist == 0
-// cap export excel $var_kept B5_* B6_* tot_exist issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(language_consitency_issues,replace)firstrow(variables)
-// restore
-//
-// *Surv language
-// preserve
-// replace issue_comment = "The language selected for the interview is not language done during the baseline, kindly clarify"
-// keep if student_lang != survey_language
-// cap export excel $var_kept survey_language student_lang issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(language_consitency_2_issues,replace)firstrow(variables)
-// restore
-//
-// *Number of correct words do not align with the correct number grid question
-// *number_grid_1
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_number_grid_1 == 1 & number_grid_1num_corr>3) | (correct_number_grid_1 == 2 & number_grid_1num_corr<4)
-// cap export excel $var_kept  number_grid_1* correct_number_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(number_grid_1_issues,replace)firstrow(variables)
-// restore
-//
-// *number_grid_2
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_number_grid_2 == 1 & number_grid_2num_corr>3) | (correct_number_grid_2 == 2 & number_grid_2num_corr<4)
-// cap export excel $var_kept  number_grid_2* correct_number_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(number_grid_2_issues,replace)firstrow(variables)
-// restore
-//
-// *digital_discrimination_1
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_dd_grid_1 == 1 & digital_discrimination_1num_corr>1) | (correct_dd_grid_1 == 2 & digital_discrimination_1num_corr<2)
-// cap export excel $var_kept  digital_discrimination_1* correct_dd_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_1_issues,replace)firstrow(variables)
-// restore
-//
-// *digital_discrimination_2
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_dd_grid_2 == 1 & digital_discrimination_2num_corr>1) | (correct_dd_grid_2 == 2 & digital_discrimination_2num_corr<2)
-// cap export excel $var_kept  digital_discrimination_2* correct_dd_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_2_issues,replace)firstrow(variables)
-// restore
-//
-// *addition_grid_1
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_addition_grid_1 == 1 & addition_grid_1num_corr>1) | (correct_addition_grid_1 == 2 & addition_grid_1num_corr<2)
-// cap export excel $var_kept  addition_grid_1* correct_addition_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(addition_grid_1_issues,replace)firstrow(variables)
-// restore
-//
-// *addition_grid_2
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_addition_grid_2 == 1 & addition_grid_2num_corr>1) | (correct_addition_grid_2 == 2 & addition_grid_2num_corr<2)
-// cap export excel $var_kept  addition_grid_2* correct_addition_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(addition_grid_2_issues,replace)firstrow(variables)
-// restore
-//
-// *substraction_grid_1
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_substraction_grid_1 == 1 & substraction_grid_1num_corr>1) | (correct_substraction_grid_1 == 2 & substraction_grid_1num_corr<2)
-// cap export excel $var_kept  substraction_grid_1* correct_substraction_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(substraction_grid_1_issues,replace)firstrow(variables)
-// restore
-//
-// *substraction_grid_2
-// preserve
-// replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-// keep if (correct_substraction_grid_2 == 1 & substraction_grid_2num_corr>1) | (correct_substraction_grid_2 == 2 & substraction_grid_2num_corr<2)
-// cap export excel $var_kept substraction_grid_2* correct_substraction_grid_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(substraction_grid_2_issues,replace)firstrow(variables)
-// restore
-//
-// ****Baseline
-// summ letter_knowledge_attempt letter_knowledge_correct
-// summ reading_familiar_attempt reading_familiar_correct
-// summ oral_reading_attempt oral_reading_correct
-// summ picture_matching_score
+*Identifying numbers grid of correct words do not align with the correct number grid question
+*identify_number_grid_1
+preserve
+replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
+keep if (identifying_numbers_correct_1 != identify_numbers_grid_1num_corr)
+cap export excel $var_kept  identifying_numbers_grid_1_*  identify_numbers_grid_1num_corr identifying_numbers_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(identify_number_1_issues,replace)firstrow(variables)
+restore
+
+*identify_number_grid_2
+preserve
+replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
+keep if (identifying_numbers_correct_2 != identify_numbers_grid_2num_corr)
+cap export excel $var_kept  identifying_numbers_grid_2_*  identify_numbers_grid_2num_corr identifying_numbers_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(identify_number_2_issues,replace)firstrow(variables)
+restore
+
+*digital_discrimination_1
+preserve
+replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
+keep if (digital_discrimination_correct_1 != digital_discrimination_1num_corr)
+cap export excel $var_kept  digital_discrimination_1_* digital_discrimination_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_1_issues,replace)firstrow(variables)
+restore
+
+*digital_discrimination_2
+preserve
+replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
+keep if (digital_discrimination_correct_2 != digital_discrimination_2num_corr)
+cap export excel $var_kept  digital_discrimination_2_* digital_discrimination_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_2_issues,replace)firstrow(variables)
+restore
+
+*Missing number
+preserve
+replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
+keep if (missing_number_correct_grid_1 != missing_number_1num_corr)
+cap export excel $var_kept  missing_number_grid_1_* missing_number_correct_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(missing_number_correct_grid_1_issues,replace)firstrow(variables)
+restore
+
+*decimal_system_grid_1
+preserve
+replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
+keep if (decimal_correct_1 != decimal_system_1num_corr)
+cap export excel $var_kept  decimal_system_grid_1_* digital_discrimination_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_1_issues,replace)firstrow(variables)
+restore
+
+*decimal_system_grid_2
+preserve
+replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
+keep if (decimal_correct_2 != decimal_system_2num_corr)
+cap export excel $var_kept  decimal_system_grid_2_* digital_discrimination_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_2_issues,replace)firstrow(variables)
+restore
+
+**Languages spoken and used home by kid is different from the interview survey language
+
+****Baseline data Quick descriptive analysis of the scores fareness.
+*Letter_knowledge part a
+summ letter_knowledge_frnum_att letter_knowledge_frnumber_of_ite letter_knowledge_wfnum_att letter_knowledge_wfnumber_of_ite letter_knowledge_srnum_att letter_knowledge_srnumber_of_ite letter_knowledge_prnum_att letter_knowledge_prnumber_of_ite
+
+*Letter_knowledge part b
+summ letter_knowledge_fr_Bnum_att letter_knowledge_fr_Bnumber_of_i letter_knowledge_sr_Bnum_att letter_knowledge_sr_Bnumber_of_i letter_knowledge_pr_Bnum_att letter_knowledge_pr_Bnumber_of_i letter_knowledge_wf_Bnum_att letter_knowledge_wf_Bnumber_of_i
+
+*reading familiar part a
+summ reading_familiar_words_frnum_att read_familiar_words_frnumber_of_ reading_familiar_words_srnum_att read_familiar_words_srnumber_of_ reading_familiar_words_prnum_att read_familiar_words_prnumber_of_ reading_familiar_words_wfnum_att read_familiar_words_wfnumber_of_ 
+
+*reading familiar part b
+summ reading_famila_word_fr_Bnum_att read_familiar_words_fr_Bnumber_o reading_famila_word_sr_Bnum_att read_familiar_words_sr_Bnumber_o reading_famila_word_pr_Bnum_att read_familiar_words_pr_Bnumber_o reading_famila_word_wf_Bnum_att read_familiar_words_wf_Bnumber_o
+
+*reading invented part a
+summ read_invented_words_frnum_att read_invented_words_frnumber_of_ read_invented_words_srnum_att read_invented_words_srnumber_of_ read_invented_words_prnum_att read_invented_words_prnumber_of_ read_invented_words_wfnum_att read_invented_words_wfnumber_of_
+
+*reading invented part b
+summ read_invented_word_fr_Bnum_att read_invented_words_fr_Bnumber_o read_invented_word_sr_Bnum_att read_invented_words_sr_Bnumber_o read_invented_word_pr_Bnum_att read_invented_words_pr_Bnumber_o read_invented_word_wf_Bnum_att read_invented_words_wf_Bnumber_o
+
+*phonological_awareness
+*view manually
+*compute average scores/descriptive
+summ phonological_awareness_prnumber_ phonological_awareness_srnumber_ phonological_awareness_wfnumber_ phonological_awareness_frnumber_
+
+*oral reading
+summ oral_reading_fluency_frnum_att oral_reading_fluency_frnumber_of oral_reading_fluency_prnum_att oral_reading_fluency_prnumber_of oral_reading_fluency_wfnum_att oral_reading_fluency_wfnumber_of
 
 ****END********************************************************************
+-------END-----------------------------------------
+
+
 
 
 ***************************************************************************
@@ -1028,8 +988,8 @@ lab var INT_DATE"Interview Date"
 drop if INT_DATE < td(16nov2025)
 
 *Time.
-gen str8 start_time_str = string(START_TIME, "%tcHH:MM:SS")
-gen str8 end_time_str   = string(END_TIME,   "%tcHH:MM:SS")
+gen str8 INT_STARTTIME_str = string(INT_STARTTIME, "%tcHH:MM:SS")
+gen str8 INT_ENDTIME_str   = string(INT_ENDTIME,   "%tcHH:MM:SS")
 
 
 *dropping irrelevant variables
@@ -1073,7 +1033,7 @@ cd "${dates}"
 
 * var_kept
 
-global var_kept "KEY INT_DATE START_TIME END_TIME  SUP_NAME ENUM_NAME Region School RH_school RES_NAME female Age Grade Grade_1 Grade_2 Grade_3 Grade_96 Grade_S"
+global var_kept "KEY INT_DATE INT_STARTTIME INT_ENDTIME  SUP_NAME ENUM_NAME Region School RH_school RES_NAME female Age Grade Grade_1 Grade_2 Grade_3 Grade_96 Grade_S"
 
 ** generate a Comment based on the issue raised
 gen issue_comment = ""
@@ -1082,25 +1042,25 @@ gen issue_comment = ""
 *Duration chcek
 
 *calculate duration in minutes.
-gen duration_mins = round((END_TIME - START_TIME)/(1000*60))
+gen Duration_mins = round((INT_ENDTIME - INT_STARTTIME)/(1000*60))
 
 preserve
-drop END_TIME START_TIME
-ren (start_time_str end_time_str) (START_TIME END_TIME)
+drop INT_ENDTIME INT_STARTTIME
+ren (INT_STARTTIME_str INT_ENDTIME_str) (INT_STARTTIME INT_ENDTIME)
 
 replace issue_comment ="interview duration is *Longer* or *Shorter*, kindly clarify"
-keep if !inrange(duration_mins,25,45)
-cap export excel $var_kept duration_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
+keep if !inrange(Duration_mins,25,45)
+cap export excel $var_kept Duration_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
 restore
 
 *Lag time check
 
 *Step 2: Sort by enumerator and time
-bysort INT_DATE ENUM_NAME (START_TIME): gen gap_mins = (START_TIME - END_TIME[_n-1]) / 60000 if _n > 1
+bysort INT_DATE ENUM_NAME (INT_STARTTIME): gen gap_mins = (INT_STARTTIME - INT_ENDTIME[_n-1]) / 60000 if _n > 1
 
 preserve
-drop END_TIME START_TIME
-ren (start_time_str end_time_str) (START_TIME END_TIME)
+drop INT_ENDTIME INT_STARTTIME
+ren (INT_STARTTIME_str INT_ENDTIME_str) (INT_STARTTIME INT_ENDTIME)
 replace issue_comment ="Time taken to the next interview is way wierd, seems the interview started earlier or overlapped the other interview, kindly clarify"
 keep if !inrange(gap_mins,0,10)
 cap export excel $var_kept gap_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(lag_time_issues,replace)firstrow(variables)

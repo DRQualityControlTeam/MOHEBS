@@ -769,53 +769,118 @@ keep if Interview_gen_dup> 0
 cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Interv_dupl_gen_issues,replace)firstrow(variables)
 restore
 
-// **Duplicates Interviews_Main
-// duplicates tag Ecole Eleve_nom Sexe,gen(int_dup)
-//
-// preserve
-// replace issue_comment ="The interviews have duplicates, kindly clarify"
-// keep if int_dup>0
-// cap export excel $var_kept int_dup issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Interv_dupl_main_issues,replace)firstrow(variables)
-// restore
-//
-// *Ensuring Replacement info == to the main
-//
-// **Gender not matching
-// preserve
-// replace issue_comment ="The Gender of the student not matching the one sampled, kindly clarify"
-// keep if Sexe != Gender & status == 1
-// cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(GenderNotMatch_issues,replace)firstrow(variables)
-// restore
-//
-// **Grade not matching
-// preserve
-// replace issue_comment ="The Grade of the student not matching the one sampled, kindly clarify"
-// keep if Niveau != Grade & status == 1
-// cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(GradeNotMatch_issues,replace)firstrow(variables)
-// restore
-//
-//
-// *Letter_knowledge 
-// preserve
-// replace issue_comment ="Timer in the letter knowledge was not started or started and stopped immediately, kindly clarify"
-// keep if (letter_knowledge_time_remaining >30 & letter_knowledge_gridAutoStopp == 0)| letter_knowledge_gridAutoStopp == 1 | letter_knowledge_attempt < 10
-// cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_time,replace)firstrow(variables)
-// restore
-//
-// * reading familiar 
-// preserve
-// replace issue_comment ="Timer in the reading familiar words was not started or started and stopped immediately, kindly clarify"
-// keep if (reading_familiar_remaining >30 & reading_familiar_gridAutoStopp == 0)| reading_familiar_gridAutoStopp == 1 | reading_familiar_attempt < 5
-// cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_time,replace)firstrow(variables)
-// restore
-//
+**Duplicates Interviews_Main
+duplicates tag School Student_Name B2,gen(int_dup)
+
+preserve
+replace issue_comment ="The interviews have duplicates, kindly clarify"
+keep if int_dup>0
+cap export excel $var_kept int_dup issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Interv_dupl_main_issues,replace)firstrow(variables)
+restore
+
+*Semantic section
+*Semantic 1
+*Listen to the recordings
+preserve
+replace issue_comment ="Timer in the Semantic section 1 was not started or started and stopped immediately, kindly clarify"
+keep if (semantic_language_timer1time_rem != 0 & word_count_language_1 <= 10 & semantic_language_timer1gridAuto == 0)| (semantic_language_timer1time_rem != 0 & semantic_language_timer1gridAuto == 1 & word_count_language_1 <= 10)
+cap export excel $var_kept semantic_language_timer1duration	semantic_language_timer1time_rem semantic_language_timer1gridAuto word_count_language_1	interviewer_semantic_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(semantic_1,replace)firstrow(variables)
+restore 
+
+*Semantic 2
+*Listen to the recordings
+preserve
+replace issue_comment ="Timer in the Semantic section 2 was not started or started and stopped immediately, kindly clarify"
+keep if (semantic_language_timer2time_rem != 0 & word_count_language_2 <= 10 & semantic_language_timer2gridAuto == 0)| (semantic_language_timer2time_rem != 0 & semantic_language_timer2gridAuto == 1 & word_count_language_2 <= 10)
+cap export excel $var_kept semantic_language_timer2duration	semantic_language_timer2time_rem semantic_language_timer2gridAuto word_count_language_2	interviewer_semantic_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(semantic_2,replace)firstrow(variables)
+restore 
+
+*Semantic 3
+*Listen to the recordings
+preserve
+replace issue_comment ="Timer in the Semantic section 3 was not started or started and stopped immediately, kindly clarify"
+keep if (semantic_language_timer3time_rem != 0 & word_count_language_3 <= 10 & semantic_language_timer3gridAuto == 0)| (semantic_language_timer3time_rem != 0 & semantic_language_timer3gridAuto == 1 & word_count_language_3 <= 10)
+cap export excel $var_kept semantic_language_timer3duration	semantic_language_timer3time_rem semantic_language_timer3gridAuto word_count_language_3	interviewer_semantic_3 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(semantic_3,replace)firstrow(variables)
+restore 
+
+*Letter_knowledge 
+*listen to recordings
+preserve
+replace issue_comment ="Timer in the letter knowledge was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_frduration - letter_knowledge_frtime_remainin < 60 & letter_knowledge_frgridAutoStopp == 0)| (letter_knowledge_wfduration - letter_knowledge_wftime_remainin  < 60 & letter_knowledge_wfgridAutoStopp == 0) | (letter_knowledge_srduration - letter_knowledge_srtime_remainin  < 60 & letter_knowledge_srgridAutoStopp == 0)| (letter_knowledge_prduration - letter_knowledge_prtime_remainin  < 60 & letter_knowledge_prgridAutoStopp == 0)| letter_knowledge_frgridAutoStopp == 1 | letter_knowledge_frnum_att < 8| letter_knowledge_wfgridAutoStopp == 1 | letter_knowledge_wfnum_att < 8 |letter_knowledge_srgridAutoStopp == 1 | letter_knowledge_srnum_att < 8 | letter_knowledge_prgridAutoStopp == 1 | letter_knowledge_prnum_att < 8
+cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_time,replace)firstrow(variables)
+restore
+
+*stops
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (letter_knowledge_stop_fr != letter_knowledge_frgridAutoStopp)|(letter_knowledge_stop_wf != letter_knowledge_wfgridAutoStopp) |(letter_knowledge_stop_sr != letter_knowledge_srgridAutoStopp)|(letter_knowledge_stop_pr != letter_knowledge_prgridAutoStopp)
+cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(letter_knowledge_stop,replace)firstrow(variables)
+restore
+
+*letter part B
+preserve
+replace issue_comment ="Timer in the letter knowledge in part B was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_fr_Bduration - letter_knowledge_fr_Btime_remain < 60 & letter_knowledge_fr_BgridAutoSto == 0)| (letter_knowledge_wf_Bduration - letter_knowledge_wf_Btime_remain < 60 & letter_knowledge_wf_BgridAutoSto == 0) | (letter_knowledge_sr_Bduration - letter_knowledge_sr_Btime_remain < 60 & letter_knowledge_sr_BgridAutoSto == 0)| (letter_knowledge_pr_Bduration - letter_knowledge_pr_Btime_remain < 60 & letter_knowledge_pr_BgridAutoSto == 0)| letter_knowledge_fr_BgridAutoSto == 1 | letter_knowledge_fr_Bnum_att < 8| letter_knowledge_wf_BgridAutoSto == 1 | letter_knowledge_wf_Bnum_att < 8 |letter_knowledge_sr_BgridAutoSto == 1 | letter_knowledge_sr_Bnum_att < 8 | letter_knowledge_pr_BgridAutoSto == 1 | letter_knowledge_pr_Bnum_att < 8
+cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_B_time,replace)firstrow(variables)
+restore
+
+*phonological_awareness
+*view manually
+*compute average scores/descriptive
+summ phonological_awareness_prnumber_ phonological_awareness_srnumber_ phonological_awareness_wfnumber_ phonological_awareness_frnumber_
+
+* reading familiar 
+*Listen to the recordings
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_frduration - read_familiar_words_frtime_remai < 60 & read_familiar_words_frgridAutoSt == 0)| (read_familiar_words_wfduration - read_familiar_words_wftime_remai < 60 & read_familiar_words_wfgridAutoSt == 0) | (read_familiar_words_srduration - read_familiar_words_srtime_remai < 60 & read_familiar_words_srgridAutoSt == 0)| (read_familiar_words_prduration - read_familiar_words_prtime_remai < 60 & read_familiar_words_prgridAutoSt == 0)| read_familiar_words_frgridAutoSt == 1 | reading_familiar_words_frnum_att < 8| read_familiar_words_wfgridAutoSt == 1 | reading_familiar_words_wfnum_att < 8 |read_familiar_words_srgridAutoSt == 1 | reading_familiar_words_srnum_att < 8 | read_familiar_words_prgridAutoSt == 1 | reading_familiar_words_prnum_att < 8
+cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_time,replace)firstrow(variables)
+restore
+
+*stops
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_familiar_stop_fr != read_familiar_words_frgridAutoSt)|(read_familiar_stop_wf != read_familiar_words_wfgridAutoSt) |(read_familiar_stop_sr != read_familiar_words_srgridAutoSt)|(read_familiar_stop_pr != read_familiar_words_prgridAutoSt)
+cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_stop,replace)firstrow(variables)
+restore
+
+*Familiar part B
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_fr_Bduration - read_familiar_words_fr_Btime_rem < 60 & read_familiar_words_fr_BgridAuto == 0)| (read_familiar_words_wf_Bduration - read_familiar_words_wf_Btime_rem < 60 & read_familiar_words_wf_BgridAuto == 0) | (read_familiar_words_srduration - read_familiar_words_srtime_remai < 60 & read_familiar_words_srgridAutoSt == 0)| (read_familiar_words_prduration - read_familiar_words_prtime_remai < 60 & read_familiar_words_prgridAutoSt == 0)| read_familiar_words_fr_BgridAuto == 1 | reading_famila_word_fr_Bnum_att < 8| read_familiar_words_wf_BgridAuto == 1 | reading_famila_word_wf_Bnum_att < 8 |read_familiar_words_sr_BgridAuto == 1 | reading_famila_word_sr_Bnum_att < 8 | read_familiar_words_pr_BgridAuto == 1 | reading_famila_word_pr_Bnum_att < 8
+cap export excel $var_kept reading_familiar* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_time,replace)firstrow(variables)
+restore
+
+* reading Invented
+*Listen to recordings 
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_frduration - read_invented_words_frtime_remai < 60 & read_invented_words_frgridAutoSt == 0)| (read_invented_words_wfduration - read_invented_words_wftime_remai < 60 & read_invented_words_wfgridAutoSt == 0) | (read_invented_words_srduration - read_invented_words_srtime_remai < 60 & read_invented_words_srgridAutoSt == 0)| (read_invented_words_prduration - read_invented_words_prtime_remai < 60 & read_invented_words_prgridAutoSt == 0)| read_invented_words_frgridAutoSt == 1 | read_invented_words_frnum_att < 8| read_invented_words_wfgridAutoSt == 1 | read_invented_words_wfnum_att < 8 |read_invented_words_srgridAutoSt == 1 | read_invented_words_srnum_att < 8 | read_invented_words_prgridAutoSt == 1 | read_invented_words_prnum_att < 8
+cap export excel $var_kept read_invented* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_time,replace)firstrow(variables)
+restore
+
+*stops
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_invented_stop_fr != read_invented_words_frgridAutoSt)|(read_invented_stop_wf != read_invented_words_wfgridAutoSt) |(read_invented_stop_sr != read_invented_words_srgridAutoSt)|(read_invented_stop_pr != read_invented_words_prgridAutoSt)
+cap export excel $var_kept read_invented* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_stop,replace)firstrow(variables)
+restore
+
+*Invented part B
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_frduration - read_invented_words_frtime_remai < 60 & read_invented_words_frgridAutoSt == 0)| (read_invented_words_wfduration - read_invented_words_wftime_remai < 60 & read_invented_words_wfgridAutoSt == 0) | (read_invented_words_srduration - read_invented_words_srtime_remai < 60 & read_invented_words_srgridAutoSt == 0)| (read_invented_words_prduration - read_invented_words_prtime_remai < 60 & read_invented_words_prgridAutoSt == 0)| read_invented_words_fr_BgridAuto == 1 | read_invented_word_fr_Bnum_att < 8| read_invented_words_wf_BgridAuto == 1 | read_invented_word_wf_Bnum_att < 8 |read_invented_words_sr_BgridAuto == 1 | read_invented_word_sr_Bnum_att < 8 | read_invented_words_pr_BgridAuto == 1 | read_invented_word_pr_Bnum_att < 8
+cap export excel $var_kept read_invented* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_time,replace)firstrow(variables)
+restore
+
 // * Oral fluency 
-// preserve
-// replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
-// keep if (oral_reading_remaining >30 & oral_reading_gridAutoStopp == 0)| oral_reading_gridAutoStopp == 1
-// cap export excel $var_kept oral_reading_* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_time,replace)firstrow(variables)
-// restore
-//
+preserve
+replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
+keep if (oral_reading_fluency_frtime_rema >30 & oral_reading_fluency_frnum_att < 20) | (oral_reading_fluency_wftime_rema >30 & oral_reading_fluency_wfnum_att < 20)| (oral_reading_fluency_srtime_rema >30 & oral_reading_fluency_srnum_att < 20)| (oral_reading_fluency_prtime_rema >30 & oral_reading_fluency_prnum_att < 20)
+cap export excel $var_kept oral_reading_* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_time,replace)firstrow(variables)
+restore
+
 // **Languages spoken and used home by kid is different from the interview survey language
 // lab define b6 1 "French" 2 "Wolof" 3 "Serere" 4 "Pulaar" 95 "Otherspecify - 1" 96 "Otherspecify - 2" 97 "Otherspecify - 3"
 //

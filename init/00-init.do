@@ -1,5 +1,5 @@
 *----------------------------------------------------------------------------------------------------*
-*	   ACUMEN Set up do file to run the quality control:
+*	   MOHEBS Set up do file to run the quality control:
 *----------------------------------------------------------------------------------------------------*
 global suser = c(username)
 

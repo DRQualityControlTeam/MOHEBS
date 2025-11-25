@@ -1,14 +1,14 @@
 ﻿* Encoding: UTF-8.
 **************************************************************************************************************************************************************************************
-*UND NDAW WUNE PROJECT*********************************************************************************************************************************************
+*MOHEBS PROJECT*********************************************************************************************************************************************
 *********************************************************************************************************************************************
 ***STUDENT SURVEY
 
-get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\UND NDAW PROJECT\Endline\Data\Raw\Main\UND NDAW WUNE Endline Processed Dataset 14-11 v01.dta".
+get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Pilot\Student\MOHEBS Baseline Raw sorted Dataset 25-11 v01.dta".
 
 ************************************************************************************************************************************************************************************.
 
-variable level interview_date Ecole ENUM_NAME (Nominal).
+variable level INT_DATE ENUM_NAME (Nominal).
 
 *Output Tally.
 OUTPUT NEW.

@@ -692,6 +692,15 @@ destring reading_famila_word_pr_Bnum_att,replace
 drop if Consent == 2
 
 
+*saving data
+cd "${gsdData}\Raw"
+save "Pilot\Student\MOHEBS Baseline Raw sorted Dataset 25-11 v01.dta",replace
+
+********************************QC checks-Flaggings
+***************************************************************************************
+* QC files
+cd "${gsdQChecks}"
+
 * Create the date folders
 ****************************************************************************************************
 
@@ -707,16 +716,6 @@ display "`foldername'"
 local folder "${dates}"
 capture rmdir /s /q "`folder'"
 capture mkdir "`folder'"
-
-*saving data
-cd "${gsdData}\Raw"
-save "Pilot\Student\MOHEBS Baseline Raw sorted Dataset ${dates} v01.dta",replace
-
-********************************QC checks-Flaggings
-***************************************************************************************
-* QC files
-cd "${gsdQChecks}"
-
 
 * QC files
 cd "${dates}"
@@ -807,77 +806,296 @@ restore
 
 *Letter_knowledge 
 *listen to recordings
+*fr
 preserve
 replace issue_comment ="Timer in the letter knowledge was not started or started and stopped immediately, kindly clarify"
-keep if (letter_knowledge_frduration - letter_knowledge_frtime_remainin < 60 & letter_knowledge_frgridAutoStopp == 0)| (letter_knowledge_wfduration - letter_knowledge_wftime_remainin  < 60 & letter_knowledge_wfgridAutoStopp == 0) | (letter_knowledge_srduration - letter_knowledge_srtime_remainin  < 60 & letter_knowledge_srgridAutoStopp == 0)| (letter_knowledge_prduration - letter_knowledge_prtime_remainin  < 60 & letter_knowledge_prgridAutoStopp == 0)| letter_knowledge_frgridAutoStopp == 1 | letter_knowledge_frnum_att < 8| letter_knowledge_wfgridAutoStopp == 1 | letter_knowledge_wfnum_att < 8 |letter_knowledge_srgridAutoStopp == 1 | letter_knowledge_srnum_att < 8 | letter_knowledge_prgridAutoStopp == 1 | letter_knowledge_prnum_att < 8
-cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_time,replace)firstrow(variables)
+keep if (letter_knowledge_frduration - letter_knowledge_frtime_remainin < 60 & letter_knowledge_frgridAutoStopp == 0) | letter_knowledge_frgridAutoStopp == 1 | letter_knowledge_frnum_att < 8
+cap export excel $var_kept letter_knowledge_recording_fr -  letter_knowledge_reason_fr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_fr_time,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="Timer in the letter knowledge was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_wfduration - letter_knowledge_wftime_remainin < 60 & letter_knowledge_wfgridAutoStopp == 0) | letter_knowledge_wfgridAutoStopp == 1 | letter_knowledge_wfnum_att < 8
+cap export excel $var_kept letter_knowledge_recording_wf -  letter_knowledge_reason_wf issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_wf_time,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="Timer in the letter knowledge was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_srduration - letter_knowledge_srtime_remainin  < 60 & letter_knowledge_srgridAutoStopp == 0)| letter_knowledge_srgridAutoStopp == 1 | letter_knowledge_srnum_att < 8
+cap export excel $var_kept letter_knowledge_recording_sr -  letter_knowledge_reason_sr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_sr_time,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="Timer in the letter knowledge was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_prduration - letter_knowledge_prtime_remainin  < 60 & letter_knowledge_prgridAutoStopp == 0)| letter_knowledge_prgridAutoStopp == 1 | letter_knowledge_prnum_att < 8
+cap export excel $var_kept letter_knowledge_recording_pr -  letter_knowledge_reason_pr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_pr_time,replace)firstrow(variables)
 restore
 
 *stops
+*fr
 preserve
 replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
-keep if (letter_knowledge_stop_fr != letter_knowledge_frgridAutoStopp)|(letter_knowledge_stop_wf != letter_knowledge_wfgridAutoStopp) |(letter_knowledge_stop_sr != letter_knowledge_srgridAutoStopp)|(letter_knowledge_stop_pr != letter_knowledge_prgridAutoStopp)
-cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(letter_knowledge_stop,replace)firstrow(variables)
+keep if (letter_knowledge_stop_fr != letter_knowledge_frgridAutoStopp)
+cap export excel $var_kept letter_knowledge_recording_fr -  letter_knowledge_stop_fr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(letter_knowledge_fr_stop,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (letter_knowledge_stop_wf != letter_knowledge_wfgridAutoStopp)
+cap export excel $var_kept letter_knowledge_recording_wf -  letter_knowledge_stop_wf issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(letter_knowledge_wf_stop,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (letter_knowledge_stop_sr != letter_knowledge_srgridAutoStopp)
+cap export excel $var_kept letter_knowledge_recording_sr -  letter_knowledge_stop_sr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(letter_knowledge_sr_stop,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (letter_knowledge_stop_pr != letter_knowledge_prgridAutoStopp)
+cap export excel $var_kept letter_knowledge_recording_pr -  letter_knowledge_stop_pr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(letter_knowledge_pr_stop,replace)firstrow(variables)
 restore
 
 *letter part B
+*fr
 preserve
 replace issue_comment ="Timer in the letter knowledge in part B was not started or started and stopped immediately, kindly clarify"
-keep if (letter_knowledge_fr_Bduration - letter_knowledge_fr_Btime_remain < 60 & letter_knowledge_fr_BgridAutoSto == 0)| (letter_knowledge_wf_Bduration - letter_knowledge_wf_Btime_remain < 60 & letter_knowledge_wf_BgridAutoSto == 0) | (letter_knowledge_sr_Bduration - letter_knowledge_sr_Btime_remain < 60 & letter_knowledge_sr_BgridAutoSto == 0)| (letter_knowledge_pr_Bduration - letter_knowledge_pr_Btime_remain < 60 & letter_knowledge_pr_BgridAutoSto == 0)| letter_knowledge_fr_BgridAutoSto == 1 | letter_knowledge_fr_Bnum_att < 8| letter_knowledge_wf_BgridAutoSto == 1 | letter_knowledge_wf_Bnum_att < 8 |letter_knowledge_sr_BgridAutoSto == 1 | letter_knowledge_sr_Bnum_att < 8 | letter_knowledge_pr_BgridAutoSto == 1 | letter_knowledge_pr_Bnum_att < 8
-cap export excel $var_kept letter_knowledge* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_B_time,replace)firstrow(variables)
+keep if (letter_knowledge_fr_Bduration - letter_knowledge_fr_Btime_remain < 60 & letter_knowledge_fr_BgridAutoSto == 0)| letter_knowledge_fr_BgridAutoSto == 1 | letter_knowledge_fr_Bnum_att < 8
+cap export excel $var_kept letter_knowledge_fr_B_1 -  letter_knowledge_fr_Bitems_per_m issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_B_fr_time,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="Timer in the letter knowledge in part B was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_wf_Bduration - letter_knowledge_wf_Btime_remain < 60 & letter_knowledge_wf_BgridAutoSto == 0) | letter_knowledge_wf_BgridAutoSto == 1 | letter_knowledge_wf_Bnum_att < 8
+cap export excel $var_kept letter_knowledge_wf_B_1 -  letter_knowledge_wf_Bitems_per_m issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_B_wf_time,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="Timer in the letter knowledge in part B was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_sr_Bduration - letter_knowledge_sr_Btime_remain < 60 & letter_knowledge_sr_BgridAutoSto == 0)| letter_knowledge_sr_BgridAutoSto == 1 | letter_knowledge_sr_Bnum_att < 8
+cap export excel $var_kept letter_knowledge_sr_B_1 -  letter_knowledge_sr_Bitems_per_m issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_B_sr_time,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="Timer in the letter knowledge in part B was not started or started and stopped immediately, kindly clarify"
+keep if (letter_knowledge_pr_Bduration - letter_knowledge_pr_Btime_remain < 60 & letter_knowledge_pr_BgridAutoSto == 0)| letter_knowledge_pr_BgridAutoSto == 1 | letter_knowledge_pr_Bnum_att < 8
+cap export excel $var_kept letter_knowledge_pr_B_1 -  letter_knowledge_pr_Bitems_per_m issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Letter_knowledge_B_pr_time,replace)firstrow(variables)
 restore
 
 * reading familiar 
 *Listen to the recordings
+*fr
 preserve
 replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
-keep if (read_familiar_words_frduration - read_familiar_words_frtime_remai < 60 & read_familiar_words_frgridAutoSt == 0)|(read_familiar_words_wfduration - read_familiar_words_wftime_remai < 60 & read_familiar_words_wfgridAutoSt == 0) | (read_familiar_words_srduration - read_familiar_words_srtime_remai < 60 & read_familiar_words_srgridAutoSt == 0)| (read_familiar_words_prduration - read_familiar_words_prtime_remai < 60 & read_familiar_words_prgridAutoSt == 0)| read_familiar_words_frgridAutoSt == 1 | reading_familiar_words_frnum_att < 8| read_familiar_words_wfgridAutoSt == 1 | reading_familiar_words_wfnum_att < 8 |read_familiar_words_srgridAutoSt == 1 | reading_familiar_words_srnum_att < 8 | read_familiar_words_prgridAutoSt == 1 | reading_familiar_words_prnum_att < 8
-cap export excel $var_kept read_familiar_words* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_time,replace)firstrow(variables)
+keep if (read_familiar_words_frduration - read_familiar_words_frtime_remai < 60 & read_familiar_words_frgridAutoSt == 0) | read_familiar_words_frgridAutoSt == 1 | reading_familiar_words_frnum_att < 8
+cap export excel $var_kept read_familiar_words_fr_1 - read_familiar_words_fritems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_fr_time,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_wfduration - read_familiar_words_wftime_remai < 60 & read_familiar_words_wfgridAutoSt == 0) | read_familiar_words_wfgridAutoSt == 1 | reading_familiar_words_wfnum_att < 8
+cap export excel $var_kept read_familiar_words_wf_1 - read_familiar_words_wfitems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_wf_time,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_srduration - read_familiar_words_srtime_remai < 60 & read_familiar_words_srgridAutoSt == 0)| read_familiar_words_srgridAutoSt == 1 | reading_familiar_words_srnum_att < 8
+cap export excel $var_kept read_familiar_words_sr_1 - read_familiar_words_sritems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_sr_time,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_prduration - read_familiar_words_prtime_remai < 60 & read_familiar_words_prgridAutoSt == 0)| read_familiar_words_prgridAutoSt == 1 | reading_familiar_words_prnum_att < 8
+cap export excel $var_kept read_familiar_words_pr_1 - read_familiar_words_pritems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_pr_time,replace)firstrow(variables)
 restore
 
 *stops
+*fr
 preserve
 replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
-keep if (read_familiar_stop_fr != read_familiar_words_frgridAutoSt)|(read_familiar_stop_wf != read_familiar_words_wfgridAutoSt) |(read_familiar_stop_sr != read_familiar_words_srgridAutoSt)|(read_familiar_stop_pr != read_familiar_words_prgridAutoSt)
-cap export excel $var_kept read_familiar_words* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_stop,replace)firstrow(variables)
+keep if (read_familiar_stop_fr != read_familiar_words_frgridAutoSt)
+cap export excel $var_kept read_familiar_words_fr_1 - read_familiar_stop_fr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_fr_stop,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_familiar_stop_wf != read_familiar_words_wfgridAutoSt)
+cap export excel $var_kept read_familiar_words_wf_1 - read_familiar_stop_wf issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_fr_stop,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_familiar_stop_sr != read_familiar_words_srgridAutoSt)
+cap export excel $var_kept read_familiar_words_sr_1 - read_familiar_stop_sr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_fr_stop,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_familiar_stop_pr != read_familiar_words_prgridAutoSt)
+cap export excel $var_kept read_familiar_words_pr_1 - read_familiar_stop_pr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_fr_stop,replace)firstrow(variables)
 restore
 
 *Familiar part B
+*fr
 preserve
 replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
-keep if (read_familiar_words_fr_Bduration - read_familiar_words_fr_Btime_rem < 60 & read_familiar_words_fr_BgridAuto == 0)| (read_familiar_words_wf_Bduration - read_familiar_words_wf_Btime_rem < 60 & read_familiar_words_wf_BgridAuto == 0) | (read_familiar_words_sr_Bduration - read_familiar_words_sr_Btime_rem < 60 & read_familiar_words_sr_BgridAuto == 0)| (read_familiar_words_pr_Bduration - read_familiar_words_pr_Btime_rem < 60 & read_familiar_words_pr_Btime_rem == 0)| read_familiar_words_fr_BgridAuto == 1 | reading_famila_word_fr_Bnum_att < 8| read_familiar_words_wf_BgridAuto == 1 | reading_famila_word_wf_Bnum_att < 8 |read_familiar_words_sr_BgridAuto == 1 | reading_famila_word_sr_Bnum_att < 8 | read_familiar_words_pr_BgridAuto == 1 | reading_famila_word_pr_Bnum_att < 8
-cap export excel $var_kept read_familiar_words* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_time,replace)firstrow(variables)
+keep if (read_familiar_words_fr_Bduration - read_familiar_words_fr_Btime_rem < 60 & read_familiar_words_fr_BgridAuto == 0)| read_familiar_words_fr_BgridAuto == 1 | reading_famila_word_fr_Bnum_att < 8
+cap export excel $var_kept read_familiar_words_fr_B_1 - read_familiar_words_fr_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_fr_time,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_wf_Bduration - read_familiar_words_wf_Btime_rem < 60 & read_familiar_words_wf_BgridAuto == 0) | read_familiar_words_fr_BgridAuto == 1 | reading_famila_word_fr_Bnum_att < 8
+cap export excel $var_kept read_familiar_words_wf_B_1 - read_familiar_words_wf_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_wf_time,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_sr_Bduration - read_familiar_words_sr_Btime_rem < 60 & read_familiar_words_sr_BgridAuto == 0) | read_familiar_words_sr_BgridAuto == 1 | reading_famila_word_sr_Bnum_att < 8
+cap export excel $var_kept read_familiar_words_sr_B_1 - read_familiar_words_sr_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_sr_time,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="Timer in the Reading familiar words was not started or started and stopped immediately, kindly clarify"
+keep if (read_familiar_words_pr_Bduration - read_familiar_words_pr_Btime_rem < 60 & read_familiar_words_pr_Btime_rem == 0)| read_familiar_words_pr_BgridAuto == 1 | reading_famila_word_pr_Bnum_att < 8
+cap export excel $var_kept read_familiar_words_pr_B_1 - read_familiar_words_pr_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(reading_familiar_B_pr_time,replace)firstrow(variables)
 restore
 
 * reading Invented
 *Listen to recordings 
+*fr
 preserve
 replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
-keep if (read_invented_words_frduration - read_invented_words_frtime_remai < 60 & read_invented_words_frgridAutoSt == 0)| (read_invented_words_wfduration - read_invented_words_wftime_remai < 60 & read_invented_words_wfgridAutoSt == 0) | (read_invented_words_srduration - read_invented_words_srtime_remai < 60 & read_invented_words_srgridAutoSt == 0)| (read_invented_words_prduration - read_invented_words_prtime_remai < 60 & read_invented_words_prgridAutoSt == 0)| read_invented_words_frgridAutoSt == 1 | read_invented_words_frnum_att < 8| read_invented_words_wfgridAutoSt == 1 | read_invented_words_wfnum_att < 8 |read_invented_words_srgridAutoSt == 1 | read_invented_words_srnum_att < 8 | read_invented_words_prgridAutoSt == 1 | read_invented_words_prnum_att < 8
-cap export excel $var_kept read_invented_word* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_time,replace)firstrow(variables)
+keep if (read_invented_words_frduration - read_invented_words_frtime_remai < 60 & read_invented_words_frgridAutoSt == 0)| read_invented_words_frgridAutoSt == 1 | read_invented_words_frnum_att < 8
+cap export excel $var_kept read_invented_words_fr_1 - read_invented_words_fritems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_fr_time,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_wfduration - read_invented_words_wftime_remai < 60 & read_invented_words_wfgridAutoSt == 0) | read_invented_words_wfgridAutoSt == 1 | read_invented_words_wfnum_att < 8
+cap export excel $var_kept read_invented_words_wf_1 - read_invented_words_wfitems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_wf_time,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_srduration - read_invented_words_srtime_remai < 60 & read_invented_words_srgridAutoSt == 0)| read_invented_words_srgridAutoSt == 1 | read_invented_words_srnum_att < 8
+cap export excel $var_kept read_invented_words_sr_1 - read_invented_words_sritems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_sr_time,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_prduration - read_invented_words_prtime_remai < 60 & read_invented_words_prgridAutoSt == 0)| read_invented_words_prgridAutoSt == 1 | read_invented_words_prnum_att < 8
+cap export excel $var_kept read_invented_words_pr_1 - read_invented_words_pritems_per_ issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_pr_time,replace)firstrow(variables)
 restore
 
 *stops
+*fr
 preserve
 replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
-keep if (read_invented_stop_fr != read_invented_words_frgridAutoSt)|(read_invented_stop_wf != read_invented_words_wfgridAutoSt) |(read_invented_stop_sr != read_invented_words_srgridAutoSt)|(read_invented_stop_pr != read_invented_words_prgridAutoSt)
-cap export excel $var_kept read_invented_word* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_stop,replace)firstrow(variables)
+keep if (read_invented_stop_fr != read_invented_words_frgridAutoSt)
+cap export excel $var_kept read_invented_words_fr_1 - read_invented_stop_fr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_fr_stop,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_invented_stop_wf != read_invented_words_wfgridAutoSt)
+cap export excel $var_kept read_invented_words_wf_1 - read_invented_stop_wf issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_wf_stop,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_invented_stop_sr != read_invented_words_srgridAutoSt)
+cap export excel $var_kept read_invented_words_sr_1 - read_invented_stop_sr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_sr_stop,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="The stop rule was activated or was not activated by the system however the stop rule question says it was/was not, kindly clarify"
+keep if (read_invented_stop_pr != read_invented_words_prgridAutoSt)
+cap export excel $var_kept read_invented_words_pr_1 - read_invented_stop_pr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_pr_stop,replace)firstrow(variables)
 restore
 
 *Invented part B
+*fr
 preserve
 replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
-keep if (read_invented_words_fr_Bduration - read_invented_words_fr_Btime_rem < 60 & read_invented_words_fr_BgridAuto == 0)| (read_invented_words_wf_Bduration - read_invented_words_wf_Btime_rem < 60 & read_invented_words_wf_BgridAuto == 0) | (read_invented_words_sr_Bduration - read_invented_words_sr_Btime_rem < 60 & read_invented_words_sr_BgridAuto == 0)| (read_invented_words_pr_Bduration - read_invented_words_pr_Btime_rem < 60 & read_invented_words_pr_BgridAuto == 0)| read_invented_words_fr_BgridAuto == 1 | read_invented_word_fr_Bnum_att < 8| read_invented_words_wf_BgridAuto == 1 | read_invented_word_wf_Bnum_att < 8 |read_invented_words_sr_BgridAuto == 1 | read_invented_word_sr_Bnum_att < 8 | read_invented_words_pr_BgridAuto == 1 | read_invented_word_pr_Bnum_att < 8
-cap export excel $var_kept read_invented_word* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_time,replace)firstrow(variables)
+keep if (read_invented_words_fr_Bduration - read_invented_words_fr_Btime_rem < 60 & read_invented_words_fr_BgridAuto == 0)| read_invented_words_fr_BgridAuto == 1 | read_invented_word_fr_Bnum_att < 8
+cap export excel $var_kept read_invented_words_fr_B_1 - read_invented_words_fr_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_fr_time,replace)firstrow(variables)
+restore
+
+*wf
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_wf_Bduration - read_invented_words_wf_Btime_rem < 60 & read_invented_words_wf_BgridAuto == 0) | read_invented_words_wf_BgridAuto == 1 | read_invented_word_wf_Bnum_att < 8
+cap export excel $var_kept read_invented_words_wf_B_1 - read_invented_words_wf_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_wf_time,replace)firstrow(variables)
+restore
+
+*sr
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_sr_Bduration - read_invented_words_sr_Btime_rem < 60 & read_invented_words_sr_BgridAuto == 0)| read_invented_words_sr_BgridAuto == 1 | read_invented_word_sr_Bnum_att < 8
+cap export excel $var_kept read_invented_words_sr_B_1 - read_invented_words_sr_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_sr_time,replace)firstrow(variables)
+restore
+
+*pr
+preserve
+replace issue_comment ="Timer in the Reading invented words was not started or started and stopped immediately, kindly clarify"
+keep if (read_invented_words_pr_Bduration - read_invented_words_pr_Btime_rem < 60 & read_invented_words_pr_BgridAuto == 0) | read_invented_words_pr_BgridAuto == 1 | read_invented_word_pr_Bnum_att < 8
+cap export excel $var_kept read_invented_words_pr_B_1 - read_invented_words_pr_Bitems_pe issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(read_invented_B_pr_time,replace)firstrow(variables)
 restore
 
 // * Oral fluency 
+*fr
 preserve
 replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
-keep if (oral_reading_fluency_frtime_rema >30 & oral_reading_fluency_frnum_att < 20) | (oral_reading_fluency_wftime_rema >30 & oral_reading_fluency_wfnum_att < 20)|(oral_reading_fluency_prtime_rema >30 & oral_reading_fluency_prnum_att < 20)
-cap export excel $var_kept oral_reading_* issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_time,replace)firstrow(variables)
+keep if (oral_reading_fluency_frtime_rema >30 & oral_reading_fluency_frnum_att < 20)
+cap export excel $var_kept oral_reading_fluency_fr_1 - oral_reading_fluency_stop_fr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_fr_time,replace)firstrow(variables)
 restore
-*update with sr later on when data commes....../////
+
+*wf
+preserve
+replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
+keep if (oral_reading_fluency_wftime_rema >30 & oral_reading_fluency_wfnum_att < 20)
+cap export excel $var_kept oral_reading_fluency_wf_1 - oral_reading_fluency_stop_wf issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_wf_time,replace)firstrow(variables)
+restore
+
+// *sr
+// preserve
+// replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
+// keep if (oral_reading_fluency_srtime_rema >30 & oral_reading_fluency_srnum_att < 20)
+// cap export excel $var_kept oral_reading_fluency_sr_1 - oral_reading_fluency_stop_sr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_sr_time,replace)firstrow(variables)
+// restore
+
+*pr
+preserve
+replace issue_comment ="Timer in the oral reading fluency statements was not started or started and stopped immediately, kindly clarify"
+keep if (oral_reading_fluency_prtime_rema >30 & oral_reading_fluency_prnum_att < 20)
+cap export excel $var_kept oral_reading_fluency_pr_1 - oral_reading_fluency_stop_pr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_pr_time,replace)firstrow(variables)
+restore
 
 *Identifying numbers grid of correct words do not align with the correct number grid question
 *identify_number_grid_1

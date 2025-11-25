@@ -107,9 +107,9 @@ capture mkdir "${gsdProgress}/Pilot"
 
 // Main directories
 capture mkdir "${gsdCode}"
-capture mkdir "${gsdCode}/Acumen-Project/Cleaning do file"
-capture mkdir "${gsdCode}/Acumen-Project/Daily update SPSS"
-capture mkdir "${gsdCode}/Acumen-Project/Set up do file"
+capture mkdir "${gsdCode}/MOHEBS/Cleaning do file"
+capture mkdir "${gsdCode}/MOHEBS/Daily update SPSS"
+capture mkdir "${gsdCode}/MOHEBS/Set up do file"
 
 *Creating to the folders for main pilot and test data.
 

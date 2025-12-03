@@ -753,7 +753,7 @@ drop if Consent == 2
 
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Baseline Processed Dataset 03-12 v01.dta",replace
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 03-12 v01.dta",replace
 
 ********************************QC checks-Flaggings
 ***************************************************************************************
@@ -1258,7 +1258,7 @@ clear all
 cd "${gsdData}\Raw"
 
 ***import dataset
-import spss using "Test\Teachers\MOHEBS Teachers' Survey_WIDE.sav"
+import spss using "Main\Teachers\MOHEBS Teachers' Survey_WIDE.sav"
 
 **Converting date to stata format calender
 // *sort time and date
@@ -1266,9 +1266,6 @@ replace INT_DATE = dofc(INT_DATE)
 format INT_DATE %td
 
 lab var INT_DATE"Interview Date"
-
-*filter only test data.
-drop if INT_DATE < td(16nov2025)
 
 *Time.
 gen str8 START_TIME_str = string(START_TIME, "%tcHH:MM:SS")
@@ -1292,6 +1289,21 @@ lab var RES_NAME"Respondent names"
 *lab variables.
 lab var Policy_1"Policy_1. What is/are the language(s) of instruction of this school?"
 
+
+*Location
+cd "${gsdCode}\MOHEBS\cleaning do file"
+do "Location_Teachers.do"
+
+*Grade
+lab var Grade_1"CI (first grade)"
+lab var Grade_2"CP (second grade)"
+lab var Grade_3"CE1 (third grade)"
+lab var Grade_96"Other, specify"
+
+
+*save dataset
+cd "${gsdData}\Raw"
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 03-12 v01.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

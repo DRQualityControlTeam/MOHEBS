@@ -44,13 +44,54 @@ CTABLES
   /SLABELS VISIBLE=NO
   /CATEGORIES VARIABLES=Echantillon IEF Ecole ORDER=A KEY=VALUE EMPTY=EXCLUDE
   /CATEGORIES VARIABLES=B4 B2 ORDER=A KEY=VALUE EMPTY=EXCLUDE TOTAL=YES POSITION=AFTER
-  /CRITERIA CILEVEL=95.
+  /CRITERIA CILEVEL=95
   /TITLES TITLE ="MOHEBS Student Survey - Location achievements- Main".
 
 * Export Output.
 OUTPUT EXPORT
   /CONTENTS  EXPORT=VISIBLE  LAYERS=PRINTSETTING  MODELVIEWS=PRINTSETTING
-  /XLSX  DOCUMENTFILE='C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Progress\Main\Field\MOHEBS Daily Updates v01.xlsx'
+  /XLSX  DOCUMENTFILE='C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Progress\Main\Field\MOHEBS Daily Updates v02.xlsx'
      OPERATION=CREATEFILE sheet="Student Achievements"
+     LOCATION=LASTCOLUMN  NOTESCAPTIONS=YES.
+OUTPUT CLOSE *.
+
+***TEACHERS SURVEY
+
+get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 03-12 v01.dta".
+
+************************************************************************************************************************************************************************************.
+variable level INT_DATE School (nominal).
+
+*Output Tally.
+OUTPUT NEW.
+
+*Team's achievements.
+
+* Custom Tables.
+CTABLES
+  /VLABELS VARIABLES=SUP_NAME ENUM_NAME INT_DATE DISPLAY=LABEL
+  /TABLE SUP_NAME > ENUM_NAME BY INT_DATE [COUNT F40.0]
+  /SLABELS VISIBLE=NO
+  /CATEGORIES VARIABLES=SUP_NAME ENUM_NAME ORDER=A KEY=VALUE EMPTY=EXCLUDE
+  /CATEGORIES VARIABLES=INT_DATE ORDER=A KEY=VALUE EMPTY=EXCLUDE TOTAL=YES POSITION=AFTER
+  /CRITERIA CILEVEL=95
+    /TITLES TITLE="MOHEBS Teachers Survey - Team achievements".
+
+
+* Custom Tables.
+CTABLES
+  /VLABELS VARIABLES=IEF School Group DISPLAY=LABEL
+  /TABLE IEF [C] > School [C][COUNT F40.0] BY Group [C]
+  /SLABELS VISIBLE=NO
+  /CATEGORIES VARIABLES=IEF School ORDER=A KEY=VALUE EMPTY=EXCLUDE
+  /CATEGORIES VARIABLES=Group ORDER=A KEY=VALUE EMPTY=EXCLUDE TOTAL=YES POSITION=AFTER
+  /CRITERIA CILEVEL=95
+  /TITLES TITLE ="MOHEBS Teachers Survey - Location achievements- Main".
+
+* Export Output.
+OUTPUT EXPORT
+  /CONTENTS  EXPORT=VISIBLE  LAYERS=PRINTSETTING  MODELVIEWS=PRINTSETTING
+  /XLSX  DOCUMENTFILE='C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Progress\Main\Field\MOHEBS Daily Updates v02.xlsx'
+     OPERATION=CREATESHEET sheet="Teachers Achievements"
      LOCATION=LASTCOLUMN  NOTESCAPTIONS=YES.
 OUTPUT CLOSE *.

@@ -8,7 +8,7 @@ get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\Q
 
 ************************************************************************************************************************************************************************************.
 
-variable level INT_DATE ENUM_NAME (Nominal).
+variable level INT_DATE ENUM_NAME Ecole (Nominal).
 
 *Output Tally.
 OUTPUT NEW.
@@ -17,21 +17,34 @@ OUTPUT NEW.
 
 * Custom Tables.
 CTABLES
-  /VLABELS VARIABLES=ENUM_NAME INT_DATE DISPLAY=LABEL
-  /TABLE ENUM_NAME [COUNT F40.0] BY INT_DATE
-  /CATEGORIES VARIABLES=ENUM_NAME ORDER=A KEY=VALUE EMPTY=EXCLUDE
+  /VLABELS VARIABLES=SUP_NAME ENUM_NAME INT_DATE DISPLAY=LABEL
+  /TABLE SUP_NAME > ENUM_NAME BY INT_DATE [COUNT F40.0]
+  /SLABELS VISIBLE=NO
+  /CATEGORIES VARIABLES=SUP_NAME ENUM_NAME ORDER=A KEY=VALUE EMPTY=EXCLUDE
   /CATEGORIES VARIABLES=INT_DATE ORDER=A KEY=VALUE EMPTY=EXCLUDE TOTAL=YES POSITION=AFTER
   /CRITERIA CILEVEL=95
   /TITLES TITLE="MOHEBS Student Survey - Team achievements".
 
-* Daily Achievement Output for Student Survey by Schools, Intervention group, Region, Grade,Gender.
+* Daily Achievement Output for Student Survey by Schools, Intervention group, and Grade.
+* Custom Tables.
 * Custom Tables.
 CTABLES
-  /VLABELS VARIABLES=IEF Commune Ecole Groupe B2 DISPLAY=LABEL
-  /TABLE IEF > Commune > Ecole [COUNT F40.0] BY Groupe > B2
-  /CATEGORIES VARIABLES=IEF Commune Ecole Groupe ORDER=A KEY=VALUE EMPTY=EXCLUDE
-  /CATEGORIES VARIABLES=B2 ORDER=A KEY=VALUE EMPTY=EXCLUDE TOTAL=YES POSITION=AFTER
+  /VLABELS VARIABLES=Echantillon IEF Ecole B4 DISPLAY=LABEL
+  /TABLE Echantillon [C] > IEF [C] > Ecole [C][COUNT F40.0] BY B4 [C]
+  /SLABELS VISIBLE=NO
+  /CATEGORIES VARIABLES=Echantillon IEF Ecole ORDER=A KEY=VALUE EMPTY=EXCLUDE
+  /CATEGORIES VARIABLES=B4 ORDER=A KEY=VALUE EMPTY=EXCLUDE TOTAL=YES POSITION=AFTER
   /CRITERIA CILEVEL=95
+    /TITLES TITLE ="MOHEBS Student Survey - Tracker achievements- Main".
+  
+*By gender.
+CTABLES
+  /VLABELS VARIABLES=Echantillon IEF Ecole B4 B2 DISPLAY=LABEL
+  /TABLE Echantillon [C] > IEF [C] > Ecole [C][COUNT F40.0] BY B4 [C] > B2 [C]
+  /SLABELS VISIBLE=NO
+  /CATEGORIES VARIABLES=Echantillon IEF Ecole ORDER=A KEY=VALUE EMPTY=EXCLUDE
+  /CATEGORIES VARIABLES=B4 B2 ORDER=A KEY=VALUE EMPTY=EXCLUDE TOTAL=YES POSITION=AFTER
+  /CRITERIA CILEVEL=95.
   /TITLES TITLE ="MOHEBS Student Survey - Location achievements- Main".
 
 * Export Output.
@@ -41,13 +54,3 @@ OUTPUT EXPORT
      OPERATION=CREATEFILE sheet="Student Achievements"
      LOCATION=LASTCOLUMN  NOTESCAPTIONS=YES.
 OUTPUT CLOSE *.
-
-
-
-
-
-
-
-
-
-

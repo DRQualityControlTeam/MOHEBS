@@ -117,6 +117,9 @@ drop ENUM_NAME_1 ENUM_NAME_2 ENUM_NAME_3 ENUM_NAME_4 ENUM_NAME_5 ENUM_NAME_6
 lab var ENUM_NAME"Enumerator Name"
 lab values ENUM_NAME enum
 
+replace SUP_NAME = 6 if interview_ID =="d2c71a15-324b-4908-880c-cd2a37b9ae46"
+replace ENUM_NAME = 36 if interview_ID =="d2c71a15-324b-4908-880c-cd2a37b9ae46"
+
 **Survey Language
 lab var survey_language"Enumerator: Record the language of instruction being used to administer the survey"
 lab define sur_lan 1"French" 2 "Wolof" 3 "Serer" 4 "Pulaar"

@@ -1242,9 +1242,6 @@ summ phonological_awareness_prnumber_ phonological_awareness_srnumber_ phonologi
 summ oral_reading_fluency_frnum_att oral_reading_fluency_frnumber_of oral_reading_fluency_prnum_att oral_reading_fluency_prnumber_of oral_reading_fluency_wfnum_att oral_reading_fluency_wfnumber_of
 
 ****END********************************************************************
--------END-----------------------------------------
-
-
 
 
 ***************************************************************************
@@ -1301,6 +1298,12 @@ lab var Grade_3"CE1 (third grade)"
 lab var Grade_96"Other, specify"
 
 
+
+
+
+
+
+
 *save dataset
 cd "${gsdData}\Raw"
 save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 03-12 v01.dta",replace
@@ -1328,7 +1331,7 @@ cd "${dates}"
 
 * var_kept
 
-global var_kept "KEY INT_DATE INT_STARTTIME INT_ENDTIME  SUP_NAME ENUM_NAME IA Ecole RH_school RES_NAME female Age Grade Grade_1 Grade_2 Grade_3 Grade_96 Grade_S"
+global var_kept "KEY INT_DATE START_TIME END_TIME  SUP_NAME ENUM_NAME Region School RH_school RES_NAME female Age Grade Grade_1 Grade_2 Grade_3 Grade_96 Grade_S"
 
 ** generate a Comment based on the issue raised
 gen issue_comment = ""
@@ -1337,35 +1340,35 @@ gen issue_comment = ""
 *Duration chcek
 
 *calculate duration in minutes.
-gen Duration_mins = round((INT_ENDTIME - INT_STARTTIME)/(1000*60))
+gen Duration_mins = round((END_TIME - START_TIME)/(1000*60))
 
 preserve
-drop INT_ENDTIME INT_STARTTIME
-ren (INT_STARTTIME_str INT_ENDTIME_str) (INT_STARTTIME INT_ENDTIME)
+drop END_TIME START_TIME
+ren (START_TIME_str END_TIME_str) (START_TIME END_TIME)
 
 replace issue_comment ="interview duration is *Longer* or *Shorter*, kindly clarify"
 keep if !inrange(Duration_mins,25,45)
-cap export excel $var_kept Duration_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
+cap export excel $var_kept Duration_mins issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
 restore
 
 *Lag time check
 
 *Step 2: Sort by enumerator and time
-bysort INT_DATE ENUM_NAME (INT_STARTTIME): gen gap_mins = (INT_STARTTIME - INT_ENDTIME[_n-1]) / 60000 if _n > 1
+bysort INT_DATE ENUM_NAME (START_TIME): gen gap_mins = (START_TIME - END_TIME[_n-1]) / 60000 if _n > 1
 
 preserve
-drop INT_ENDTIME INT_STARTTIME
-ren (INT_STARTTIME_str INT_ENDTIME_str) (INT_STARTTIME INT_ENDTIME)
+drop END_TIME START_TIME
+ren (START_TIME_str END_TIME_str) (START_TIME END_TIME)
 replace issue_comment ="Time taken to the next interview is way wierd, seems the interview started earlier or overlapped the other interview, kindly clarify"
 keep if !inrange(gap_mins,0,10)
-cap export excel $var_kept gap_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(lag_time_issues,replace)firstrow(variables)
+cap export excel $var_kept gap_mins issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(lag_time_issues,replace)firstrow(variables)
 restore
 
 *GPS Accuracy
 preserve
 replace issue_comment = "The GPS Accuracy is way low, kindly clarify"
 keep if GPS_Accuracy > 20
-cap export excel $var_kept GPS_Accuracy issue_comment using "MOHEBS DQA ${dates} v01.xlsx",sheet(GPS_issues,replace)firstrow(variables)
+cap export excel $var_kept GPS_Accuracy issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(GPS_issues,replace)firstrow(variables)
 restore
 
 *Duplicate GPS
@@ -1374,30 +1377,30 @@ duplicates tag GPS_Latitude GPS_Longitude GPS_Altitude,gen(dup1)
 preserve
 replace issue_comment = "The interview is done on the same point of location, kindly clarify"
 keep if dup1 > 0
-cap export excel $var_kept GPS_Latitude GPS_Longitude GPS_Altitude issue_comment using "MOHEBS DQA ${dates} v01.xlsx",sheet(GPS_Dups_issues,replace)firstrow(variables)
+cap export excel $var_kept GPS_Latitude GPS_Longitude GPS_Altitude issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(GPS_Dups_issues,replace)firstrow(variables)
 restore
 
 **Respondent Name
 preserve
 replace issue_comment = "The Respondent name seems invalid, kindly clarify"
 keep if strlen(RES_NAME)<2
-cap export excel $var_kept RES_NAME issue_comment using "MOHEBS DQA ${dates} v01.xlsx",sheet(RES_NAME_issues,replace)firstrow(variables)
+cap export excel $var_kept RES_NAME issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(RES_NAME_issues,replace)firstrow(variables)
 restore
 
 **Duplicate interviews Respondent Name
-duplicates tag IA Ecole,gen (dup)
+duplicates tag Region School,gen (dup)
 
 preserve
 replace issue_comment = "The interviews are a duplicates, kindly clarify"
 keep if dup > 0
-cap export excel $var_kept IA Ecole RES_NAME dup issue_comment using "MOHEBS DQA ${dates} v01.xlsx",sheet(RES_name_issues,replace)firstrow(variables)
+cap export excel $var_kept Region School RES_NAME dup issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(RES_name_issues,replace)firstrow(variables)
 restore
 
 *Age
 preserve
 replace issue_comment ="Age provided is way high or low, kindly clarify"
 keep if !inrange(Age,18,45)
-cap export excel $var_kept Age issue_comment using "MOHEBS DQA ${dates} v01.xlsx", sheet(Age_issues,replace)firstrow(variables)
+cap export excel $var_kept Age issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Age_issues,replace)firstrow(variables)
 restore
 
 *Minutes
@@ -1405,35 +1408,35 @@ restore
 preserve
 replace issue_comment ="The hours per week taught in math Remédiation Harmonisée for CI students in classroom provided is way high or low, kindly clarify"
 keep if !inrange(RH_hoursa,1,40)
-cap export excel $var_kept RH_hoursa issue_comment using "MOHEBS DQA ${dates} v01.xlsx", sheet(RH_hoursa_issues,replace)firstrow(variables)
+cap export excel $var_kept RH_hoursa issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(RH_hoursa_issues,replace)firstrow(variables)
 restore
 
 *RH_hoursb
 preserve
 replace issue_comment ="The hours per week taught in reading Remédiation Harmonisée for CI students in classroom provided is way high or low, kindly clarify"
 keep if !inrange(RH_hoursb,1,40)
-cap export excel $var_kept RH_hoursb issue_comment using "MOHEBS DQA ${dates} v01.xlsx", sheet(RH_hoursb_issues,replace)firstrow(variables)
+cap export excel $var_kept RH_hoursb issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(RH_hoursb_issues,replace)firstrow(variables)
 restore
 
 *RH_hoursc
 preserve
 replace issue_comment ="The hours per week taught in math Remédiation Harmonisée for CP students in classroom provided is way high or low, kindly clarify"
 keep if !inrange(RH_hoursc,1,40)
-cap export excel $var_kept RH_hoursc issue_comment using "MOHEBS DQA ${dates} v01.xlsx", sheet(RH_hoursc_issues,replace)firstrow(variables)
+cap export excel $var_kept RH_hoursc issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(RH_hoursc_issues,replace)firstrow(variables)
 restore
 
 *RH_hoursd
 preserve
 replace issue_comment ="The hours per week taught in reading Remédiation Harmonisée for CP students in classroom provided is way high or low, kindly clarify"
 keep if !inrange(RH_hoursd,1,40)
-cap export excel $var_kept RH_hoursd issue_comment using "MOHEBS DQA ${dates} v01.xlsx", sheet(RH_hoursd_issues,replace)firstrow(variables)
+cap export excel $var_kept RH_hoursd issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(RH_hoursd_issues,replace)firstrow(variables)
 restore
 
 *MM_hoursa
 preserve
 replace issue_comment ="The hours per week taught MOHEBS math/math in national languages for CI students in classroom provided is way high or low, kindly clarify"
 keep if !inrange(MM_hoursa,1,40)
-cap export excel $var_kept MM_hoursa issue_comment using "MOHEBS DQA ${dates} v01.xlsx", sheet(MM_hoursa_issues,replace)firstrow(variables)
+cap export excel $var_kept MM_hoursa issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(MM_hoursa_issues,replace)firstrow(variables)
 restore
 
 *total hours
@@ -1442,10 +1445,292 @@ egen tot_hrs_taught = rowtotal(RH_hoursa RH_hoursb	RH_hoursc RH_hoursd	MM_hoursa
 preserve
 replace issue_comment ="The hours per week taught by the teacher is way high or low, kindly clarify"
 keep if !inrange(tot_hrs_taught,10,40)
-cap export excel $var_kept RH_hoursa RH_hoursb	RH_hoursc RH_hoursd	MM_hoursa tot_hrs_taught issue_comment using "MOHEBS DQA ${dates} v01.xlsx", sheet(total_hours_issues,replace)firstrow(variables)
+cap export excel $var_kept RH_hoursa RH_hoursb	RH_hoursc RH_hoursd	MM_hoursa tot_hrs_taught issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(total_hours_issues,replace)firstrow(variables)
+restore
+
+*Age_experience issues
+preserve
+replace issue_comment = "Age versus experience do not match, kindly clarify"
+gen age_exp = exp_1
+replace age_exp = 1 if exp_1 == 1
+replace age_exp = 3 if exp_1 == 2
+replace age_exp = 5 if exp_1 == 3
+replace age_exp = 10 if exp_1 == 4
+replace age_exp = 11 if exp_1 == 5
+
+keep if Age - age_exp < 18
+cap export excel $var_kept Age exp_1 issue_comment using "`MOHEBS DQA Teachers ${dates} v01.xlsx'", sheet(age_experience_issues,replace)firstrow(variables)
+restore
+
+*Language as intergers check
+preserve
+replace issue_comment = " The language seems to be integers, kindly clarify"
+keep if strlen(Lang_2_S)< 2
+cap export excel $var_kept Lang_2_S issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Mother_tongue_issues,replace)firstrow(variables)
+restore
+
+*French Speaking Consisitency
+preserve
+replace issue_comment = "Inconsistencies in French language spoken by the teacher, kindly clarify"
+keep if Lang_1b_1 == 1 & (Lang_3 != Lang_5)
+cap export excel $var_kept Lang_1b* Lang_3 Lang_5 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(French_speak_issues,replace)firstrow(variables)
+restore
+
+*French Reading Consisitency
+preserve
+replace issue_comment = "Inconsistencies in French language read by the teacher, kindly clarify"
+keep if Lang_1b_1 == 1 & (Lang_4 != Lang_6)
+cap export excel $var_kept Lang_1b* Lang_4 Lang_6 issue_comment using "`MOHEBS DQA Teachers ${dates} v01.xlsx'", sheet(French_read_issues,replace)firstrow(variables)
 restore
 
 
+*Time spent teaching maths in languages
+
+*policy_2b_1 // French
+preserve
+replace issue_comment = "Time spent using French to teach maths is more than 1 hour or less that 10 minutes,kindly clarify"
+keep if !inrange(Policy_2b_1, 10, 60)
+cap export excel $var_kept Policy_2b_1 issue_comment using "`MOHEBS DQA Teachers ${dates} v01.xlsx'", sheet(Maths_french_issues,replace)firstrow(variables)
+restore
+
+*policy_2b_2 // Wolof
+preserve
+replace issue_comment = "Time spent using Wolof to teach maths is more than 1 hour or less that 10 minutes,kindly clarify"
+keep if !inrange(Policy_2b_2,10,60)
+cap export excel $var_kept Policy_2b_2 issue_comment using "`MOHEBS DQA Teachers ${dates} v01.xlsx'", sheet(Maths_wolof_issues,replace)firstrow(variables)
+restore
+
+*policy_2b_3 // Pulaar
+preserve
+replace issue_comment = "Time spent using Pulaar to teach maths is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_2b_3,10,60)
+cap export excel $var_kept Policy_2b_3 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Maths_pulaar_issues, replace)firstrow(variables)
+restore
+
+*policy_2b_4 // Serer
+preserve
+replace issue_comment = "Time spent using Serer to teach maths is more than 1 hour or less that 10 minutes,kindly clarify"
+keep if !inrange(Policy_2b_4, 10, 60)
+cap export excel $var_kept Policy_2b_4 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Maths_serer_issues,replace)firstrow(variables)
+restore 
+
+
+*total time spent teaching maths in all languages
+preserve
+replace issue_comment = "The time spent teaching maths is more than 1 hour or less than 30 minutes, kindly clarify"
+egen total_time_maths = rowtotal(Policy_2b_1 Policy_2b_2 Policy_2b_3 Policy_2b_4)
+keep if !inrange(total_time_maths,30,60)
+cap export excel $var_kept Policy_2b_1 Policy_2b_2 Policy_2b_3 Policy_2b_4 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(mathematics_total_time_issues,replace)firstrow(variables)
+restore
+
+*checking if language count matches response "I do not switch" for maths
+preserve
+replace issue_comment = "More than 1 language and 'I do not switch languages' response, kindly clarify"
+gen lang_count  = wordcount(Policy_2a)
+keep if lang_count > 1 & Policy_2c_0 == 1
+cap export excel $var_kept Policy_2a* Policy_2c_0 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(maths_lang_switch_mis,replace)firstrow(variables)
+restore
+
+*checking if one language matches response "I do not switch languages" for maths
+preserve
+replace issue_comment = "Only 1 language but without the 'I do not switch languages' response, kindly clarify"
+gen lang_count  = wordcount(Policy_2a)
+keep if lang_count == 1 & Policy_2c_0 != 1
+cap export excel $var_kept Policy_2a* Policy_2c* issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(maths_1_lang_switch_mis,replace)firstrow(variables)
+restore
+
+*Time spent reading in languages
+*policy_3b_1 * //French
+preserve 
+replace issue_comment = "Time using French is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_3b_1,10,60)
+cap export excel $var_kept Policy_3b_1 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_issues_fr,replace)firstrow(variables)
+restore
+
+*policy_3b_2 //Wolof
+preserve
+replace issue_comment = "Time using Wolof is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_3b_2,10,60)
+cap export excel $var_kept Policy_3b_2 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_issues_wf,replace)firstrow(variables)
+restore
+
+*policy_3b_3 //Pulaar
+preserve
+replace issue_comment = "Time using Pulaar is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_3b_3,10,60)
+cap export excel $var_kept Policy_3b_3 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_issues_pulaar,replace)firstrow(variables)
+restore
+
+*policy_3b_4 //Serer
+preserve
+replace issue_comment = "Time using Serer is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_3b_4,10,60)
+cap export excel $var_kept Policy_3b_4 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_issues_serer,replace)firstrow(variables)
+restore
+
+*total time spent teaching in all languages
+preserve 
+replace issue_comment = "Time spent in all is more or less than a lesson or double lesson, kindly clarify"
+egen total_time = rowtotal(Policy_3b_1 Policy_3b_2 Policy_3b_3 Policy_3b_4)
+keep if !inrange(total_time,30,60)
+cap export excel $var_kept Policy_3b_1 Policy_3b_2 Policy_3b_3 Policy_3b_4 total_time issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(Tot_time_lang_issues,replace)firstrow(variables)
+restore
+
+*checking if language count matches response I do not switch for reading
+preserve
+replace issue_comment = "More than 1 language and 'I do not switch languages' response, kindly clarify"
+*check no of languages selected
+gen lang_count  = wordcount(Policy_3a)
+keep if lang_count > 1 & Policy_3c_0 == 1
+cap export excel $var_kept Policy_3a* policy_3c* lang_count issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(read_lang_swit_mismatch,replace)firstrow(variables)
+restore
+
+
+*checking if only 1  language count matches response "I do not switch" for reading
+preserve
+replace issue_comment = "Only 1 language but without 'I do not switch languages' response, kindly clarify"
+*check no of languages selected
+gen lang_count  = wordcount(Policy_3a)
+keep if lang_count == 1 & Policy_3c_0 != 1
+cap export excel $var_kept Policy_3a* policy_3c* issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(reading_one_lang_swit_mis,replace)firstrow(variables)
+restore
+
+*checking if non_school instructions language speakers are equal to the whole classroom
+preserve
+replace issue_comment = "The non-school instructions language speakers can't be the whole class, kindly clarify"
+keep if Lang_7 == 1 & (Lang_7a == Lang_7b)
+cap export excel $var_kept Lang_7 Lang_7a Lang_7b issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Non_school_intru_speakers,replace)firstrow(variables)
+restore
+
+*Checking no of training Moheb maths
+preserve
+replace issue_comment = "More than 30 days or 0 days training, kindly clarify"
+keep if !inrange(nl_1c, 1, 30) | (nl_1a == 1 & nl_1c != - 999)
+cap export excel $var_kept nl_1a nl_1c issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(mohebmath_train_issues,replace)firstrow(variables)
+restore
+
+*Checking no of training reading
+preserve
+replace issue_comment = "More than 30 days or 0 days training, kindly clarify"
+keep if !inrange(nl_3c, 1, 30) | (nl_3a == 1 & nl_3c != -999)
+cap export excel $var_kept nl_3a nl_3c issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(read_train_days_issues,replace)firstrow(variables)
+restore
+
+*Time spent teaching maths in languages for grade 2
+
+*policy_4b_1 // French
+preserve
+replace issue_comment = "Time spent using French to teach maths is more than 1 hour or less that 10 minutes,kindly clarify"
+keep if !inrange(Policy_4b_1, 10, 60)
+cap export excel $var_kept Policy_4b_1 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Maths_french_issues_grade2,replace)firstrow(variables)
+restore
+
+*policy_4b_2 // Wolof
+preserve
+replace issue_comment = "Time spent using Wolof to teach maths is more than 1 hour or less that 10 minutes,kindly clarify"
+keep if !inrange(Policy_4b_2,10,60)
+cap export excel $var_kept Policy_4b_2 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Maths_wolof_issues_grade2,replace)firstrow(variables)
+restore
+
+*policy_4b_3 // Pulaar
+preserve
+replace issue_comment = "Time spent using Pulaar to teach maths is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_4b_3,10,60)
+cap export excel $var_kept Policy_4b_3 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Maths_pulaar_issues_grade2, replace)firstrow(variables)
+restore
+
+*policy_4b_4 // Serer
+preserve
+replace issue_comment = "Time spent using Serer to teach maths is more than 1 hour or less that 10 minutes,kindly clarify"
+keep if !inrange(Policy_4b_4, 10, 60)
+cap export excel $var_kept Policy_4b_4 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Maths_serer_grade2,replace)firstrow(variables)
+restore
+
+*total time spent teaching maths in all languages grade 2
+preserve
+replace issue_comment = "The time spent teaching maths is more than 1 hour or less than 30 minutes, kindly clarify"
+egen total_time_maths = rowtotal(Policy_4b_1 Policy_4b_2 Policy_4b_3 Policy_4b_4)
+keep if !inrange(total_time_maths,30,60)
+cap export excel $var_kept Policy_4b_1 Policy_4b_2 Policy_4b_3 Policy_4b_4 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(maths_tot_time_grade2,replace)firstrow(variables)
+restore
+
+*checking if language count matches response "I do not switch" for maths grade 2
+preserve
+replace issue_comment = "More than 1 language and 'I do not switch languages' response, kindly clarify"
+gen lang_count  = wordcount(Policy_4a)
+keep if lang_count > 1 & Policy_4c_0 == 1
+cap export excel $var_kept Policy_4a* Policy_4c* issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(maths_lang_swit_mismat_grade2,replace)firstrow(variables)
+restore
+
+*checking if one language matches response "I do not switch languages" for maths grade 2
+preserve
+replace issue_comment = "Only 1 language but whithout the 'I do not switch languages' response, kindly clarify"
+gen lang_count  = wordcount(Policy_4a)
+keep if lang_count == 1 & Policy_4c_0 != 1
+cap export excel $var_kept Policy_4a* Policy_4c* issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(maths_1_lang_swit_mis_grade2,replace)firstrow(variables)
+restore
+
+*Time spent reading in languages in grade 2
+*policy_5b_1 * //French
+preserve 
+replace issue_comment = "Time using French is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_5b_1,10,60)
+cap export excel $var_kept Policy_5b_1 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_french_grade2,replace)firstrow(variables)
+restore
+
+*policy_5b_2 //Wolof
+preserve
+replace issue_comment = "Time using Wolof is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_5b_2,10,60)
+cap export excel $var_kept Policy_5b_2 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_wolof_grade2,replace)firstrow(variables)
+restore
+
+*policy_5b_3 //Pulaar
+preserve
+replace issue_comment = "Time using Pulaar is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_5b_3,10,60)
+cap export excel $var_kept Policy_5b_3 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_pulaar_grade2,replace)firstrow(variables)
+restore
+
+*policy_5b_4 //Serer
+preserve
+replace issue_comment = "Time using Serer is more than 1 hour or less that 10 minutes, kindly clarify"
+keep if !inrange(Policy_5b_4,10,60)
+cap export excel $var_kept Policy_5b_4 issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Lang_teach_time_serer_grade2,replace)firstrow(variables)
+restore
+
+*total time spent teaching in all languages for grade 2
+preserve 
+replace issue_comment = "Time spent in all is more or less than a lesson or double lesson, kindly clarify"
+egen total_time = rowtotal(Policy_5b_1 Policy_5b_2 Policy_5b_3 Policy_5b_4)
+keep if !inrange(total_time,30,60)
+cap export excel $var_kept Policy_5b_1 Policy_5b_2 Policy_5b_3 Policy_5b_4 total_time issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(Tot_time_spent_lang_grade2,replace)firstrow(variables)
+restore
+
+*checking if language count matches response I do not switch for reading for grade 2
+preserve
+replace issue_comment = "More than 1 language and 'I do not switch languages' response, kindly clarify"
+*check no of languages selected
+gen lang_count  = wordcount(Policy_5a)
+keep if lang_count > 1 & Policy_5c_0 == 1
+cap export excel $var_kept Policy_5a* Policy_5c* issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx",sheet(read_lang_swit_mis_grade2,replace)firstrow(variables)
+restore
+
+*checking if only 1  language count matches response "I do not switch" for reading for grade 2
+preserve
+replace issue_comment = "Only 1 language but without 'I do not switch languages' response, kindly clarify"
+*check no of languages selected
+gen lang_count  = wordcount(Policy_5a)
+keep if lang_count == 1 & Policy_5c_0 != 1
+cap export excel $var_kept Policy_5a* Policy_5c* issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(read_1_lang_swit_mis_grade2,replace)firstrow(variables)
+restore
+
+*checking if non_school instructions language speakers are equal to the whole classroom for grade 2
+preserve
+replace issue_comment = "The non-school instructions language speakers can't be the whole class, kindly clarify"
+keep if Lang_8 == 1 & (Lang_8a == Lang_8b)
+cap export excel $var_kept Lang_8 Lang_8a Lang_8b issue_comment using "MOHEBS DQA Teachers ${dates} v01.xlsx", sheet(Non_schl_intru_speak_grade2, replace)firstrow(variables)
+restore
 
 
 

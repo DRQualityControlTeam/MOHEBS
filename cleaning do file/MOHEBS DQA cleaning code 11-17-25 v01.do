@@ -21,7 +21,7 @@ cd "${gsdData}\Raw"
 
 ***import dataset
 
-import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1764732514042.csv", case(preserve)
+import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1764821802822.csv", case(preserve)
 
 *****************************************************************************************************************
 ****Formating date
@@ -748,13 +748,14 @@ destring `r(varlist)', replace
 *****************************************************************************************************************
 **QC Checks
 *************************************************************************
-drop if Consent == 2
+drop if Consent == 0
 
 
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 03-12 v01.dta",replace
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 04-12 v01.dta",replace
 
+KDFSDG
 ********************************QC checks-Flaggings
 ***************************************************************************************
 * QC files
@@ -789,7 +790,7 @@ gen issue_comment = ""
 **Duration of interview check
 preserve
 replace issue_comment ="interview duration is Longer or Shorter, kindly clarify"
-keep if !inrange(Duration_mins,30,60)
+keep if !inrange(Duration_mins,45,90)
 cap export excel $var_kept Duration_mins issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(duration_issues,replace)firstrow(variables)
 restore
 
@@ -830,7 +831,7 @@ cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.x
 restore
 
 **Duplicates Interviews_Main
-duplicates tag Ecole Student_Name B2,gen(int_dup)
+duplicates tag Ecole Student_Name B2 B3 B4,gen(int_dup)
 
 preserve
 replace issue_comment ="The interviews have duplicates, kindly clarify"
@@ -1202,14 +1203,14 @@ restore
 preserve
 replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 keep if (decimal_correct_1 != decimal_system_1num_corr)
-cap export excel $var_kept  decimal_system_grid_1_* digital_discrimination_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_1_issues,replace)firstrow(variables)
+cap export excel $var_kept  decimal_system_grid_1_* decimal_system_1num_corr decimal_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_1_issues,replace)firstrow(variables)
 restore
 
 *decimal_system_grid_2
 preserve
 replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
 keep if (decimal_correct_2 != decimal_system_2num_corr)
-cap export excel $var_kept  decimal_system_grid_2_* digital_discrimination_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_2_issues,replace)firstrow(variables)
+cap export excel $var_kept  decimal_system_grid_2_* decimal_system_2num_corr decimal_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_2_issues,replace)firstrow(variables)
 restore
 
 **Languages spoken and used home by kid is different from the interview survey language
@@ -1306,7 +1307,7 @@ lab var Grade_96"Other, specify"
 
 *save dataset
 cd "${gsdData}\Raw"
-save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 03-12 v01.dta",replace
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 04-12 v01.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

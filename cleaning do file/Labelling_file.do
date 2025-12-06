@@ -13,17 +13,18 @@ lab var  Ecole"Ecole"
 lab var Groupe"Groupe"
 lab var  Language"Language of interview"
 lab var Intro_Q1"What do you like to do when you're not in school?"
-lab var  Intro_Q1"What do you like to play?"
+lab var  Intro_Q2"What do you like to play?"
 lab var  B2_S"Please specify gender of student"
-foreach x in semantic_recording_1 semantic_recording_2 semantic_recording_3{
+
+foreach x in semantic_recording_1 semantic_recording_2 semantic_recording_3 semantic_recording_4{
 	lab var  `x'"Enumerator: Voice record the student Semantic"
 }
 
-foreach x in word_count_language_1 word_count_language_2 word_count_language_3{
+foreach x in word_count_language_1 word_count_language_2 word_count_language_3 word_count_language_4{
 	lab var  `x'"ENTER NUMBER OF CORRECT WORDS SPOKEN IN THIS LANGUAGE IN 60 SECONDS…………"
 }
 
-foreach x in interviewer_semantic_1 interviewer_semantic_2 interviewer_semantic_3{
+foreach x in interviewer_semantic_1 interviewer_semantic_2 interviewer_semantic_3 interviewer_semantic_4{
 	lab var  `x'"What is your level of confidence in accurately counting the words in"
 }
 

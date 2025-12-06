@@ -34,7 +34,7 @@ replace Arr15 = 2  if Arrondissement == 3
 
 egen newArr = rowtotal(Arr2 Arr3 Arr4 Arr5 Arr6 Arr7 Arr8 Arr9 Arr10 Arr11 Arr12 Arr13 Arr14 Arr15)
 
-replace Arrondissement = newArr
+replace Arrondissement = newArr if newArr != 0
 
 drop newArr Arr2 Arr3 Arr4 Arr5 Arr6 Arr7 Arr8 Arr9 Arr10 Arr11 Arr12 Arr13 Arr14 Arr15
 
@@ -78,7 +78,7 @@ lab values Commune comm
 
 egen coms_total = rowtotal(coms1-coms24)
 
-replace Commune = coms_total
+replace Commune = coms_total if coms_total != 0
 
 drop coms_total coms1-coms24
 
@@ -201,7 +201,7 @@ replace eco100 = 92 if School == 100    // ee dahra montagne
 * Calculate row total of all eco variables
 egen eco_total = rowtotal(eco2-eco100)
 
-replace School = eco_total
+replace School = eco_total if eco_total != 0
 drop eco2-eco100 eco_total
 
 lab values School sch

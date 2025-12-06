@@ -337,7 +337,7 @@ order semantic_test_language3 interviewer_semantic_3 semantic_recording_3 semant
 *update 4
 order semantic_test_language4 interviewer_semantic_4	semantic_recording_4 semantic_language_timer4duration semantic_language_timer4time_rem	semantic_language_timer4gridAuto semantic_language_timer4items_pe word_count_language_4,after(word_count_language_3)
 
-drop semantic_language_timer4_1 semantic_language_timer4item_at_	semantic_language_timer4time_int semantic_language_timer4number_o v2173 semantic_language_timer4items_pe semantic_language_timer4autoStop semantic_language_timer3number_o  semantic_language_timer4item_at_ semantic_language_timer2number_o semantic_language_timer2items_pe semantic_language_timer3items_pe semantic_language_timer1number_o semantic_language_timer1items_pe semantic_language_timer1_1 semantic_language_timer2_1 semantic_language_timer3_1 semantic_language_timer4_1
+drop semantic_language_timer4_1 semantic_language_timer4item_at_	semantic_language_timer4time_int semantic_language_timer4number_o v2173 semantic_language_timer4items_pe semantic_language_timer4autoStop semantic_language_timer3number_o  semantic_language_timer4item_at_ semantic_language_timer2number_o semantic_language_timer2items_pe semantic_language_timer3items_pe semantic_language_timer1number_o semantic_language_timer1items_pe semantic_language_timer1_1 semantic_language_timer2_1 semantic_language_timer3_1 semantic_language_timer4_1 semantic_language_timer3time_int
 
 *************************************************************************
 **Phonological section
@@ -737,17 +737,16 @@ lab values translators yes_no
 lab var translators"Was the translator used?"
 order translators INT_ENDTIME,after(word_add_sub_strategy_99)
 
-destring reading_famila_word_sr_Bnum_att read_invented_word_sr_Bnum_att,replace
+destring reading_famila_word_sr_Bnum_att read_invented_word_sr_Bnum_att reading_famila_word_pr_Bnum_att GPSlatitude GPSlongitude GPSaccuracy,replace
+
+ds, has(type string)
+destring `r(varlist)', replace
+
 *****************************************************************************************************************
 **Value labelling
 *****************************************************************************************************************
 
 do "Labelling_file.do"
-
-destring reading_famila_word_pr_Bnum_att GPSlatitude GPSlongitude GPSaccuracy,replace
-
-ds, has(type string)
-destring `r(varlist)', replace
 
 *****************************************************************************************************************
 **QC Checks
@@ -770,6 +769,7 @@ foreach x in semantic_language_timer1time_rem semantic_language_timer2time_rem s
 cd "${gsdData}\Raw"
 save "Main\Student\MOHEBS Student Baseline Processed Dataset 06-12 v01.dta",replace
 
+jjj
 // Semantic - No auto stop
 // Phonological - Auto stop after first 5 wrongs
 // Oral vocabulary - No auto stop

@@ -1798,61 +1798,6 @@ keep if (oral_reading_fluency_prtime_rema >30 & oral_reading_fluency_prnum_att <
 cap export excel $var_kept oral_reading_fluency_pr_1 - oral_reading_fluency_stop_pr issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(oral_fluency_pr_time,replace)firstrow(variables)
 restore
 
-****Languages checker
-// Grade 1 – local language == official language 
-// Grade 2 – local language == French
-// Grade 3 -----not into math section
-// survey_language Language official_language teaching_language student_langugae student_langugae_1 student_langugae_2 student_langugae_3 student_langugae_4 B6 B7 languages_spoken languages_spoken_1 languages_spoken_2 languages_spoken_3 languages_spoken_4 languages_spoken_96 languages_spoken_996 languages_spoken_9996 languages_spoken_S1 languages_spoken_S2 languages_spoken_S3 semantic_test_language1 semantic_language_timer1duration semantic_language_timer1time_rem semantic_language_timer1gridAuto word_count_language_1 semantic_test_language2 semantic_language_timer2duration semantic_language_timer2time_rem semantic_language_timer2gridAuto word_count_language_2 semantic_test_language3 semantic_language_timer3duration semantic_language_timer3time_rem semantic_language_timer3gridAuto word_count_language_3 math_form_language math_language_record identifying_shapes_response_lang position_tracking_response_langu identifying_numbers_response_lan counting_language digital_discrimination_language missing_response_language decimal_response_language add_sub_response_language word_add_sub_response_language
-
-*Identifying numbers grid of correct words do not align with the correct number grid question
-*identify_number_grid_1
-preserve
-replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-keep if (identifying_numbers_correct_1 != identify_numbers_grid_1num_corr)
-cap export excel $var_kept  identifying_numbers_grid_1_*  identify_numbers_grid_1num_corr identifying_numbers_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(identify_number_1_issues,replace)firstrow(variables)
-restore
-
-*identify_number_grid_2
-preserve
-replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-keep if (identifying_numbers_correct_2 != identify_numbers_grid_2num_corr)
-cap export excel $var_kept  identifying_numbers_grid_2_*  identify_numbers_grid_2num_corr identifying_numbers_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(identify_number_2_issues,replace)firstrow(variables)
-restore
-
-*digital_discrimination_1
-preserve
-replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-keep if (digital_discrimination_correct_1 != digital_discrimination_1num_corr)
-cap export excel $var_kept  digital_discrimination_1_* digital_discrimination_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_1_issues,replace)firstrow(variables)
-restore
-
-*digital_discrimination_2
-preserve
-replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-keep if (digital_discrimination_correct_2 != digital_discrimination_2num_corr)
-cap export excel $var_kept  digital_discrimination_2_* digital_discrimination_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(digital_discrimination_2_issues,replace)firstrow(variables)
-restore
-
-*Missing number
-preserve
-replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-keep if (missing_number_correct_grid_1 != missing_number_1num_corr)
-cap export excel $var_kept  missing_number_grid_1_* missing_number_correct_grid_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(missing_number_correct_grid_1_issues,replace)firstrow(variables)
-restore
-
-*decimal_system_grid_1
-preserve
-replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-keep if (decimal_correct_1 != decimal_system_1num_corr)
-cap export excel $var_kept  decimal_system_grid_1_* decimal_system_1num_corr decimal_correct_1 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_1_issues,replace)firstrow(variables)
-restore
-
-*decimal_system_grid_2
-preserve
-replace issue_comment = "Number of correct words do not align with the correct number grid question, kindly clarify"
-keep if (decimal_correct_2 != decimal_system_2num_corr)
-cap export excel $var_kept  decimal_system_grid_2_* decimal_system_2num_corr decimal_correct_2 issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(decimal_system_2_issues,replace)firstrow(variables)
-restore
 
 **Languages spoken and used home by kid is different from the interview survey language
 

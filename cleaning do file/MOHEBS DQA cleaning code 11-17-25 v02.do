@@ -1037,7 +1037,7 @@ foreach x in oral_reading_fluency_frgridAutoS oral_reading_fluency_wfgridAutoS o
 	destring `x',replace
 }
 
-lab values oral_reading_fluency_frgridAutoS oral_reading_fluency_wfgridAutoS oral_reading_fluency_prgridAutoS true_false
+lab values oral_reading_fluency_frgridAutoS oral_reading_fluency_wfgridAutoS oral_reading_fluency_srgridAutoS oral_reading_fluency_prgridAutoS true_false
 
 *updated
 *fr
@@ -1513,6 +1513,7 @@ foreach x in semantic_language_timer1time_rem semantic_language_timer2time_rem s
 *saving data
 cd "${gsdData}\Raw"
 save "Main\Student\MOHEBS Student Baseline Processed Dataset 06-12 v01.dta",replace
+
 
 // Semantic - No auto stop
 // Phonological - Auto stop after first 5 wrongs

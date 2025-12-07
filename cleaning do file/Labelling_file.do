@@ -18,9 +18,11 @@ lab var  B2_S"Please specify gender of student"
 foreach x in semantic_recording_1 semantic_recording_2 semantic_recording_3 semantic_recording_4{
 	lab var  `x'"Enumerator: Voice record the student Semantic"
 }
+
 foreach y in word_count_language_1 word_count_language_2 word_count_language_3 word_count_language_4{
 	lab var  `y'"ENTER NUMBER OF CORRECT WORDS SPOKEN IN THIS LANGUAGE IN 60 SECONDS…………"
 }
+
 foreach z in interviewer_semantic_1 interviewer_semantic_2 interviewer_semantic_3 interviewer_semantic_4{
 	lab var  `z'"What is your level of confidence in accurately counting the words in"
 }
@@ -1020,7 +1022,7 @@ lab var identifying_numbers_grid_1_5"5. 1"
 lab var identifying_numbers_grid_1_6"6. 9"
 lab var identifying_numbers_grid_1_7"7. 7"
 lab var identifying_numbers_grid_1_8"8. 10"
-lab var identifying_numbers_correct_1"Identifying numbers corrects line 1 and 2"
+
 lab var identifying_numbers_grid_2_1"1. 12"
 lab var identifying_numbers_grid_2_2"2. 14"
 lab var identifying_numbers_grid_2_3"3. 19"
@@ -1029,7 +1031,7 @@ lab var identifying_numbers_grid_2_5"5. 21"
 lab var identifying_numbers_grid_2_6"6. 33"
 lab var identifying_numbers_grid_2_7"7. 27"
 lab var identifying_numbers_grid_2_8"8. 38"
-lab var identifying_numbers_correct_2"Identifying numbers corrects line 3 and 4"
+
 lab var identifying_numbers_grid_3_1"1. 44"
 lab var identifying_numbers_grid_3_2"2. 45"
 lab var identifying_numbers_grid_3_3"3. 29"
@@ -1043,8 +1045,6 @@ lab var counting_5"How many sheep do you see here? [ 30 ]"
 lab var counting_6"How many peppers do you see here? [ 43 ]"
 lab var counting_language"Which language did the student respond in?"
 lab var digital_discrimination_language"Which language did the student respond in?"
-lab var digital_discrimination_correct_1"Enumerator: Number of corrects in digital discrimination grid Line 1 and 2"
-lab var digital_discrimination_correct_2"Enumerator: Number of corrects in digital discrimination grid 2"
 
 lab var digital_discrimination_grid_1_1"a. 3"
 lab var digital_discrimination_grid_1_2"b. 8"
@@ -1066,7 +1066,6 @@ lab var missing_number_grid_1_2"b. 10"
 lab var missing_number_grid_1_3"c. 6"
 lab var missing_number_grid_1_4"d. 20"
 lab var missing_number_1num_corr"Number of items correct"
-lab var missing_number_correct_grid_1"Missing number corrects"
 
 lab var missing_number_grid_2_1"a. 26"
 lab var missing_number_grid_2_2"b. 27"
@@ -1080,14 +1079,12 @@ lab var decimal_system_grid_1_2"b. 8"
 lab var decimal_system_grid_1_3"c. 15"
 lab var decimal_system_grid_1_4"d. 17"
 lab var decimal_system_1num_corr"Number of items correct"
-lab var decimal_correct_1"Decimal system number corrects"
 
 lab var decimal_system_grid_2_1"a. 10"
 lab var decimal_system_grid_2_2"b. 13"
 lab var decimal_system_grid_2_3"c. 36"
 lab var decimal_system_grid_2_4"d. 46"
 lab var decimal_system_2num_corr"Number of items correct"
-lab var decimal_correct_2"Decimal system number corrects"
 
 lab var decimal_system_grid_3_1"a. 40"
 lab var decimal_system_grid_3_2"b. 33"

@@ -318,8 +318,9 @@ foreach x in semantic_test_language1 semantic_test_language2 semantic_test_langu
 }
 
 lab define sema_lan 1"French" 2"Wolof" 3"Serer" 4"Pulaar" 96"Other 1" 996"Other 2" 9996"Other 3"
-destring semantic_test_language1 semantic_test_language2 semantic_test_language3 semantic_test_language3 semantic_recording_3 semantic_language_timer3_1 semantic_language_timer3duration semantic_language_timer3time_rem semantic_language_timer3gridAuto semantic_language_timer3number_o semantic_language_timer3items_pe interviewer_semantic_3 word_count_language_3,replace
-lab values semantic_test_language1 semantic_test_language2 semantic_test_language3 sema_lan
+destring semantic_test_language1 semantic_test_language2 semantic_test_language3 semantic_test_language3 semantic_recording_3 semantic_language_timer3_1 semantic_language_timer3duration semantic_language_timer3time_rem semantic_language_timer3gridAuto semantic_language_timer3number_o semantic_language_timer3items_pe interviewer_semantic_3 word_count_language_3 semantic_test_language4,replace
+
+lab values semantic_test_language1 semantic_test_language2 semantic_test_language3 semantic_test_language4 sema_lan
 
 foreach x in semantic_language_timer1gridAuto semantic_language_timer2gridAuto semantic_language_timer3gridAuto{
 	replace `x' = "1" if `x' == "TRUE"
@@ -367,6 +368,88 @@ foreach x in phonological_awareness_frgridAut phonological_awareness_wfgridAut p
 
 lab define true_false 1"True" 0"False"
 lab values phonological_awareness_frgridAut phonological_awareness_wfgridAut phonological_awareness_srgridAut phonological_awareness_prgridAut true_false
+
+*Update correction
+*fr
+foreach x in phonological_awareness_fr_6 phonological_awareness_fr_7	phonological_awareness_fr_8	phonological_awareness_fr_9 phonological_awareness_fr_10 {
+	replace `x'= . if phonological_awareness_fr_1 == 0 & phonological_awareness_fr_2 == 0 & phonological_awareness_fr_3 == 0 & phonological_awareness_fr_4 == 0 & phonological_awareness_fr_5 == 0
+}
+
+replace phonological_awareness_frnumber_ = 0 if phonological_awareness_fr_1 == 0 & phonological_awareness_fr_2 == 0 & phonological_awareness_fr_3 == 0 & phonological_awareness_fr_4 == 0 & phonological_awareness_fr_5 == 0 | interview_ID == "10e18a5d-a3d3-418c-a172-aa94b5e7a891"
+
+replace phonological_awareness_frnum_att = 5 if phonological_awareness_fr_1 == 0 & phonological_awareness_fr_2 == 0 & phonological_awareness_fr_3 == 0 & phonological_awareness_fr_4 == 0 & phonological_awareness_fr_5 == 0 | interview_ID == "10e18a5d-a3d3-418c-a172-aa94b5e7a891"
+
+replace phonological_awareness_frgridAut = 1 if phonological_awareness_fr_1 == 0 & phonological_awareness_fr_2 == 0 & phonological_awareness_fr_3 == 0 & phonological_awareness_fr_4 == 0 & phonological_awareness_fr_5 == 0 | interview_ID == "10e18a5d-a3d3-418c-a172-aa94b5e7a891"
+
+foreach x in phonological_awareness_fr_2 phonological_awareness_fr_3	phonological_awareness_fr_4	phonological_awareness_fr_5 {
+	replace `x'= 0 if interview_ID == "10e18a5d-a3d3-418c-a172-aa94b5e7a891"
+}
+
+replace phonological_awareness_frgridAut = 0 if phonological_awareness_frnum_att == 0
+
+replace phonological_stop_fr = 1 if phonological_awareness_frgridAut == 1
+replace phonological_stop_fr = 0 if phonological_awareness_frgridAut == 0
+
+*wf
+foreach x in phonological_awareness_wf_6 phonological_awareness_wf_7	phonological_awareness_wf_8	phonological_awareness_wf_9 phonological_awareness_wf_10 {
+	replace `x'= . if phonological_awareness_wf_1 == 0 & phonological_awareness_wf_2 == 0 & phonological_awareness_wf_3 == 0 & phonological_awareness_wf_4 == 0 & phonological_awareness_wf_5 == 0
+}
+
+replace phonological_awareness_wfnumber_ = 0 if phonological_awareness_wf_1 == 0 & phonological_awareness_wf_2 == 0 & phonological_awareness_wf_3 == 0 & phonological_awareness_wf_4 == 0 & phonological_awareness_wf_5 == 0 | interview_ID == "b186bac0-cc7f-409d-853f-6e45b086c73d"
+
+replace phonological_awareness_wfnum_att = 5 if phonological_awareness_wf_1 == 0 & phonological_awareness_wf_2 == 0 & phonological_awareness_wf_3 == 0 & phonological_awareness_wf_4 == 0 & phonological_awareness_wf_5 == 0 | interview_ID == "b186bac0-cc7f-409d-853f-6e45b086c73d"
+
+replace phonological_awareness_wfgridAut = 1 if phonological_awareness_wf_1 == 0 & phonological_awareness_wf_2 == 0 & phonological_awareness_wf_3 == 0 & phonological_awareness_wf_4 == 0 & phonological_awareness_wf_5 == 0 | interview_ID == "b186bac0-cc7f-409d-853f-6e45b086c73d"
+
+foreach x in phonological_awareness_wf_2 phonological_awareness_wf_3	phonological_awareness_wf_4	phonological_awareness_wf_5 {
+	replace `x'= 0 if interview_ID == "b186bac0-cc7f-409d-853f-6e45b086c73d"
+}
+
+replace phonological_awareness_wfgridAut = 0 if phonological_awareness_wfnum_att == 0
+
+replace phonological_stop_wf = 1 if phonological_awareness_wfgridAut == 1
+replace phonological_stop_wf = 0 if phonological_awareness_wfgridAut == 0
+
+*sr
+foreach x in phonological_awareness_sr_6 phonological_awareness_sr_7	phonological_awareness_sr_8	phonological_awareness_sr_9 phonological_awareness_sr_10 {
+	replace `x'= . if phonological_awareness_sr_1 == 0 & phonological_awareness_sr_2 == 0 & phonological_awareness_sr_3 == 0 & phonological_awareness_sr_4 == 0 & phonological_awareness_sr_5 == 0
+}
+
+replace phonological_awareness_srnumber_ = 0 if phonological_awareness_sr_1 == 0 & phonological_awareness_sr_2 == 0 & phonological_awareness_sr_3 == 0 & phonological_awareness_sr_4 == 0 & phonological_awareness_sr_5 == 0 | interview_ID == "fa7c730e-4e47-4e56-9adf-331a3dbce907"
+
+replace phonological_awareness_srnum_att = 5 if phonological_awareness_sr_1 == 0 & phonological_awareness_sr_2 == 0 & phonological_awareness_sr_3 == 0 & phonological_awareness_sr_4 == 0 & phonological_awareness_sr_5 == 0 | interview_ID == "fa7c730e-4e47-4e56-9adf-331a3dbce907"
+
+replace phonological_awareness_srgridAut = 1 if phonological_awareness_sr_1 == 0 & phonological_awareness_sr_2 == 0 & phonological_awareness_sr_3 == 0 & phonological_awareness_sr_4 == 0 & phonological_awareness_sr_5 == 0 | interview_ID == "fa7c730e-4e47-4e56-9adf-331a3dbce907"
+
+foreach x in phonological_awareness_sr_2 phonological_awareness_sr_3	phonological_awareness_sr_4	phonological_awareness_sr_5 {
+	replace `x'= 0 if interview_ID == "fa7c730e-4e47-4e56-9adf-331a3dbce907"
+}
+
+replace phonological_awareness_srgridAut = 0 if phonological_awareness_srnum_att == 0
+
+replace phonological_stop_sr = 1 if phonological_awareness_srgridAut == 1
+replace phonological_stop_sr = 0 if phonological_awareness_srgridAut == 0
+
+*pr
+foreach x in phonological_awareness_pr_6 phonological_awareness_pr_7	phonological_awareness_pr_8	phonological_awareness_pr_9 phonological_awareness_pr_10 {
+	replace `x'= . if phonological_awareness_pr_1 == 0 & phonological_awareness_pr_2 == 0 & phonological_awareness_pr_3 == 0 & phonological_awareness_pr_4 == 0 & phonological_awareness_pr_5 == 0
+}
+
+replace phonological_awareness_prnumber_ = 0 if phonological_awareness_pr_1 == 0 & phonological_awareness_pr_2 == 0 & phonological_awareness_pr_3 == 0 & phonological_awareness_pr_4 == 0 & phonological_awareness_pr_5 == 0 | interview_ID == "7cd83584-fa4c-4ef4-8924-0de3a7a79144"
+
+replace phonological_awareness_prnum_att = 5 if phonological_awareness_pr_1 == 0 & phonological_awareness_pr_2 == 0 & phonological_awareness_pr_3 == 0 & phonological_awareness_pr_4 == 0 & phonological_awareness_pr_5 == 0 | interview_ID == "7cd83584-fa4c-4ef4-8924-0de3a7a79144"
+
+replace phonological_awareness_prgridAut = 1 if phonological_awareness_pr_1 == 0 & phonological_awareness_pr_2 == 0 & phonological_awareness_pr_3 == 0 & phonological_awareness_pr_4 == 0 & phonological_awareness_pr_5 == 0 | interview_ID == "7cd83584-fa4c-4ef4-8924-0de3a7a79144"
+
+foreach x in phonological_awareness_pr_2 phonological_awareness_pr_3	phonological_awareness_pr_4	phonological_awareness_pr_5 {
+	replace `x'= 0 if interview_ID == "7cd83584-fa4c-4ef4-8924-0de3a7a79144"
+}
+
+replace phonological_awareness_prgridAut = 0 if phonological_awareness_prnum_att == 0
+
+replace phonological_stop_pr = 1 if phonological_awareness_prgridAut == 1
+replace phonological_stop_pr = 0 if phonological_awareness_prgridAut == 0
+
 
 *************************************************************************
 **Oral Vocabulary section
@@ -429,6 +512,116 @@ foreach x in letter_knowledge_fr_BgridAutoSto letter_knowledge_wf_BgridAutoSto l
 
 lab values letter_knowledge_fr_BgridAutoSto letter_knowledge_wf_BgridAutoSto letter_knowledge_sr_BgridAutoSto letter_knowledge_pr_BgridAutoSto letter_knowledge_frgridAutoStopp letter_knowledge_wfgridAutoStopp letter_knowledge_srgridAutoStopp letter_knowledge_prgridAutoStopp true_false
 
+*update correction
+*fr
+foreach x in letter_knowledge_fr_9	letter_knowledge_fr_10	letter_knowledge_fr_11	letter_knowledge_fr_12	letter_knowledge_fr_13	letter_knowledge_fr_14	letter_knowledge_fr_15	letter_knowledge_fr_16	letter_knowledge_fr_17	letter_knowledge_fr_18	letter_knowledge_fr_19	letter_knowledge_fr_20{
+	replace `x'= . if letter_knowledge_fr_1==0 & letter_knowledge_fr_2==0 &letter_knowledge_fr_3==0 & letter_knowledge_fr_4==0 & letter_knowledge_fr_5==0 & letter_knowledge_fr_6==0 & letter_knowledge_fr_7 == 0 & letter_knowledge_fr_8 == 0
+}
+
+replace letter_knowledge_frnumber_of_ite = 0 if letter_knowledge_fr_1==0 & letter_knowledge_fr_2==0 &letter_knowledge_fr_3==0 & letter_knowledge_fr_4==0 & letter_knowledge_fr_5==0 & letter_knowledge_fr_6==0 & letter_knowledge_fr_7 == 0 & letter_knowledge_fr_8 == 0
+
+replace letter_knowledge_fritems_per_min = 0 if letter_knowledge_fr_1==0 & letter_knowledge_fr_2==0 &letter_knowledge_fr_3==0 & letter_knowledge_fr_4==0 & letter_knowledge_fr_5==0 & letter_knowledge_fr_6==0 & letter_knowledge_fr_7 == 0 & letter_knowledge_fr_8 == 0
+
+replace letter_knowledge_frnum_att = 8 if letter_knowledge_fr_1==0 & letter_knowledge_fr_2==0 &letter_knowledge_fr_3==0 & letter_knowledge_fr_4==0 & letter_knowledge_fr_5==0 & letter_knowledge_fr_6==0 & letter_knowledge_fr_7 == 0 & letter_knowledge_fr_8 == 0
+
+replace letter_knowledge_frgridAutoStopp = 1 if letter_knowledge_fr_1==0 & letter_knowledge_fr_2==0 &letter_knowledge_fr_3==0 & letter_knowledge_fr_4==0 & letter_knowledge_fr_5==0 & letter_knowledge_fr_6==0 & letter_knowledge_fr_7 == 0 & letter_knowledge_fr_8 == 0
+
+replace letter_knowledge_stop_fr = 1 if letter_knowledge_frgridAutoStopp == 1
+replace letter_knowledge_stop_fr = 0 if letter_knowledge_frgridAutoStopp == 0
+
+foreach x in letter_knowledge_fr_13	letter_knowledge_fr_14	letter_knowledge_fr_15	letter_knowledge_fr_16	letter_knowledge_fr_17	letter_knowledge_fr_18	letter_knowledge_fr_19	letter_knowledge_fr_20{
+	replace `x' = 0 if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","c9efa50e-d6b2-4fee-ab0a-9eb391385bca","5f727244-96b2-401e-8b19-5a3b5bb464ce","73fff59c-a151-4d4d-b903-fb2d1485a31d","bb0155ad-ef53-45da-b681-616aca6cbdc7")
+}
+
+egen letter_knowledge_frnum_of_ite1 = rowtotal(letter_knowledge_fr_1 - letter_knowledge_fr_20)
+replace letter_knowledge_frnumber_of_ite = letter_knowledge_frnum_of_ite1 if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","c9efa50e-d6b2-4fee-ab0a-9eb391385bca","5f727244-96b2-401e-8b19-5a3b5bb464ce","73fff59c-a151-4d4d-b903-fb2d1485a31d","bb0155ad-ef53-45da-b681-616aca6cbdc7")
+
+replace letter_knowledge_fritems_per_min = letter_knowledge_frnumber_of_ite if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","c9efa50e-d6b2-4fee-ab0a-9eb391385bca","5f727244-96b2-401e-8b19-5a3b5bb464ce","73fff59c-a151-4d4d-b903-fb2d1485a31d","bb0155ad-ef53-45da-b681-616aca6cbdc7")
+
+foreach x in letter_knowledge_fr_Bduration	letter_knowledge_fr_Btime_remain	letter_knowledge_fr_BgridAutoSto	letter_knowledge_fr_Bnumber_of_i	letter_knowledge_fr_Bnum_att	letter_knowledge_fr_Bitems_per_m{
+	replace `x' = . if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","c9efa50e-d6b2-4fee-ab0a-9eb391385bca","5f727244-96b2-401e-8b19-5a3b5bb464ce","73fff59c-a151-4d4d-b903-fb2d1485a31d","bb0155ad-ef53-45da-b681-616aca6cbdc7") | letter_knowledge_frnumber_of_ite < 13
+}
+		
+drop letter_knowledge_frnum_of_ite1
+
+*wf
+foreach x in letter_knowledge_wf_9	letter_knowledge_wf_10	letter_knowledge_wf_11	letter_knowledge_wf_12	letter_knowledge_wf_13	letter_knowledge_wf_14	letter_knowledge_wf_15	letter_knowledge_wf_16	letter_knowledge_wf_17	letter_knowledge_wf_18	letter_knowledge_wf_19	letter_knowledge_wf_20{
+	replace `x'= . if letter_knowledge_wf_1==0 & letter_knowledge_wf_2==0 &letter_knowledge_wf_3==0 & letter_knowledge_wf_4==0 & letter_knowledge_wf_5==0 & letter_knowledge_wf_6==0 & letter_knowledge_wf_7 == 0 & letter_knowledge_wf_8 == 0
+}
+
+replace letter_knowledge_wfnumber_of_ite = 0 if letter_knowledge_wf_1==0 & letter_knowledge_wf_2==0 &letter_knowledge_wf_3==0 & letter_knowledge_wf_4==0 & letter_knowledge_wf_5==0 & letter_knowledge_wf_6==0 & letter_knowledge_wf_7 == 0 & letter_knowledge_wf_8 == 0
+
+replace letter_knowledge_wfitems_per_min = 0 if letter_knowledge_wf_1==0 & letter_knowledge_wf_2==0 &letter_knowledge_wf_3==0 & letter_knowledge_wf_4==0 & letter_knowledge_wf_5==0 & letter_knowledge_wf_6==0 & letter_knowledge_wf_7 == 0 & letter_knowledge_wf_8 == 0
+
+replace letter_knowledge_wfnum_att = 8 if letter_knowledge_wf_1==0 & letter_knowledge_wf_2==0 &letter_knowledge_wf_3==0 & letter_knowledge_wf_4==0 & letter_knowledge_wf_5==0 & letter_knowledge_wf_6==0 & letter_knowledge_wf_7 == 0 & letter_knowledge_wf_8 == 0
+
+replace letter_knowledge_wfgridAutoStopp = 1 if letter_knowledge_wf_1==0 & letter_knowledge_wf_2==0 &letter_knowledge_wf_3==0 & letter_knowledge_wf_4==0 & letter_knowledge_wf_5==0 & letter_knowledge_wf_6==0 & letter_knowledge_wf_7 == 0 & letter_knowledge_wf_8 == 0
+
+replace letter_knowledge_stop_wf = 1 if letter_knowledge_wfgridAutoStopp == 1
+replace letter_knowledge_stop_wf = 0 if letter_knowledge_wfgridAutoStopp == 0
+
+foreach x in letter_knowledge_wf_15	letter_knowledge_wf_16	letter_knowledge_wf_17{
+	replace `x' = 0 if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d")
+}
+
+egen letter_knowledge_wfnum_of_ite1 = rowtotal(letter_knowledge_wf_1 - letter_knowledge_wf_20)
+replace letter_knowledge_wfnumber_of_ite = letter_knowledge_wfnum_of_ite1 if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d")
+
+replace letter_knowledge_wfitems_per_min = letter_knowledge_wfnumber_of_ite if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d")
+
+foreach x in letter_knowledge_wf_Bduration	letter_knowledge_wf_Btime_remain	letter_knowledge_wf_BgridAutoSto	letter_knowledge_wf_Bnumber_of_i	letter_knowledge_wf_Bnum_att	letter_knowledge_wf_Bitems_per_m{
+	replace `x' = . if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d") | letter_knowledge_wfnumber_of_ite < 13
+}
+
+drop letter_knowledge_wfnum_of_ite1
+
+*sr
+foreach x in letter_knowledge_sr_9	letter_knowledge_sr_10	letter_knowledge_sr_11	letter_knowledge_sr_12	letter_knowledge_sr_13	letter_knowledge_sr_14	letter_knowledge_sr_15	letter_knowledge_sr_16	letter_knowledge_sr_17	letter_knowledge_sr_18	letter_knowledge_sr_19	letter_knowledge_sr_20{
+	replace `x'= . if letter_knowledge_sr_1==0 & letter_knowledge_sr_2==0 &letter_knowledge_sr_3==0 & letter_knowledge_sr_4==0 & letter_knowledge_sr_5==0 & letter_knowledge_sr_6==0 & letter_knowledge_sr_7 == 0 & letter_knowledge_sr_8 == 0
+}
+
+replace letter_knowledge_srnumber_of_ite = 0 if letter_knowledge_sr_1==0 & letter_knowledge_sr_2==0 &letter_knowledge_sr_3==0 & letter_knowledge_sr_4==0 & letter_knowledge_sr_5==0 & letter_knowledge_sr_6==0 & letter_knowledge_sr_7 == 0 & letter_knowledge_sr_8 == 0
+
+replace letter_knowledge_sritems_per_min = 0 if letter_knowledge_sr_1==0 & letter_knowledge_sr_2==0 &letter_knowledge_sr_3==0 & letter_knowledge_sr_4==0 & letter_knowledge_sr_5==0 & letter_knowledge_sr_6==0 & letter_knowledge_sr_7 == 0 & letter_knowledge_sr_8 == 0
+
+replace letter_knowledge_srnum_att = 8 if letter_knowledge_sr_1==0 & letter_knowledge_sr_2==0 &letter_knowledge_sr_3==0 & letter_knowledge_sr_4==0 & letter_knowledge_sr_5==0 & letter_knowledge_sr_6==0 & letter_knowledge_sr_7 == 0 & letter_knowledge_sr_8 == 0
+
+replace letter_knowledge_srgridAutoStopp = 1 if letter_knowledge_sr_1==0 & letter_knowledge_sr_2==0 &letter_knowledge_sr_3==0 & letter_knowledge_sr_4==0 & letter_knowledge_sr_5==0 & letter_knowledge_sr_6==0 & letter_knowledge_sr_7 == 0 & letter_knowledge_sr_8 == 0
+
+replace letter_knowledge_stop_sr = 1 if letter_knowledge_srgridAutoStopp == 1
+replace letter_knowledge_stop_sr = 0 if letter_knowledge_srgridAutoStopp == 0
+
+foreach x in letter_knowledge_sr_7	letter_knowledge_sr_8 letter_knowledge_sr_11	letter_knowledge_sr_12	letter_knowledge_sr_13	letter_knowledge_sr_14 letter_knowledge_sr_15	letter_knowledge_sr_16	letter_knowledge_sr_17{
+	replace `x' = 0 if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","26b79d94-fc5c-4136-97d3-dffaea376bbc")
+}
+
+egen letter_knowledge_srnum_of_ite1 = rowtotal(letter_knowledge_sr_1 - letter_knowledge_sr_20)
+replace letter_knowledge_srnumber_of_ite = letter_knowledge_srnum_of_ite1 if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","26b79d94-fc5c-4136-97d3-dffaea376bbc")
+
+replace letter_knowledge_sritems_per_min = letter_knowledge_srnumber_of_ite if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","26b79d94-fc5c-4136-97d3-dffaea376bbc")
+
+foreach x in letter_knowledge_sr_Bduration	letter_knowledge_sr_Btime_remain	letter_knowledge_sr_BgridAutoSto	letter_knowledge_sr_Bnumber_of_i	letter_knowledge_sr_Bnum_att	letter_knowledge_sr_Bitems_per_m{
+	replace `x' = . if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","26b79d94-fc5c-4136-97d3-dffaea376bbc") |    letter_knowledge_srnumber_of_ite < 13
+}
+
+drop letter_knowledge_srnum_of_ite1
+
+*pr
+foreach x in letter_knowledge_pr_9	letter_knowledge_pr_10	letter_knowledge_pr_11	letter_knowledge_pr_12	letter_knowledge_pr_13	letter_knowledge_pr_14	letter_knowledge_pr_15	letter_knowledge_pr_16	letter_knowledge_pr_17	letter_knowledge_pr_18	letter_knowledge_pr_19	letter_knowledge_pr_20{
+	replace `x'= . if letter_knowledge_pr_1==0 & letter_knowledge_pr_2==0 &letter_knowledge_pr_3==0 & letter_knowledge_pr_4==0 & letter_knowledge_pr_5==0 & letter_knowledge_pr_6==0 & letter_knowledge_pr_7 == 0 & letter_knowledge_pr_8 == 0
+}
+
+replace letter_knowledge_prnumber_of_ite = 0 if letter_knowledge_pr_1==0 & letter_knowledge_pr_2==0 &letter_knowledge_pr_3==0 & letter_knowledge_pr_4==0 & letter_knowledge_pr_5==0 & letter_knowledge_pr_6==0 & letter_knowledge_pr_7 == 0 & letter_knowledge_pr_8 == 0
+
+replace letter_knowledge_pritems_per_min = 0 if letter_knowledge_pr_1==0 & letter_knowledge_pr_2==0 &letter_knowledge_pr_3==0 & letter_knowledge_pr_4==0 & letter_knowledge_pr_5==0 & letter_knowledge_pr_6==0 & letter_knowledge_pr_7 == 0 & letter_knowledge_pr_8 == 0
+
+replace letter_knowledge_prnum_att = 8 if letter_knowledge_pr_1==0 & letter_knowledge_pr_2==0 &letter_knowledge_pr_3==0 & letter_knowledge_pr_4==0 & letter_knowledge_pr_5==0 & letter_knowledge_pr_6==0 & letter_knowledge_pr_7 == 0 & letter_knowledge_pr_8 == 0
+
+replace letter_knowledge_prgridAutoStopp = 1 if letter_knowledge_pr_1==0 & letter_knowledge_pr_2==0 &letter_knowledge_pr_3==0 & letter_knowledge_pr_4==0 & letter_knowledge_pr_5==0 & letter_knowledge_pr_6==0 & letter_knowledge_pr_7 == 0 & letter_knowledge_pr_8 == 0
+
+replace letter_knowledge_stop_pr = 1 if letter_knowledge_prgridAutoStopp == 1
+replace letter_knowledge_stop_pr = 0 if letter_knowledge_prgridAutoStopp == 0
+
 *************************************************************************
 **Dceoding- Reading Familiar words section
 *************************************************************************
@@ -476,6 +669,72 @@ foreach x in read_familiar_words_frgridAutoSt read_familiar_words_wfgridAutoSt r
 lab values read_familiar_words_frgridAutoSt read_familiar_words_wfgridAutoSt read_familiar_words_srgridAutoSt read_familiar_words_prgridAutoSt read_familiar_words_fr_BgridAuto	read_familiar_words_wf_BgridAuto read_familiar_words_sr_BgridAuto read_familiar_words_pr_BgridAuto true_false
 
 lab values read_familiar_stop_fr read_familiar_stop_wf read_familiar_stop_sr read_familiar_stop_pr yes_no
+
+*Update
+*fr
+foreach x in read_familiar_words_fr_9	read_familiar_words_fr_10	read_familiar_words_fr_11	read_familiar_words_fr_12	read_familiar_words_fr_13	read_familiar_words_fr_14	read_familiar_words_fr_15	read_familiar_words_fr_16	read_familiar_words_fr_17	read_familiar_words_fr_18	read_familiar_words_fr_19	read_familiar_words_fr_20{
+	replace `x'= . if read_familiar_words_fr_1==0 & read_familiar_words_fr_2==0 & read_familiar_words_fr_3==0 & read_familiar_words_fr_4==0 & read_familiar_words_fr_5==0 & read_familiar_words_fr_6==0 & read_familiar_words_fr_7 == 0 & read_familiar_words_fr_8 == 0 | interview_ID =="8531b91c-31d7-434a-bbf5-de01dd922f1f"
+}
+
+replace read_familiar_words_frnumber_of_ = 0 if read_familiar_words_fr_1==0 & read_familiar_words_fr_2==0 & read_familiar_words_fr_3==0 & read_familiar_words_fr_4==0 & read_familiar_words_fr_5==0 & read_familiar_words_fr_6==0 & read_familiar_words_fr_7 == 0 & read_familiar_words_fr_8 == 0 | interview_ID =="8531b91c-31d7-434a-bbf5-de01dd922f1f"
+
+replace read_familiar_words_fritems_per_ = 0 if read_familiar_words_fr_1==0 & read_familiar_words_fr_2==0 & read_familiar_words_fr_3==0 & read_familiar_words_fr_4==0 & read_familiar_words_fr_5==0 & read_familiar_words_fr_6==0 & read_familiar_words_fr_7 == 0 & read_familiar_words_fr_8 == 0 | interview_ID =="8531b91c-31d7-434a-bbf5-de01dd922f1f"
+
+replace reading_familiar_words_frnum_att = 8 if read_familiar_words_fr_1==0 & read_familiar_words_fr_2==0 & read_familiar_words_fr_3==0 & read_familiar_words_fr_4==0 & read_familiar_words_fr_5==0 & read_familiar_words_fr_6==0 & read_familiar_words_fr_7 == 0 & read_familiar_words_fr_8 == 0 |interview_ID =="8531b91c-31d7-434a-bbf5-de01dd922f1f"
+
+replace read_familiar_words_frgridAutoSt = 1 if read_familiar_words_fr_1==0 & read_familiar_words_fr_2==0 & read_familiar_words_fr_3==0 & read_familiar_words_fr_4==0 & read_familiar_words_fr_5==0 & read_familiar_words_fr_6==0 & read_familiar_words_fr_7 == 0 & read_familiar_words_fr_8 == 0 | interview_ID =="8531b91c-31d7-434a-bbf5-de01dd922f1f"
+
+replace read_familiar_stop_fr = 1 if read_familiar_words_frgridAutoSt == 1
+replace read_familiar_stop_fr = 0 if read_familiar_words_frgridAutoSt == 0
+
+*wf
+foreach x in read_familiar_words_wf_9	read_familiar_words_wf_10	read_familiar_words_wf_11	read_familiar_words_wf_12	read_familiar_words_wf_13	read_familiar_words_wf_14	read_familiar_words_wf_15	read_familiar_words_wf_16	read_familiar_words_wf_17	read_familiar_words_wf_18	read_familiar_words_wf_19	read_familiar_words_wf_20{
+	replace `x'= . if read_familiar_words_wf_1==0 & read_familiar_words_wf_2==0 & read_familiar_words_wf_3==0 & read_familiar_words_wf_4==0 & read_familiar_words_wf_5==0 & read_familiar_words_wf_6==0 & read_familiar_words_wf_7 == 0 & read_familiar_words_wf_8 == 0
+}
+
+replace read_familiar_words_wfnumber_of_ = 0 if read_familiar_words_wf_1==0 & read_familiar_words_wf_2==0 & read_familiar_words_wf_3==0 & read_familiar_words_wf_4==0 & read_familiar_words_wf_5==0 & read_familiar_words_wf_6==0 & read_familiar_words_wf_7 == 0 & read_familiar_words_wf_8 == 0
+
+replace read_familiar_words_wfitems_per_ = 0 if read_familiar_words_wf_1==0 & read_familiar_words_wf_2==0 & read_familiar_words_wf_3==0 & read_familiar_words_wf_4==0 & read_familiar_words_wf_5==0 & read_familiar_words_wf_6==0 & read_familiar_words_wf_7 == 0 & read_familiar_words_wf_8 == 0
+
+replace reading_familiar_words_wfnum_att = 8 if read_familiar_words_wf_1==0 & read_familiar_words_wf_2==0 & read_familiar_words_wf_3==0 & read_familiar_words_wf_4==0 & read_familiar_words_wf_5==0 & read_familiar_words_wf_6==0 & read_familiar_words_wf_7 == 0 & read_familiar_words_wf_8 == 0
+
+replace read_familiar_words_wfgridAutoSt = 1 if read_familiar_words_wf_1==0 & read_familiar_words_wf_2==0 & read_familiar_words_wf_3==0 & read_familiar_words_wf_4==0 & read_familiar_words_wf_5==0 & read_familiar_words_wf_6==0 & read_familiar_words_wf_7 == 0 & read_familiar_words_wf_8 == 0 
+
+replace read_familiar_stop_wf = 1 if read_familiar_words_wfgridAutoSt == 1
+replace read_familiar_stop_wf = 0 if read_familiar_words_wfgridAutoSt == 0
+
+*sr
+foreach x in read_familiar_words_sr_9	read_familiar_words_sr_10	read_familiar_words_sr_11	read_familiar_words_sr_12	read_familiar_words_sr_13	read_familiar_words_sr_14	read_familiar_words_sr_15	read_familiar_words_sr_16	read_familiar_words_sr_17	read_familiar_words_sr_18	read_familiar_words_sr_19	read_familiar_words_sr_20{
+	replace `x'= . if read_familiar_words_sr_1==0 & read_familiar_words_sr_2==0 & read_familiar_words_sr_3==0 & read_familiar_words_sr_4==0 & read_familiar_words_sr_5==0 & read_familiar_words_sr_6==0 & read_familiar_words_sr_7 == 0 & read_familiar_words_sr_8 == 0
+}
+
+replace read_familiar_words_srnumber_of_ = 0 if read_familiar_words_sr_1==0 & read_familiar_words_sr_2==0 & read_familiar_words_sr_3==0 & read_familiar_words_sr_4==0 & read_familiar_words_sr_5==0 & read_familiar_words_sr_6==0 & read_familiar_words_sr_7 == 0 & read_familiar_words_sr_8 == 0
+
+replace read_familiar_words_sritems_per_ = 0 if read_familiar_words_sr_1==0 & read_familiar_words_sr_2==0 & read_familiar_words_sr_3==0 & read_familiar_words_sr_4==0 & read_familiar_words_sr_5==0 & read_familiar_words_sr_6==0 & read_familiar_words_sr_7 == 0 & read_familiar_words_sr_8 == 0
+
+replace reading_familiar_words_srnum_att = 8 if read_familiar_words_sr_1==0 & read_familiar_words_sr_2==0 & read_familiar_words_sr_3==0 & read_familiar_words_sr_4==0 & read_familiar_words_sr_5==0 & read_familiar_words_sr_6==0 & read_familiar_words_sr_7 == 0 & read_familiar_words_sr_8 == 0
+
+replace read_familiar_words_srgridAutoSt = 1 if read_familiar_words_sr_1==0 & read_familiar_words_sr_2==0 & read_familiar_words_sr_3==0 & read_familiar_words_sr_4==0 & read_familiar_words_sr_5==0 & read_familiar_words_sr_6==0 & read_familiar_words_sr_7 == 0 & read_familiar_words_sr_8 == 0 
+
+replace read_familiar_stop_sr = 1 if read_familiar_words_srgridAutoSt == 1
+replace read_familiar_stop_sr = 0 if read_familiar_words_srgridAutoSt == 0
+
+*pr
+foreach x in read_familiar_words_pr_9	read_familiar_words_pr_10	read_familiar_words_pr_11	read_familiar_words_pr_12	read_familiar_words_pr_13	read_familiar_words_pr_14	read_familiar_words_pr_15	read_familiar_words_pr_16	read_familiar_words_pr_17	read_familiar_words_pr_18	read_familiar_words_pr_19	read_familiar_words_pr_20{
+	replace `x'= . if read_familiar_words_pr_1==0 & read_familiar_words_pr_2==0 & read_familiar_words_pr_3==0 & read_familiar_words_pr_4==0 & read_familiar_words_pr_5==0 & read_familiar_words_pr_6==0 & read_familiar_words_pr_7 == 0 & read_familiar_words_pr_8 == 0
+}
+
+replace read_familiar_words_prnumber_of_ = 0 if read_familiar_words_pr_1==0 & read_familiar_words_pr_2==0 & read_familiar_words_pr_3==0 & read_familiar_words_pr_4==0 & read_familiar_words_pr_5==0 & read_familiar_words_pr_6==0 & read_familiar_words_pr_7 == 0 & read_familiar_words_pr_8 == 0
+
+replace read_familiar_words_pritems_per_ = 0 if read_familiar_words_pr_1==0 & read_familiar_words_pr_2==0 & read_familiar_words_pr_3==0 & read_familiar_words_pr_4==0 & read_familiar_words_pr_5==0 & read_familiar_words_pr_6==0 & read_familiar_words_pr_7 == 0 & read_familiar_words_pr_8 == 0
+
+replace reading_familiar_words_prnum_att = 8 if read_familiar_words_pr_1==0 & read_familiar_words_pr_2==0 & read_familiar_words_pr_3==0 & read_familiar_words_pr_4==0 & read_familiar_words_pr_5==0 & read_familiar_words_pr_6==0 & read_familiar_words_pr_7 == 0 & read_familiar_words_pr_8 == 0
+
+replace read_familiar_words_prgridAutoSt = 1 if read_familiar_words_pr_1==0 & read_familiar_words_pr_2==0 & read_familiar_words_pr_3==0 & read_familiar_words_pr_4==0 & read_familiar_words_pr_5==0 & read_familiar_words_pr_6==0 & read_familiar_words_pr_7 == 0 & read_familiar_words_pr_8 == 0 
+
+replace read_familiar_stop_pr = 1 if read_familiar_words_prgridAutoSt == 1
+replace read_familiar_stop_pr = 0 if read_familiar_words_prgridAutoSt == 0
+
 
 *************************************************************************
 **Dceoding- Reading Invented words section
@@ -532,6 +791,72 @@ lab values read_invented_words_frgridAutoSt read_invented_words_wfgridAutoSt rea
 
 lab values read_invented_stop_fr read_invented_stop_wf read_invented_stop_sr read_invented_stop_pr yes_no
 
+*Update
+
+*fr
+foreach x in read_invented_words_fr_9	read_invented_words_fr_10	read_invented_words_fr_11	read_invented_words_fr_12	read_invented_words_fr_13	read_invented_words_fr_14	read_invented_words_fr_15	read_invented_words_fr_16	read_invented_words_fr_17	read_invented_words_fr_18	read_invented_words_fr_19	read_invented_words_fr_20{
+	replace `x'= . if read_invented_words_fr_1==0 & read_invented_words_fr_2==0 & read_invented_words_fr_3==0 & read_invented_words_fr_4==0 & read_invented_words_fr_5==0 & read_invented_words_fr_6==0 & read_invented_words_fr_7 == 0 & read_invented_words_fr_8 == 0
+}
+
+replace read_invented_words_frnumber_of_ = 0 if read_invented_words_fr_1==0 & read_invented_words_fr_2==0 & read_invented_words_fr_3==0 & read_invented_words_fr_4==0 & read_invented_words_fr_5==0 & read_invented_words_fr_6==0 & read_invented_words_fr_7 == 0 & read_invented_words_fr_8 == 0
+
+replace read_invented_words_fritems_per_ = 0 if read_invented_words_fr_1==0 & read_invented_words_fr_2==0 & read_invented_words_fr_3==0 & read_invented_words_fr_4==0 & read_invented_words_fr_5==0 & read_invented_words_fr_6==0 & read_invented_words_fr_7 == 0 & read_invented_words_fr_8 == 0
+
+replace read_invented_words_frnum_att = 8 if read_invented_words_fr_1==0 & read_invented_words_fr_2==0 & read_invented_words_fr_3==0 & read_invented_words_fr_4==0 & read_invented_words_fr_5==0 & read_invented_words_fr_6==0 & read_invented_words_fr_7 == 0 & read_invented_words_fr_8 == 0
+
+replace read_invented_words_frgridAutoSt = 1 if read_invented_words_fr_1==0 & read_invented_words_fr_2==0 & read_invented_words_fr_3==0 & read_invented_words_fr_4==0 & read_invented_words_fr_5==0 & read_invented_words_fr_6==0 & read_invented_words_fr_7 == 0 & read_invented_words_fr_8 == 0
+
+replace read_invented_stop_fr = 1 if read_invented_words_frgridAutoSt == 1
+replace read_invented_stop_fr = 0 if read_invented_words_frgridAutoSt == 0
+
+*wf
+foreach x in read_invented_words_wf_9	read_invented_words_wf_10	read_invented_words_wf_11	read_invented_words_wf_12	read_invented_words_wf_13	read_invented_words_wf_14	read_invented_words_wf_15	read_invented_words_wf_16	read_invented_words_wf_17	read_invented_words_wf_18	read_invented_words_wf_19	read_invented_words_wf_20{
+	replace `x'= . if read_invented_words_wf_1==0 & read_invented_words_wf_2==0 & read_invented_words_wf_3==0 & read_invented_words_wf_4==0 & read_invented_words_wf_5==0 & read_invented_words_wf_6==0 & read_invented_words_wf_7 == 0 & read_invented_words_wf_8 == 0
+}
+
+replace read_invented_words_wfnumber_of_ = 0 if read_invented_words_wf_1==0 & read_invented_words_wf_2==0 & read_invented_words_wf_3==0 & read_invented_words_wf_4==0 & read_invented_words_wf_5==0 & read_invented_words_wf_6==0 & read_invented_words_wf_7 == 0 & read_invented_words_wf_8 == 0
+
+replace read_invented_words_wfitems_per_ = 0 if read_invented_words_wf_1==0 & read_invented_words_wf_2==0 & read_invented_words_wf_3==0 & read_invented_words_wf_4==0 & read_invented_words_wf_5==0 & read_invented_words_wf_6==0 & read_invented_words_wf_7 == 0 & read_invented_words_wf_8 == 0
+
+replace read_invented_words_wfnum_att = 8 if read_invented_words_wf_1==0 & read_invented_words_wf_2==0 & read_invented_words_wf_3==0 & read_invented_words_wf_4==0 & read_invented_words_wf_5==0 & read_invented_words_wf_6==0 & read_invented_words_wf_7 == 0 & read_invented_words_wf_8 == 0
+
+replace read_invented_words_wfgridAutoSt = 1 if read_invented_words_wf_1==0 & read_invented_words_wf_2==0 & read_invented_words_wf_3==0 & read_invented_words_wf_4==0 & read_invented_words_wf_5==0 & read_invented_words_wf_6==0 & read_invented_words_wf_7 == 0 & read_invented_words_wf_8 == 0
+
+replace read_invented_stop_wf = 1 if read_invented_words_wfgridAutoSt == 1
+replace read_invented_stop_wf = 0 if read_invented_words_wfgridAutoSt == 0
+
+*sr
+foreach x in read_invented_words_sr_9	read_invented_words_sr_10	read_invented_words_sr_11	read_invented_words_sr_12	read_invented_words_sr_13	read_invented_words_sr_14	read_invented_words_sr_15	read_invented_words_sr_16	read_invented_words_sr_17	read_invented_words_sr_18	read_invented_words_sr_19	read_invented_words_sr_20{
+	replace `x'= . if read_invented_words_sr_1==0 & read_invented_words_sr_2==0 & read_invented_words_sr_3==0 & read_invented_words_sr_4==0 & read_invented_words_sr_5==0 & read_invented_words_sr_6==0 & read_invented_words_sr_7 == 0 & read_invented_words_sr_8 == 0
+}
+
+replace read_invented_words_srnumber_of_ = 0 if read_invented_words_sr_1==0 & read_invented_words_sr_2==0 & read_invented_words_sr_3==0 & read_invented_words_sr_4==0 & read_invented_words_sr_5==0 & read_invented_words_sr_6==0 & read_invented_words_sr_7 == 0 & read_invented_words_sr_8 == 0
+
+replace read_invented_words_sritems_per_ = 0 if read_invented_words_sr_1==0 & read_invented_words_sr_2==0 & read_invented_words_sr_3==0 & read_invented_words_sr_4==0 & read_invented_words_sr_5==0 & read_invented_words_sr_6==0 & read_invented_words_sr_7 == 0 & read_invented_words_sr_8 == 0
+
+replace read_invented_words_srnum_att = 8 if read_invented_words_sr_1==0 & read_invented_words_sr_2==0 & read_invented_words_sr_3==0 & read_invented_words_sr_4==0 & read_invented_words_sr_5==0 & read_invented_words_sr_6==0 & read_invented_words_sr_7 == 0 & read_invented_words_sr_8 == 0
+
+replace read_invented_words_srgridAutoSt = 1 if read_invented_words_sr_1==0 & read_invented_words_sr_2==0 & read_invented_words_sr_3==0 & read_invented_words_sr_4==0 & read_invented_words_sr_5==0 & read_invented_words_sr_6==0 & read_invented_words_sr_7 == 0 & read_invented_words_sr_8 == 0
+
+replace read_invented_stop_sr = 1 if read_invented_words_srgridAutoSt == 1
+replace read_invented_stop_sr = 0 if read_invented_words_srgridAutoSt == 0
+
+*pr
+foreach x in read_invented_words_pr_9	read_invented_words_pr_10	read_invented_words_pr_11	read_invented_words_pr_12	read_invented_words_pr_13	read_invented_words_pr_14	read_invented_words_pr_15	read_invented_words_pr_16	read_invented_words_pr_17	read_invented_words_pr_18	read_invented_words_pr_19	read_invented_words_pr_20{
+	replace `x'= . if read_invented_words_pr_1==0 & read_invented_words_pr_2==0 & read_invented_words_pr_3==0 & read_invented_words_pr_4==0 & read_invented_words_pr_5==0 & read_invented_words_pr_6==0 & read_invented_words_pr_7 == 0 & read_invented_words_pr_8 == 0
+}
+
+replace read_invented_words_prnumber_of_ = 0 if read_invented_words_pr_1==0 & read_invented_words_pr_2==0 & read_invented_words_pr_3==0 & read_invented_words_pr_4==0 & read_invented_words_pr_5==0 & read_invented_words_pr_6==0 & read_invented_words_pr_7 == 0 & read_invented_words_pr_8 == 0
+
+replace read_invented_words_pritems_per_ = 0 if read_invented_words_pr_1==0 & read_invented_words_pr_2==0 & read_invented_words_pr_3==0 & read_invented_words_pr_4==0 & read_invented_words_pr_5==0 & read_invented_words_pr_6==0 & read_invented_words_pr_7 == 0 & read_invented_words_pr_8 == 0
+
+replace read_invented_words_prnum_att = 8 if read_invented_words_pr_1==0 & read_invented_words_pr_2==0 & read_invented_words_pr_3==0 & read_invented_words_pr_4==0 & read_invented_words_pr_5==0 & read_invented_words_pr_6==0 & read_invented_words_pr_7 == 0 & read_invented_words_pr_8 == 0
+
+replace read_invented_words_prgridAutoSt = 1 if read_invented_words_pr_1==0 & read_invented_words_pr_2==0 & read_invented_words_pr_3==0 & read_invented_words_pr_4==0 & read_invented_words_pr_5==0 & read_invented_words_pr_6==0 & read_invented_words_pr_7 == 0 & read_invented_words_pr_8 == 0
+
+replace read_invented_stop_pr = 1 if read_invented_words_prgridAutoSt == 1
+replace read_invented_stop_pr = 0 if read_invented_words_prgridAutoSt == 0
+  
 *************************************************************************
 **Oral Reading Fluency section
 *************************************************************************
@@ -555,6 +880,189 @@ foreach x in oral_reading_fluency_frgridAutoS oral_reading_fluency_wfgridAutoS o
 
 lab values oral_reading_fluency_frgridAutoS oral_reading_fluency_wfgridAutoS oral_reading_fluency_prgridAutoS true_false
 
+*updated
+*fr
+foreach x in  oral_reading_fluency_fr_9 oral_reading_fluency_fr_10 oral_reading_fluency_fr_11 oral_reading_fluency_fr_12 oral_reading_fluency_fr_13 oral_reading_fluency_fr_14 oral_reading_fluency_fr_15 oral_reading_fluency_fr_16 oral_reading_fluency_fr_17 oral_reading_fluency_fr_18 oral_reading_fluency_fr_19 oral_reading_fluency_fr_20 oral_reading_fluency_fr_21 oral_reading_fluency_fr_22 oral_reading_fluency_fr_23 oral_reading_fluency_fr_24 oral_reading_fluency_fr_25 oral_reading_fluency_fr_26 oral_reading_fluency_fr_27 oral_reading_fluency_fr_28 oral_reading_fluency_fr_29 oral_reading_fluency_fr_30 oral_reading_fluency_fr_31 oral_reading_fluency_fr_32 oral_reading_fluency_fr_33 oral_reading_fluency_fr_34 oral_reading_fluency_fr_35 oral_reading_fluency_fr_36 oral_reading_fluency_fr_37 oral_reading_fluency_fr_38 oral_reading_fluency_fr_39 oral_reading_fluency_fr_40 oral_reading_fluency_fr_41 oral_reading_fluency_fr_42 oral_reading_fluency_fr_43{
+	replace `x'= . if oral_reading_fluency_fr_1==0 & oral_reading_fluency_fr_2==0 & oral_reading_fluency_fr_3==0 & oral_reading_fluency_fr_4==0 & oral_reading_fluency_fr_5==0 & oral_reading_fluency_fr_6==0 & oral_reading_fluency_fr_7 == 0 & oral_reading_fluency_fr_8 == 0
+}
+
+replace oral_reading_fluency_frnumber_of = 0 if oral_reading_fluency_fr_1==0 & oral_reading_fluency_fr_2==0 & oral_reading_fluency_fr_3==0 & oral_reading_fluency_fr_4==0 & oral_reading_fluency_fr_5==0 & oral_reading_fluency_fr_6==0 & oral_reading_fluency_fr_7 == 0 & oral_reading_fluency_fr_8 == 0
+
+replace oral_reading_fluency_fritems_per = 0 if oral_reading_fluency_fr_1==0 & oral_reading_fluency_fr_2==0 & oral_reading_fluency_fr_3==0 & oral_reading_fluency_fr_4==0 & oral_reading_fluency_fr_5==0 & oral_reading_fluency_fr_6==0 & oral_reading_fluency_fr_7 == 0 & oral_reading_fluency_fr_8 == 0
+
+replace oral_reading_fluency_frnum_att = 8 if oral_reading_fluency_fr_1==0 & oral_reading_fluency_fr_2==0 & oral_reading_fluency_fr_3==0 & oral_reading_fluency_fr_4==0 & oral_reading_fluency_fr_5==0 & oral_reading_fluency_fr_6==0 & oral_reading_fluency_fr_7 == 0 & oral_reading_fluency_fr_8 == 0
+
+replace oral_reading_fluency_frgridAutoS = 1 if oral_reading_fluency_fr_1==0 & oral_reading_fluency_fr_2==0 & oral_reading_fluency_fr_3==0 & oral_reading_fluency_fr_4==0 & oral_reading_fluency_fr_5==0 & oral_reading_fluency_fr_6==0 & oral_reading_fluency_fr_7 == 0 & oral_reading_fluency_fr_8 == 0
+
+replace oral_reading_fluency_stop_fr = 1 if oral_reading_fluency_frgridAutoS == 1
+replace oral_reading_fluency_stop_fr = 0 if oral_reading_fluency_frgridAutoS == 0
+
+foreach x in oral_reading_fluency_fr_6	oral_reading_fluency_fr_7	oral_reading_fluency_fr_8	oral_reading_fluency_fr_9	oral_reading_fluency_fr_10	oral_reading_fluency_fr_11	oral_reading_fluency_fr_12{
+	replace `x' = 1 if oral_reading_fluency_fr_6 == . & !missing(oral_reading_fluency_fr_5)
+}
+		
+foreach x in oral_reading_fluency_fr_7	oral_reading_fluency_fr_8	oral_reading_fluency_fr_9	oral_reading_fluency_fr_10	oral_reading_fluency_fr_11	oral_reading_fluency_fr_12{
+	replace `x' = 1 if oral_reading_fluency_fr_7 == . & !missing(oral_reading_fluency_fr_6)
+}
+
+foreach x in oral_reading_fluency_fr_8	oral_reading_fluency_fr_9	oral_reading_fluency_fr_10	oral_reading_fluency_fr_11	oral_reading_fluency_fr_12{
+	replace `x' = 1 if oral_reading_fluency_fr_8 == . & !missing(oral_reading_fluency_fr_7)
+}
+
+
+foreach x in oral_reading_fluency_fr_9	oral_reading_fluency_fr_10	oral_reading_fluency_fr_11	oral_reading_fluency_fr_12{
+	replace `x' = 1 if oral_reading_fluency_fr_9 == . & !missing(oral_reading_fluency_fr_8)
+}
+
+egen corrr = rowtotal(oral_reading_fluency_fr_1 - oral_reading_fluency_fr_43)
+
+replace oral_reading_fluency_frnumber_of = corrr if !missing(oral_reading_fluency_frnumber_of)
+replace oral_reading_fluency_fritems_per = corrr if !missing(oral_reading_fluency_fritems_per)
+
+replace oral_reading_fluency_frtime_rema = 0 if oral_reading_fluency_frtime_rema<0
+
+egen att = rownonmiss(oral_reading_fluency_fr_1-oral_reading_fluency_fr_43)
+
+replace oral_reading_fluency_frnum_att = att if !missing(oral_reading_fluency_frnum_att)
+
+drop att corrr
+
+*wf
+foreach x in  oral_reading_fluency_wf_9 oral_reading_fluency_wf_10 oral_reading_fluency_wf_11 oral_reading_fluency_wf_12 oral_reading_fluency_wf_13 oral_reading_fluency_wf_14 oral_reading_fluency_wf_15 oral_reading_fluency_wf_16 oral_reading_fluency_wf_17 oral_reading_fluency_wf_18 oral_reading_fluency_wf_19 oral_reading_fluency_wf_20 oral_reading_fluency_wf_21 oral_reading_fluency_wf_22 oral_reading_fluency_wf_23 oral_reading_fluency_wf_24 oral_reading_fluency_wf_25 oral_reading_fluency_wf_26 oral_reading_fluency_wf_27 oral_reading_fluency_wf_28 oral_reading_fluency_wf_29 oral_reading_fluency_wf_30 oral_reading_fluency_wf_31 oral_reading_fluency_wf_32 oral_reading_fluency_wf_33 oral_reading_fluency_wf_34 oral_reading_fluency_wf_35 oral_reading_fluency_wf_36 oral_reading_fluency_wf_37 oral_reading_fluency_wf_38 oral_reading_fluency_wf_39 oral_reading_fluency_wf_40 oral_reading_fluency_wf_41 oral_reading_fluency_wf_42 oral_reading_fluency_wf_43{
+	replace `x'= . if oral_reading_fluency_wf_1==0 & oral_reading_fluency_wf_2==0 & oral_reading_fluency_wf_3==0 & oral_reading_fluency_wf_4==0 & oral_reading_fluency_wf_5==0 & oral_reading_fluency_wf_6==0 & oral_reading_fluency_wf_7 == 0 & oral_reading_fluency_wf_8 == 0
+}
+
+replace oral_reading_fluency_wfnumber_of = 0 if oral_reading_fluency_wf_1==0 & oral_reading_fluency_wf_2==0 & oral_reading_fluency_wf_3==0 & oral_reading_fluency_wf_4==0 & oral_reading_fluency_wf_5==0 & oral_reading_fluency_wf_6==0 & oral_reading_fluency_wf_7 == 0 & oral_reading_fluency_wf_8 == 0
+
+replace oral_reading_fluency_wfitems_per = 0 if oral_reading_fluency_wf_1==0 & oral_reading_fluency_wf_2==0 & oral_reading_fluency_wf_3==0 & oral_reading_fluency_wf_4==0 & oral_reading_fluency_wf_5==0 & oral_reading_fluency_wf_6==0 & oral_reading_fluency_wf_7 == 0 & oral_reading_fluency_wf_8 == 0
+
+replace oral_reading_fluency_wfnum_att = 8 if oral_reading_fluency_wf_1==0 & oral_reading_fluency_wf_2==0 & oral_reading_fluency_wf_3==0 & oral_reading_fluency_wf_4==0 & oral_reading_fluency_wf_5==0 & oral_reading_fluency_wf_6==0 & oral_reading_fluency_wf_7 == 0 & oral_reading_fluency_wf_8 == 0
+
+replace oral_reading_fluency_wfgridAutoS = 1 if oral_reading_fluency_wf_1==0 & oral_reading_fluency_wf_2==0 & oral_reading_fluency_wf_3==0 & oral_reading_fluency_wf_4==0 & oral_reading_fluency_wf_5==0 & oral_reading_fluency_wf_6==0 & oral_reading_fluency_wf_7 == 0 & oral_reading_fluency_wf_8 == 0
+
+replace oral_reading_fluency_stop_wf = 1 if oral_reading_fluency_wfgridAutoS == 1
+replace oral_reading_fluency_stop_wf = 0 if oral_reading_fluency_wfgridAutoS == 0
+
+foreach x in oral_reading_fluency_wf_6	oral_reading_fluency_wf_7	oral_reading_fluency_wf_8	oral_reading_fluency_wf_9	oral_reading_fluency_wf_10	oral_reading_fluency_wf_11	oral_reading_fluency_wf_12{
+	replace `x' = 1 if oral_reading_fluency_wf_6 == . & !missing(oral_reading_fluency_wf_5)
+}
+		
+foreach x in oral_reading_fluency_wf_7	oral_reading_fluency_wf_8	oral_reading_fluency_wf_9	oral_reading_fluency_wf_10	oral_reading_fluency_wf_11	oral_reading_fluency_wf_12{
+	replace `x' = 1 if oral_reading_fluency_wf_7 == . & !missing(oral_reading_fluency_wf_6)
+}
+
+foreach x in oral_reading_fluency_wf_8	oral_reading_fluency_wf_9	oral_reading_fluency_wf_10	oral_reading_fluency_wf_11	oral_reading_fluency_wf_12{
+	replace `x' = 1 if oral_reading_fluency_wf_8 == . & !missing(oral_reading_fluency_wf_7)
+}
+
+
+foreach x in oral_reading_fluency_wf_9	oral_reading_fluency_wf_10	oral_reading_fluency_wf_11	oral_reading_fluency_wf_12{
+	replace `x' = 1 if oral_reading_fluency_wf_9 == . & !missing(oral_reading_fluency_wf_8)
+}
+
+egen corrr = rowtotal(oral_reading_fluency_wf_1 - oral_reading_fluency_wf_43)
+
+replace oral_reading_fluency_wfnumber_of = corrr if !missing(oral_reading_fluency_wfnumber_of)
+replace oral_reading_fluency_wfitems_per = corrr if !missing(oral_reading_fluency_wfitems_per)
+
+replace oral_reading_fluency_wftime_rema = 0 if oral_reading_fluency_wftime_rema<0
+
+egen att = rownonmiss(oral_reading_fluency_wf_1-oral_reading_fluency_wf_43)
+
+replace oral_reading_fluency_wfnum_att = att if !missing(oral_reading_fluency_wfnum_att)
+
+drop att corrr
+
+*sr
+foreach x in  oral_reading_fluency_sr_9 oral_reading_fluency_sr_10 oral_reading_fluency_sr_11 oral_reading_fluency_sr_12 oral_reading_fluency_sr_13 oral_reading_fluency_sr_14 oral_reading_fluency_sr_15 oral_reading_fluency_sr_16 oral_reading_fluency_sr_17 oral_reading_fluency_sr_18 oral_reading_fluency_sr_19 oral_reading_fluency_sr_20 oral_reading_fluency_sr_21 oral_reading_fluency_sr_22 oral_reading_fluency_sr_23 oral_reading_fluency_sr_24 oral_reading_fluency_sr_25 oral_reading_fluency_sr_26 oral_reading_fluency_sr_27 oral_reading_fluency_sr_28 oral_reading_fluency_sr_29 oral_reading_fluency_sr_30 oral_reading_fluency_sr_31 oral_reading_fluency_sr_32 oral_reading_fluency_sr_33 oral_reading_fluency_sr_34 oral_reading_fluency_sr_35 oral_reading_fluency_sr_36 oral_reading_fluency_sr_37 oral_reading_fluency_sr_38 oral_reading_fluency_sr_39 oral_reading_fluency_sr_40 oral_reading_fluency_sr_41 oral_reading_fluency_sr_42 oral_reading_fluency_sr_43{
+	replace `x'= . if oral_reading_fluency_sr_1==0 & oral_reading_fluency_sr_2==0 & oral_reading_fluency_sr_3==0 & oral_reading_fluency_sr_4==0 & oral_reading_fluency_sr_5==0 & oral_reading_fluency_sr_6==0 & oral_reading_fluency_sr_7 == 0 & oral_reading_fluency_sr_8 == 0
+}
+
+replace oral_reading_fluency_srnumber_of = 0 if oral_reading_fluency_sr_1==0 & oral_reading_fluency_sr_2==0 & oral_reading_fluency_sr_3==0 & oral_reading_fluency_sr_4==0 & oral_reading_fluency_sr_5==0 & oral_reading_fluency_sr_6==0 & oral_reading_fluency_sr_7 == 0 & oral_reading_fluency_sr_8 == 0
+
+replace oral_reading_fluency_sritems_per = 0 if oral_reading_fluency_sr_1==0 & oral_reading_fluency_sr_2==0 & oral_reading_fluency_sr_3==0 & oral_reading_fluency_sr_4==0 & oral_reading_fluency_sr_5==0 & oral_reading_fluency_sr_6==0 & oral_reading_fluency_sr_7 == 0 & oral_reading_fluency_sr_8 == 0
+
+replace oral_reading_fluency_srnum_att = 8 if oral_reading_fluency_sr_1==0 & oral_reading_fluency_sr_2==0 & oral_reading_fluency_sr_3==0 & oral_reading_fluency_sr_4==0 & oral_reading_fluency_sr_5==0 & oral_reading_fluency_sr_6==0 & oral_reading_fluency_sr_7 == 0 & oral_reading_fluency_sr_8 == 0
+
+replace oral_reading_fluency_srgridAutoS = 1 if oral_reading_fluency_sr_1==0 & oral_reading_fluency_sr_2==0 & oral_reading_fluency_sr_3==0 & oral_reading_fluency_sr_4==0 & oral_reading_fluency_sr_5==0 & oral_reading_fluency_sr_6==0 & oral_reading_fluency_sr_7 == 0 & oral_reading_fluency_sr_8 == 0
+
+replace oral_reading_fluency_stop_sr = 1 if oral_reading_fluency_srgridAutoS == 1
+replace oral_reading_fluency_stop_sr = 0 if oral_reading_fluency_srgridAutoS == 0
+
+foreach x in oral_reading_fluency_sr_6	oral_reading_fluency_sr_7	oral_reading_fluency_sr_8	oral_reading_fluency_sr_9	oral_reading_fluency_sr_10	oral_reading_fluency_sr_11	oral_reading_fluency_sr_12{
+	replace `x' = 1 if oral_reading_fluency_sr_6 == . & !missing(oral_reading_fluency_sr_5)
+}
+		
+foreach x in oral_reading_fluency_sr_7	oral_reading_fluency_sr_8	oral_reading_fluency_sr_9	oral_reading_fluency_sr_10	oral_reading_fluency_sr_11	oral_reading_fluency_sr_12{
+	replace `x' = 1 if oral_reading_fluency_sr_7 == . & !missing(oral_reading_fluency_sr_6)
+}
+
+foreach x in oral_reading_fluency_sr_8	oral_reading_fluency_sr_9	oral_reading_fluency_sr_10	oral_reading_fluency_sr_11	oral_reading_fluency_sr_12{
+	replace `x' = 1 if oral_reading_fluency_sr_8 == . & !missing(oral_reading_fluency_sr_7)
+}
+
+
+foreach x in oral_reading_fluency_sr_9	oral_reading_fluency_sr_10	oral_reading_fluency_sr_11	oral_reading_fluency_sr_12{
+	replace `x' = 1 if oral_reading_fluency_sr_9 == . & !missing(oral_reading_fluency_sr_8)
+}
+
+egen corrr = rowtotal(oral_reading_fluency_sr_1 - oral_reading_fluency_sr_43)
+
+replace oral_reading_fluency_srnumber_of = corrr if !missing(oral_reading_fluency_srnumber_of)
+replace oral_reading_fluency_sritems_per = corrr if !missing(oral_reading_fluency_sritems_per)
+
+replace oral_reading_fluency_srtime_rema = 0 if oral_reading_fluency_srtime_rema<0
+
+egen att = rownonmiss(oral_reading_fluency_sr_1-oral_reading_fluency_sr_43)
+
+replace oral_reading_fluency_srnum_att = att if !missing(oral_reading_fluency_srnum_att)
+
+drop att corrr
+
+*pr
+foreach x in  oral_reading_fluency_pr_9 oral_reading_fluency_pr_10 oral_reading_fluency_pr_11 oral_reading_fluency_pr_12 oral_reading_fluency_pr_13 oral_reading_fluency_pr_14 oral_reading_fluency_pr_15 oral_reading_fluency_pr_16 oral_reading_fluency_pr_17 oral_reading_fluency_pr_18 oral_reading_fluency_pr_19 oral_reading_fluency_pr_20 oral_reading_fluency_pr_21 oral_reading_fluency_pr_22 oral_reading_fluency_pr_23 oral_reading_fluency_pr_24 oral_reading_fluency_pr_25 oral_reading_fluency_pr_26 oral_reading_fluency_pr_27 oral_reading_fluency_pr_28 oral_reading_fluency_pr_29 oral_reading_fluency_pr_30 oral_reading_fluency_pr_31 oral_reading_fluency_pr_32 oral_reading_fluency_pr_33 oral_reading_fluency_pr_34 oral_reading_fluency_pr_35 oral_reading_fluency_pr_36 oral_reading_fluency_pr_37 oral_reading_fluency_pr_38 oral_reading_fluency_pr_39 oral_reading_fluency_pr_40 oral_reading_fluency_pr_41 oral_reading_fluency_pr_42 oral_reading_fluency_pr_43{
+	replace `x'= . if oral_reading_fluency_pr_1==0 & oral_reading_fluency_pr_2==0 & oral_reading_fluency_pr_3==0 & oral_reading_fluency_pr_4==0 & oral_reading_fluency_pr_5==0 & oral_reading_fluency_pr_6==0 & oral_reading_fluency_pr_7 == 0 & oral_reading_fluency_pr_8 == 0
+}
+
+replace oral_reading_fluency_prnumber_of = 0 if oral_reading_fluency_pr_1==0 & oral_reading_fluency_pr_2==0 & oral_reading_fluency_pr_3==0 & oral_reading_fluency_pr_4==0 & oral_reading_fluency_pr_5==0 & oral_reading_fluency_pr_6==0 & oral_reading_fluency_pr_7 == 0 & oral_reading_fluency_pr_8 == 0
+
+replace oral_reading_fluency_pritems_per = 0 if oral_reading_fluency_pr_1==0 & oral_reading_fluency_pr_2==0 & oral_reading_fluency_pr_3==0 & oral_reading_fluency_pr_4==0 & oral_reading_fluency_pr_5==0 & oral_reading_fluency_pr_6==0 & oral_reading_fluency_pr_7 == 0 & oral_reading_fluency_pr_8 == 0
+
+replace oral_reading_fluency_prnum_att = 8 if oral_reading_fluency_pr_1==0 & oral_reading_fluency_pr_2==0 & oral_reading_fluency_pr_3==0 & oral_reading_fluency_pr_4==0 & oral_reading_fluency_pr_5==0 & oral_reading_fluency_pr_6==0 & oral_reading_fluency_pr_7 == 0 & oral_reading_fluency_pr_8 == 0
+
+replace oral_reading_fluency_prgridAutoS = 1 if oral_reading_fluency_pr_1==0 & oral_reading_fluency_pr_2==0 & oral_reading_fluency_pr_3==0 & oral_reading_fluency_pr_4==0 & oral_reading_fluency_pr_5==0 & oral_reading_fluency_pr_6==0 & oral_reading_fluency_pr_7 == 0 & oral_reading_fluency_pr_8 == 0
+
+replace oral_reading_fluency_stop_pr = 1 if oral_reading_fluency_prgridAutoS == 1
+replace oral_reading_fluency_stop_pr = 0 if oral_reading_fluency_prgridAutoS == 0
+
+foreach x in oral_reading_fluency_pr_6	oral_reading_fluency_pr_7	oral_reading_fluency_pr_8	oral_reading_fluency_pr_9	oral_reading_fluency_pr_10	oral_reading_fluency_pr_11	oral_reading_fluency_pr_12{
+	replace `x' = 1 if oral_reading_fluency_pr_6 == . & !missing(oral_reading_fluency_pr_5)
+}
+		
+foreach x in oral_reading_fluency_pr_7	oral_reading_fluency_pr_8	oral_reading_fluency_pr_9	oral_reading_fluency_pr_10	oral_reading_fluency_pr_11	oral_reading_fluency_pr_12{
+	replace `x' = 1 if oral_reading_fluency_pr_7 == . & !missing(oral_reading_fluency_pr_6)
+}
+
+foreach x in oral_reading_fluency_pr_8	oral_reading_fluency_pr_9	oral_reading_fluency_pr_10	oral_reading_fluency_pr_11	oral_reading_fluency_pr_12{
+	replace `x' = 1 if oral_reading_fluency_pr_8 == . & !missing(oral_reading_fluency_pr_7)
+}
+
+
+foreach x in oral_reading_fluency_pr_9	oral_reading_fluency_pr_10	oral_reading_fluency_pr_11	oral_reading_fluency_pr_12{
+	replace `x' = 1 if oral_reading_fluency_pr_9 == . & !missing(oral_reading_fluency_pr_8)
+}
+
+egen corrr = rowtotal(oral_reading_fluency_pr_1 - oral_reading_fluency_pr_43)
+
+replace oral_reading_fluency_prnumber_of = corrr if !missing(oral_reading_fluency_prnumber_of)
+replace oral_reading_fluency_pritems_per = corrr if !missing(oral_reading_fluency_pritems_per)
+
+replace oral_reading_fluency_prtime_rema = 0 if oral_reading_fluency_prtime_rema<0
+
+egen att = rownonmiss(oral_reading_fluency_pr_1-oral_reading_fluency_pr_43)
+
+replace oral_reading_fluency_prnum_att = att if !missing(oral_reading_fluency_prnum_att)
+
 *************************************************************************
 **Reading Comprehension section
 *************************************************************************
@@ -567,7 +1075,6 @@ lab define read_comp 1 "Correct" 2 "Incorrect" 99 "No response"
 destring reading_comprehension_*,replace
 lab values reading_comprehension_* read_comp
 
-
 *************************************************************************
 **Reading Comprehension Picture matching section
 *************************************************************************
@@ -578,6 +1085,69 @@ order rc_picture_matching_example_fr rc_picture_matching_fr_q* rc_pm_stop_fr rc_
 
 destring rc_picture_matching_example_fr rc_picture_matching_fr_q* rc_pm_stop_fr rc_picture_matching_example_wf rc_picture_matching_wf_q* rc_pm_stop_wf rc_picture_matching_example_sr rc_picture_matching_sr_q* rc_pm_stop_sr rc_picture_matching_example_pr rc_picture_matching_pr_q* rc_pm_stop_pr,replace
 
+* correct picture
+* 1. Define the value label (only once)
+label define childruns 3 "The child runs", replace
+label define childplays 4 "The child plays", replace
+label define sleeps 3 "He sleeps", replace
+label define catdog 1 "Cat and dog", replace
+label define plogh 1 "The farmer ploughs", replace
+label define duck 2 "The duck swims", replace
+label define mouse 2 "The mouse is in front of the box", replace
+label define ppmus 1 "People make music", replace
+label define egg 3 "A hen is sitting on her eggs", replace
+label define tree 2 "In my village there are many hills. I like to play on the hill with a single tree. It is the best for climbing.", replace
+label define skip 2 "A group of friends get together to play in the evenings after school. There are always more than two children playing. They sometimes sing songs, but they don't have any instruments. They also don't have a ball, so they mainly play hopscotch, skipping rope, or tag", replace
+
+* 2. Apply the label to each variable
+foreach x in rc_picture_matching_example_fr rc_picture_matching_example_wf rc_picture_matching_example_sr rc_picture_matching_example_pr {
+    label values `x' childruns
+}
+
+foreach x in rc_picture_matching_fr_q1 rc_picture_matching_wf_q1 rc_picture_matching_sr_q1 rc_picture_matching_pr_q1 {
+    label values `x' childplays
+}
+
+foreach x in rc_picture_matching_fr_q2 rc_picture_matching_wf_q2 rc_picture_matching_sr_q2 rc_picture_matching_pr_q2 {
+    label values `x' sleeps
+}
+
+foreach x in rc_picture_matching_fr_q3 rc_picture_matching_wf_q3 rc_picture_matching_sr_q3 rc_picture_matching_pr_q3 {
+    label values `x' catdog
+}
+
+foreach x in rc_picture_matching_fr_q4 rc_picture_matching_wf_q4 rc_picture_matching_sr_q4 rc_picture_matching_pr_q4 {
+    label values `x' plogh
+}
+
+foreach x in rc_picture_matching_fr_q5 rc_picture_matching_wf_q5 rc_picture_matching_sr_q5 rc_picture_matching_pr_q5 {
+    label values `x' duck
+}
+
+foreach x in rc_picture_matching_fr_q6 rc_picture_matching_wf_q6 rc_picture_matching_sr_q6 rc_picture_matching_pr_q6 {
+    label values `x' mouse
+}
+
+foreach x in rc_picture_matching_fr_q7 rc_picture_matching_wf_q7 rc_picture_matching_sr_q7 rc_picture_matching_pr_q7 {
+    label values `x' ppmus
+}
+
+foreach x in rc_picture_matching_fr_q8 rc_picture_matching_wf_q8 rc_picture_matching_sr_q8 rc_picture_matching_pr_q8 {
+    label values `x' egg
+}
+
+foreach x in rc_picture_matching_fr_q9 rc_picture_matching_wf_q9 rc_picture_matching_sr_q9 rc_picture_matching_pr_q9 {
+    label values `x' tree
+}
+
+foreach x in rc_picture_matching_fr_q10 rc_picture_matching_wf_q10 rc_picture_matching_sr_q10 rc_picture_matching_pr_q10 {
+    label values `x' skip
+}
+
+lab values rc_pm_stop_fr rc_pm_stop_wf rc_pm_stop_pr rc_pm_stop_sr yes_no
+
+
+br interview_ID official_language B4 rc_picture_matching_example_fr rc_picture_matching_fr_q* rc_pm_stop_fr
 *************************************************************************
 **Math form section
 *************************************************************************

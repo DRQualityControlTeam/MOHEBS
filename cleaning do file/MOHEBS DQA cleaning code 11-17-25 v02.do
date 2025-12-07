@@ -541,8 +541,19 @@ replace letter_knowledge_fritems_per_min = letter_knowledge_frnumber_of_ite if i
 foreach x in letter_knowledge_fr_Bduration	letter_knowledge_fr_Btime_remain	letter_knowledge_fr_BgridAutoSto	letter_knowledge_fr_Bnumber_of_i	letter_knowledge_fr_Bnum_att	letter_knowledge_fr_Bitems_per_m{
 	replace `x' = . if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","c9efa50e-d6b2-4fee-ab0a-9eb391385bca","5f727244-96b2-401e-8b19-5a3b5bb464ce","73fff59c-a151-4d4d-b903-fb2d1485a31d","bb0155ad-ef53-45da-b681-616aca6cbdc7") | letter_knowledge_frnumber_of_ite < 13
 }
-		
-drop letter_knowledge_frnum_of_ite1
+
+replace letter_knowledge_fr_Btime_remain = letter_knowledge_fr_Btime_remain - 62 if letter_knowledge_fr_Bnumber_of_i == 0 & letter_knowledge_fr_Bnum_att == 0
+
+egen corrr1 = rowtotal(letter_knowledge_fr_B_1-letter_knowledge_fr_B_36)
+replace letter_knowledge_fr_Bnumber_of_i = corrr1 if letter_knowledge_fr_Bnum_att == 0 & letter_knowledge_fr_Bnumber_of_i == 0 
+
+replace letter_knowledge_fr_Bitems_per_m = round(60*(corrr1/(letter_knowledge_fr_Bduration-letter_knowledge_fr_Btime_remain))) if letter_knowledge_fr_Bnum_att == 0 & letter_knowledge_fr_Bnumber_of_i == 0 | !missing(letter_knowledge_fr_Btime_remain)
+
+
+egen att1 = rownonmiss(letter_knowledge_fr_B_1-letter_knowledge_fr_B_36)
+replace letter_knowledge_fr_Bnum_att = att1 if letter_knowledge_fr_Bnum_att == 0
+
+drop letter_knowledge_frnum_of_ite1 att1 corrr1
 
 *wf
 foreach x in letter_knowledge_wf_9	letter_knowledge_wf_10	letter_knowledge_wf_11	letter_knowledge_wf_12	letter_knowledge_wf_13	letter_knowledge_wf_14	letter_knowledge_wf_15	letter_knowledge_wf_16	letter_knowledge_wf_17	letter_knowledge_wf_18	letter_knowledge_wf_19	letter_knowledge_wf_20{
@@ -573,7 +584,18 @@ foreach x in letter_knowledge_wf_Bduration	letter_knowledge_wf_Btime_remain	lett
 	replace `x' = . if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d") | letter_knowledge_wfnumber_of_ite < 13
 }
 
-drop letter_knowledge_wfnum_of_ite1
+replace letter_knowledge_wf_Btime_remain = letter_knowledge_wf_Btime_remain - 62 if letter_knowledge_wf_Bnumber_of_i == 0 & letter_knowledge_wf_Bnum_att == 0
+
+egen corrr1 = rowtotal(letter_knowledge_wf_B_1-letter_knowledge_wf_B_36)
+replace letter_knowledge_wf_Bnumber_of_i = corrr1 if letter_knowledge_wf_Bnum_att == 0 & letter_knowledge_wf_Bnumber_of_i == 0 
+
+replace letter_knowledge_wf_Bitems_per_m = round(60*(corrr1/(letter_knowledge_wf_Bduration-letter_knowledge_wf_Btime_remain))) if letter_knowledge_wf_Bnum_att == 0 & letter_knowledge_wf_Bnumber_of_i == 0 | !missing(letter_knowledge_wf_Btime_remain)
+
+egen att1 = rownonmiss(letter_knowledge_wf_B_1-letter_knowledge_wf_B_36)
+replace letter_knowledge_wf_Bnum_att = att1 if letter_knowledge_wf_Bnum_att == 0
+
+drop letter_knowledge_wfnum_of_ite1 att1 corrr1
+
 
 *sr
 foreach x in letter_knowledge_sr_9	letter_knowledge_sr_10	letter_knowledge_sr_11	letter_knowledge_sr_12	letter_knowledge_sr_13	letter_knowledge_sr_14	letter_knowledge_sr_15	letter_knowledge_sr_16	letter_knowledge_sr_17	letter_knowledge_sr_18	letter_knowledge_sr_19	letter_knowledge_sr_20{
@@ -604,7 +626,19 @@ foreach x in letter_knowledge_sr_Bduration	letter_knowledge_sr_Btime_remain	lett
 	replace `x' = . if inlist(interview_ID,"35c2f886-a1f8-47d0-b2cf-1fa485954735","26b79d94-fc5c-4136-97d3-dffaea376bbc") |    letter_knowledge_srnumber_of_ite < 13
 }
 
-drop letter_knowledge_srnum_of_ite1
+replace letter_knowledge_sr_Btime_remain = letter_knowledge_sr_Btime_remain - 62 if letter_knowledge_sr_Bnumber_of_i == 0 & letter_knowledge_sr_Bnum_att == 0
+
+egen corrr1 = rowtotal(letter_knowledge_sr_B_1-letter_knowledge_sr_B_36)
+replace letter_knowledge_sr_Bnumber_of_i = corrr1 if letter_knowledge_sr_Bnum_att == 0 & letter_knowledge_sr_Bnumber_of_i == 0 
+
+replace letter_knowledge_sr_Bitems_per_m = round(60*(corrr1/(letter_knowledge_sr_Bduration-letter_knowledge_sr_Btime_remain))) if letter_knowledge_sr_Bnum_att == 0 & letter_knowledge_sr_Bnumber_of_i == 0 | !missing(letter_knowledge_sr_Btime_remain)
+
+
+egen att1 = rownonmiss(letter_knowledge_sr_B_1-letter_knowledge_sr_B_36)
+replace letter_knowledge_sr_Bnum_att = att1 if letter_knowledge_sr_Bnum_att == 0
+
+drop letter_knowledge_srnum_of_ite1 att1 corrr1
+
 
 *pr
 foreach x in letter_knowledge_pr_9	letter_knowledge_pr_10	letter_knowledge_pr_11	letter_knowledge_pr_12	letter_knowledge_pr_13	letter_knowledge_pr_14	letter_knowledge_pr_15	letter_knowledge_pr_16	letter_knowledge_pr_17	letter_knowledge_pr_18	letter_knowledge_pr_19	letter_knowledge_pr_20{
@@ -621,6 +655,18 @@ replace letter_knowledge_prgridAutoStopp = 1 if letter_knowledge_pr_1==0 & lette
 
 replace letter_knowledge_stop_pr = 1 if letter_knowledge_prgridAutoStopp == 1
 replace letter_knowledge_stop_pr = 0 if letter_knowledge_prgridAutoStopp == 0
+
+replace letter_knowledge_pr_Btime_remain = letter_knowledge_pr_Btime_remain - 62 if letter_knowledge_pr_Bnumber_of_i == 0 & letter_knowledge_pr_Bnum_att == 0
+
+egen corrr1 = rowtotal(letter_knowledge_pr_B_1-letter_knowledge_pr_B_36)
+replace letter_knowledge_pr_Bnumber_of_i = corrr1 if letter_knowledge_pr_Bnum_att == 0 & letter_knowledge_pr_Bnumber_of_i == 0 
+
+replace letter_knowledge_pr_Bitems_per_m = round(60*(corrr1/(letter_knowledge_pr_Bduration-letter_knowledge_pr_Btime_remain))) if letter_knowledge_pr_Bnum_att == 0 & letter_knowledge_pr_Bnumber_of_i == 0 | !missing(letter_knowledge_pr_Btime_remain)
+
+egen att1 = rownonmiss(letter_knowledge_pr_B_1-letter_knowledge_pr_B_36)
+replace letter_knowledge_pr_Bnum_att = att1 if letter_knowledge_pr_Bnum_att == 0
+
+drop att1 corrr1
 
 *************************************************************************
 **Dceoding- Reading Familiar words section
@@ -650,7 +696,7 @@ order read_familiar_words_sr_B_*  read_familiar_words_sr_Bduration read_familiar
 drop read_familiar_words_sr_BautoStop read_familiar_words_sr_Bitem_at_ read_familiar_words_sr_Btime_int read_familiar_words_srautoStop read_familiar_words_sritem_at_ti	read_familiar_words_srtime_inter
 
 *pr
-order  read_familiar_words_pr_* read_familiar_words_prduration read_familiar_words_prtime_remai read_familiar_words_prgridAutoSt read_familiar_words_prautoStop read_familiar_words_pritem_at_ti read_familiar_words_prtime_inter read_familiar_words_prnumber_of_ reading_familiar_words_prnum_att read_familiar_words_pritems_per_ read_familiar_stop_pr, after(reading_famila_word_sr_Bnum_att) 
+order  read_familiar_words_pr_* read_familiar_words_prduration read_familiar_words_prtime_remai read_familiar_words_prgridAutoSt read_familiar_words_prautoStop read_familiar_words_pritem_at_ti read_familiar_words_prtime_inter read_familiar_words_prnumber_of_ reading_familiar_words_prnum_att read_familiar_words_pritems_per_ read_familiar_stop_pr, after(read_familiar_words_sr_Bitems_pe) 
 
 order read_familiar_words_pr_B_*  read_familiar_words_pr_Bduration read_familiar_words_pr_Btime_rem read_familiar_words_pr_BgridAuto read_familiar_words_pr_Bnumber_o reading_famila_word_pr_Bnum_att read_familiar_words_pr_Bitems_pe,after(read_familiar_stop_pr)
 
@@ -687,6 +733,18 @@ replace read_familiar_words_frgridAutoSt = 1 if read_familiar_words_fr_1==0 & re
 replace read_familiar_stop_fr = 1 if read_familiar_words_frgridAutoSt == 1
 replace read_familiar_stop_fr = 0 if read_familiar_words_frgridAutoSt == 0
 
+replace read_familiar_words_fr_Btime_rem = read_familiar_words_fr_Bduration - 62 if read_familiar_words_fr_Bnumber_o == 0 & reading_famila_word_fr_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_familiar_words_fr_B_1 -read_familiar_words_fr_B_20)
+replace read_familiar_words_fr_Bnumber_o = corrr1 if reading_famila_word_fr_Bnum_att == 0 & read_familiar_words_fr_Bnumber_o == 0 
+
+replace read_familiar_words_fr_Bitems_pe = round(60*(corrr1/(read_familiar_words_fr_Bduration-read_familiar_words_fr_Btime_rem))) if reading_famila_word_fr_Bnum_att == 0 & read_familiar_words_fr_Bnumber_o == 0 | !missing(read_familiar_words_fr_Btime_rem)
+
+egen att1 = rownonmiss(read_familiar_words_fr_B_1 -  read_familiar_words_fr_B_20)
+replace reading_famila_word_fr_Bnum_att = att1 if reading_famila_word_fr_Bnum_att == 0
+
+drop att1 corrr1
+
 *wf
 foreach x in read_familiar_words_wf_9	read_familiar_words_wf_10	read_familiar_words_wf_11	read_familiar_words_wf_12	read_familiar_words_wf_13	read_familiar_words_wf_14	read_familiar_words_wf_15	read_familiar_words_wf_16	read_familiar_words_wf_17	read_familiar_words_wf_18	read_familiar_words_wf_19	read_familiar_words_wf_20{
 	replace `x'= . if read_familiar_words_wf_1==0 & read_familiar_words_wf_2==0 & read_familiar_words_wf_3==0 & read_familiar_words_wf_4==0 & read_familiar_words_wf_5==0 & read_familiar_words_wf_6==0 & read_familiar_words_wf_7 == 0 & read_familiar_words_wf_8 == 0
@@ -702,6 +760,19 @@ replace read_familiar_words_wfgridAutoSt = 1 if read_familiar_words_wf_1==0 & re
 
 replace read_familiar_stop_wf = 1 if read_familiar_words_wfgridAutoSt == 1
 replace read_familiar_stop_wf = 0 if read_familiar_words_wfgridAutoSt == 0
+
+replace read_familiar_words_wf_Btime_rem = read_familiar_words_wf_Bduration - 62 if read_familiar_words_wf_Bnumber_o == 0 & reading_famila_word_wf_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_familiar_words_wf_B_1 -read_familiar_words_wf_B_15)
+replace read_familiar_words_wf_Bnumber_o = corrr1 if reading_famila_word_wf_Bnum_att == 0 & read_familiar_words_wf_Bnumber_o == 0 
+
+replace read_familiar_words_wf_Bitems_pe = round(60*(corrr1/(read_familiar_words_wf_Bduration-read_familiar_words_wf_Btime_rem))) if reading_famila_word_wf_Bnum_att == 0 & read_familiar_words_wf_Bnumber_o == 0 | !missing(read_familiar_words_wf_Btime_rem)
+
+egen att1 = rownonmiss(read_familiar_words_wf_B_1-read_familiar_words_wf_B_15)
+replace reading_famila_word_wf_Bnum_att = att1 if reading_famila_word_wf_Bnum_att == 0
+
+drop att1 corrr1
+
 
 *sr
 foreach x in read_familiar_words_sr_9	read_familiar_words_sr_10	read_familiar_words_sr_11	read_familiar_words_sr_12	read_familiar_words_sr_13	read_familiar_words_sr_14	read_familiar_words_sr_15	read_familiar_words_sr_16	read_familiar_words_sr_17	read_familiar_words_sr_18	read_familiar_words_sr_19	read_familiar_words_sr_20{
@@ -719,6 +790,23 @@ replace read_familiar_words_srgridAutoSt = 1 if read_familiar_words_sr_1==0 & re
 replace read_familiar_stop_sr = 1 if read_familiar_words_srgridAutoSt == 1
 replace read_familiar_stop_sr = 0 if read_familiar_words_srgridAutoSt == 0
 
+destring reading_famila_word_sr_Bnum_att,replace
+
+replace read_familiar_words_sr_Btime_rem = read_familiar_words_sr_Bduration - 62 if read_familiar_words_sr_Bnumber_o == 0 & reading_famila_word_sr_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_familiar_words_sr_B_1 -read_familiar_words_sr_B_15)
+replace read_familiar_words_sr_Bnumber_o = corrr1 if reading_famila_word_sr_Bnum_att == 0 & read_familiar_words_sr_Bnumber_o == 0 
+
+replace read_familiar_words_sr_Bitems_pe = round(60*(corrr1/(read_familiar_words_sr_Bduration-read_familiar_words_sr_Btime_rem))) if reading_famila_word_sr_Bnum_att == 0 & read_familiar_words_sr_Bnumber_o == 0 | !missing(read_familiar_words_sr_Btime_rem)
+
+egen att1 = rownonmiss(read_familiar_words_sr_B_1-read_familiar_words_sr_B_15)
+replace reading_famila_word_sr_Bnum_att = att1 if reading_famila_word_sr_Bnum_att == 0  
+
+replace read_familiar_words_sr_Bitems_pe = 15 if interview_ID == "0603e745-4755-4735-ab8b-81a7133999a8"
+
+drop att1 corrr1
+
+
 *pr
 foreach x in read_familiar_words_pr_9	read_familiar_words_pr_10	read_familiar_words_pr_11	read_familiar_words_pr_12	read_familiar_words_pr_13	read_familiar_words_pr_14	read_familiar_words_pr_15	read_familiar_words_pr_16	read_familiar_words_pr_17	read_familiar_words_pr_18	read_familiar_words_pr_19	read_familiar_words_pr_20{
 	replace `x'= . if read_familiar_words_pr_1==0 & read_familiar_words_pr_2==0 & read_familiar_words_pr_3==0 & read_familiar_words_pr_4==0 & read_familiar_words_pr_5==0 & read_familiar_words_pr_6==0 & read_familiar_words_pr_7 == 0 & read_familiar_words_pr_8 == 0
@@ -735,6 +823,19 @@ replace read_familiar_words_prgridAutoSt = 1 if read_familiar_words_pr_1==0 & re
 replace read_familiar_stop_pr = 1 if read_familiar_words_prgridAutoSt == 1
 replace read_familiar_stop_pr = 0 if read_familiar_words_prgridAutoSt == 0
 
+destring reading_famila_word_pr_Bnum_att,replace
+
+replace read_familiar_words_pr_Btime_rem = read_familiar_words_pr_Bduration - 62 if read_familiar_words_pr_Bnumber_o == 0 & reading_famila_word_pr_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_familiar_words_pr_B_1 -read_familiar_words_pr_B_15)
+replace read_familiar_words_pr_Bnumber_o = corrr1 if reading_famila_word_pr_Bnum_att == 0 & read_familiar_words_pr_Bnumber_o == 0 
+
+replace read_familiar_words_pr_Bitems_pe = round(60*(corrr1/(read_familiar_words_pr_Bduration-read_familiar_words_pr_Btime_rem))) if reading_famila_word_pr_Bnum_att == 0 & read_familiar_words_pr_Bnumber_o == 0 | !missing(read_familiar_words_pr_Btime_rem)
+
+egen att1 = rownonmiss(read_familiar_words_pr_B_1-read_familiar_words_pr_B_15)
+replace reading_famila_word_pr_Bnum_att = att1 if reading_famila_word_pr_Bnum_att == 0
+
+drop att1 corrr1
 
 *************************************************************************
 **Dceoding- Reading Invented words section
@@ -744,7 +845,7 @@ replace read_familiar_stop_pr = 0 if read_familiar_words_prgridAutoSt == 0
 ren (v549 interviewer_read_invented_stop_w v588 v1284 interviewer_read_invented_stop_s v1323 v1643 interviewer_read_invented_stop_f v1682 v2022 interviewer_read_invented_stop_p v2061) (read_invented_words_wfnum_att read_invented_stop_wf read_invented_word_wf_Bnum_att read_invented_words_srnum_att read_invented_stop_sr read_invented_word_sr_Bnum_att read_invented_words_frnum_att read_invented_stop_fr  read_invented_word_fr_Bnum_att read_invented_words_prnum_att read_invented_stop_pr read_invented_word_pr_Bnum_att)
 
 *fr
-order read_invented_words_fr_*  read_invented_words_frduration read_invented_words_frtime_remai read_invented_words_frgridAutoSt read_invented_words_frautoStop read_invented_words_fritem_at_ti read_invented_words_frtime_inter read_invented_words_frnumber_of_ read_invented_words_frnum_att read_invented_words_fritems_per_ read_invented_stop_fr, after(read_familiar_words_sr_Bitems_pe)
+order read_invented_words_fr_*  read_invented_words_frduration read_invented_words_frtime_remai read_invented_words_frgridAutoSt read_invented_words_frautoStop read_invented_words_fritem_at_ti read_invented_words_frtime_inter read_invented_words_frnumber_of_ read_invented_words_frnum_att read_invented_words_fritems_per_ read_invented_stop_fr, after(read_familiar_words_pr_Bitems_pe)
 
 order read_invented_words_fr_B_*  read_invented_words_fr_Bduration read_invented_words_fr_Btime_rem read_invented_words_fr_BgridAuto read_invented_words_fr_BautoStop read_invented_words_fr_Bitem_at_ read_invented_words_fr_Btime_int read_invented_words_fr_Bnumber_o read_invented_word_fr_Bnum_att read_invented_words_fr_Bitems_pe,after(read_invented_stop_fr)
 
@@ -787,7 +888,7 @@ foreach x in read_invented_words_frgridAutoSt read_invented_words_wfgridAutoSt r
 	destring `x',replace
 }
 
-lab values read_invented_words_frgridAutoSt read_invented_words_wfgridAutoSt read_invented_words_srgridAutoSt read_invented_words_prgridAutoSt true_false
+lab values read_invented_words_frgridAutoSt read_invented_words_wfgridAutoSt read_invented_words_srgridAutoSt read_invented_words_prgridAutoSt read_invented_words_fr_BgridAuto read_invented_words_wf_BgridAuto read_invented_words_sr_BgridAuto read_invented_words_pr_BgridAuto true_false
 
 lab values read_invented_stop_fr read_invented_stop_wf read_invented_stop_sr read_invented_stop_pr yes_no
 
@@ -809,6 +910,20 @@ replace read_invented_words_frgridAutoSt = 1 if read_invented_words_fr_1==0 & re
 replace read_invented_stop_fr = 1 if read_invented_words_frgridAutoSt == 1
 replace read_invented_stop_fr = 0 if read_invented_words_frgridAutoSt == 0
 
+destring read_invented_word_fr_Bnum_att,replace
+
+replace read_invented_words_fr_Btime_rem = read_invented_words_fr_Bduration - 63 if read_invented_words_fr_Bnumber_o == 0 & read_invented_word_fr_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_invented_words_fr_B_1 -read_invented_words_fr_B_30)
+replace read_invented_words_fr_Bnumber_o = corrr1 if read_invented_word_fr_Bnum_att == 0 & read_invented_words_fr_Bnumber_o == 0 
+
+replace read_invented_words_fr_Bitems_pe = round(60*(corrr1/(read_invented_words_fr_Bduration-read_invented_words_fr_Btime_rem))) if read_invented_word_fr_Bnum_att == 0 & read_invented_words_fr_Bnumber_o == 0 | !missing(read_invented_words_fr_Btime_rem)
+
+egen att1 = rownonmiss(read_invented_words_fr_B_1 -read_invented_words_fr_B_30)
+replace read_invented_word_fr_Bnum_att = att1 if read_invented_word_fr_Bnum_att == 0
+
+drop att1 corrr1
+
 *wf
 foreach x in read_invented_words_wf_9	read_invented_words_wf_10	read_invented_words_wf_11	read_invented_words_wf_12	read_invented_words_wf_13	read_invented_words_wf_14	read_invented_words_wf_15	read_invented_words_wf_16	read_invented_words_wf_17	read_invented_words_wf_18	read_invented_words_wf_19	read_invented_words_wf_20{
 	replace `x'= . if read_invented_words_wf_1==0 & read_invented_words_wf_2==0 & read_invented_words_wf_3==0 & read_invented_words_wf_4==0 & read_invented_words_wf_5==0 & read_invented_words_wf_6==0 & read_invented_words_wf_7 == 0 & read_invented_words_wf_8 == 0
@@ -824,6 +939,21 @@ replace read_invented_words_wfgridAutoSt = 1 if read_invented_words_wf_1==0 & re
 
 replace read_invented_stop_wf = 1 if read_invented_words_wfgridAutoSt == 1
 replace read_invented_stop_wf = 0 if read_invented_words_wfgridAutoSt == 0
+
+destring read_invented_word_wf_Bnum_att,replace
+
+replace read_invented_words_wf_Btime_rem = read_invented_words_wf_Bduration - 63 if read_invented_words_wf_Bnumber_o == 0 & read_invented_word_wf_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_invented_words_wf_B_1 -read_invented_words_wf_B_30)
+replace read_invented_words_wf_Bnumber_o = corrr1 if read_invented_word_wf_Bnum_att == 0 & read_invented_words_wf_Bnumber_o == 0 
+
+replace read_invented_words_wf_Bitems_pe = round(60*(corrr1/(read_invented_words_wf_Bduration-read_invented_words_wf_Btime_rem))) if read_invented_word_wf_Bnum_att == 0 & read_invented_words_wf_Bnumber_o == 0 | !missing(read_invented_words_wf_Btime_rem)
+
+egen att1 = rownonmiss(read_invented_words_wf_B_1 -read_invented_words_wf_B_30)
+replace read_invented_word_wf_Bnum_att = att1 if read_invented_word_wf_Bnum_att == 0
+
+drop att1 corrr1
+
 
 *sr
 foreach x in read_invented_words_sr_9	read_invented_words_sr_10	read_invented_words_sr_11	read_invented_words_sr_12	read_invented_words_sr_13	read_invented_words_sr_14	read_invented_words_sr_15	read_invented_words_sr_16	read_invented_words_sr_17	read_invented_words_sr_18	read_invented_words_sr_19	read_invented_words_sr_20{
@@ -841,6 +971,20 @@ replace read_invented_words_srgridAutoSt = 1 if read_invented_words_sr_1==0 & re
 replace read_invented_stop_sr = 1 if read_invented_words_srgridAutoSt == 1
 replace read_invented_stop_sr = 0 if read_invented_words_srgridAutoSt == 0
 
+destring read_invented_word_sr_Bnum_att,replace
+
+replace read_invented_words_sr_Btime_rem = read_invented_words_sr_Bduration - 63 if read_invented_words_sr_Bnumber_o == 0 & read_invented_word_sr_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_invented_words_sr_B_1 -read_invented_words_sr_B_30)
+replace read_invented_words_sr_Bnumber_o = corrr1 if read_invented_word_sr_Bnum_att == 0 & read_invented_words_sr_Bnumber_o == 0 
+
+replace read_invented_words_sr_Bitems_pe = round(60*(corrr1/(read_invented_words_sr_Bduration-read_invented_words_sr_Btime_rem))) if read_invented_word_sr_Bnum_att == 0 & read_invented_words_sr_Bnumber_o == 0 | !missing(read_invented_words_sr_Btime_rem)
+
+egen att1 = rownonmiss(read_invented_words_sr_B_1 -read_invented_words_sr_B_30)
+replace read_invented_word_sr_Bnum_att = att1 if read_invented_word_sr_Bnum_att == 0
+
+drop att1 corrr1
+
 *pr
 foreach x in read_invented_words_pr_9	read_invented_words_pr_10	read_invented_words_pr_11	read_invented_words_pr_12	read_invented_words_pr_13	read_invented_words_pr_14	read_invented_words_pr_15	read_invented_words_pr_16	read_invented_words_pr_17	read_invented_words_pr_18	read_invented_words_pr_19	read_invented_words_pr_20{
 	replace `x'= . if read_invented_words_pr_1==0 & read_invented_words_pr_2==0 & read_invented_words_pr_3==0 & read_invented_words_pr_4==0 & read_invented_words_pr_5==0 & read_invented_words_pr_6==0 & read_invented_words_pr_7 == 0 & read_invented_words_pr_8 == 0
@@ -856,7 +1000,22 @@ replace read_invented_words_prgridAutoSt = 1 if read_invented_words_pr_1==0 & re
 
 replace read_invented_stop_pr = 1 if read_invented_words_prgridAutoSt == 1
 replace read_invented_stop_pr = 0 if read_invented_words_prgridAutoSt == 0
-  
+
+destring read_invented_word_pr_Bnum_att,replace
+
+replace read_invented_words_pr_Btime_rem = read_invented_words_pr_Bduration - 63 if read_invented_words_pr_Bnumber_o == 0 & read_invented_word_pr_Bnum_att == 0
+
+egen corrr1 = rowtotal(read_invented_words_pr_B_1 -read_invented_words_pr_B_30)
+replace read_invented_words_pr_Bnumber_o = corrr1 if read_invented_word_pr_Bnum_att == 0 & read_invented_words_pr_Bnumber_o == 0 
+
+replace read_invented_words_pr_Bitems_pe = round(60*(corrr1/(read_invented_words_pr_Bduration-read_invented_words_pr_Btime_rem))) if read_invented_word_pr_Bnum_att == 0 & read_invented_words_pr_Bnumber_o == 0 | !missing(read_invented_words_pr_Btime_rem)
+
+egen att1 = rownonmiss(read_invented_words_pr_B_1 -read_invented_words_pr_B_30)
+replace read_invented_word_pr_Bnum_att = att1 if read_invented_word_pr_Bnum_att == 0
+
+drop att1 corrr1
+
+ 
 *************************************************************************
 **Oral Reading Fluency section
 *************************************************************************
@@ -1063,6 +1222,7 @@ egen att = rownonmiss(oral_reading_fluency_pr_1-oral_reading_fluency_pr_43)
 
 replace oral_reading_fluency_prnum_att = att if !missing(oral_reading_fluency_prnum_att)
 
+drop att corrr
 *************************************************************************
 **Reading Comprehension section
 *************************************************************************
@@ -1883,13 +2043,6 @@ lab var Grade_1"CI (first grade)"
 lab var Grade_2"CP (second grade)"
 lab var Grade_3"CE1 (third grade)"
 lab var Grade_96"Other, specify"
-
-
-
-
-
-
-
 
 *save dataset
 cd "${gsdData}\Raw"

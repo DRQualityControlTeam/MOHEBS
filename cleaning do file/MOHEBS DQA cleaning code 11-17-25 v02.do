@@ -21,7 +21,7 @@ cd "${gsdData}\Raw"
 
 ***import dataset
 
-import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1764991167899.csv", case(preserve)
+import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765344078720.csv", case(preserve)
 
 *****************************************************************************************************************
 ****Formating date
@@ -1512,7 +1512,7 @@ foreach x in semantic_language_timer1time_rem semantic_language_timer2time_rem s
 
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 06-12 v01.dta",replace
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 10-12 v01.dta",replace
 
 
 // Semantic - No auto stop
@@ -2089,14 +2089,194 @@ foreach x in Policy_5b_1 Policy_5b_2 Policy_5b_4{
 	replace `x' = `x' * 60 if inlist(KEY,"uuid:c9b81b90-20ae-4cb4-b7f1-686b0c6c54fb","uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:def5b794-0023-4a0e-b709-7ac768d28d19","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:7e5596b4-082b-4935-b293-72556ebd2347")
 }
 
-
 order KEY
 
-drop START_TIME_str END_TIME_str grppp1 lan1 Calc1 Calc2 Calc3 Calc4 Calc5 Calc6 Calc7 Calc8 Calc9 Calc10 Calc11 Calc12 lang_calc1 Policy_calc
+lab var Firstname"What is your first name"
+lab var Lastname"What is your last name"
+lab var  female"female. Is the respondent a man or a woman?"
+lab var  RH_past_a"RH_past_a. Did you practice Remédiation Harmonisée during the 2024 – 2025 school year?"
+lab var  RH_past_b"RH_past_b. Which grade did you practice Remédiation Harmonisée during the 2024 – 2025 school year"
+lab var  Age"Age. How old are you?"
+lab var  Edu"Edu. What is your highest educational qualification?"
+lab var  Grade"Grade. What grade do you currently teach in the 2025 – 2026 school year?"
+lab var  Grade_S"Grade. Please specify other"
+lab var  RH_hoursa"RH_hoursa. How many hours per week do you teach math in Remédiation Harmonisée to CI students in your classroom?"
+lab var  RH_hoursb"RH_hoursb. How many hours per week do you teach reading in Remédiation Harmonisée to CI students in your classroom?"
+lab var  RH_hoursc"RH_hoursc. How many hours per week do you teach math in Remédiation Harmonisée to CP students in your classroom?"
+lab var  RH_hoursd"RH_hoursd. How many hours per week do you teach reading in Remédiation Harmonisée to CP students in your classroom?"
+lab var  MM_hoursa"MM_hoursa. How many hours per week do you teach MOHEBS math/math in national languages to CI students in your classroom?"
+lab var  Lang_1a"Lang_1a. What languages do the CP students in this classroom speak as their national language?"
+lab var  Lang_1a_1"Wolof"
+lab var  Lang_1a_2"Pulaar"
+lab var  Lang_1a_3"Serer"
+lab var  Lang_1a_96"Other, specify"
+lab var  Lang_1a_S"Lang_1a_S. Please specify Other specify?"
+lab var  Lang_1b"Lang_1b. What languages do the CI students in this classroom speak as their  national language?"
+lab var  Lang_1b_1"French"
+lab var  Lang_1b_2"Wolof"
+lab var  Lang_1b_3"Pulaar"
+lab var  Lang_1b_4"Serer"
+lab var  Lang_1b_96"Other, specify"
+lab var  Lang_1b_S"Lang_1b_S. Please specify Other specify?"
+
+lab var  Lang_2"Lang_2. What is your own mother tongue? "
+lab var  Lang_2_S"Lang_2_S. What is your own mother tongue? Other specify?"
+lab var  Lang_3"Lang_3. How comfortable are you speaking the students' national language?"
+lab var  Lang_4"Lang_4. How comfortable are you reading in the students' national language?"
+lab var  Lang_5"Lang_5. How comfortable are you speaking French?"
+lab var  Lang_6"Lang_6. How comfortable are you reading in French?"
+lab var  Policy_2a"Policy_2a. In the CI classroom you teach, which language(s) do you use to teach math in class?"
+lab var  Policy_2a_1"French"
+lab var  Policy_2a_2"Wolof"
+lab var  Policy_2a_3"Pulaar"
+lab var  Policy_2a_4"Serer"
+gen Policy_2b = .
+order Policy_2b,before(Policy_2b_1)
+lab var  Policy_2b"Policy_2b. In the CI classroom you teach, how much time do you spend teaching math in each language on a daily basis?"
+lab var  Policy_2b_1"Policy_2b_1. French"
+
+lab var  Policy_2b_2"Policy_2b_2. Wolof"
+
+lab var  Policy_2b_3"Policy_2b_3. Pulaar"
+
+lab var  Policy_2b_4"Policy_2b_4. Serer"
+
+lab var  Policy_2c"Policy_2c. While teaching math in the CI classroom, at what point do you switch languages?"
+lab var  Policy_2c_0"I do not switch languages"
+lab var  Policy_2c_1"When a student asks a question in a different language"
+lab var  Policy_2c_2"When students appear confused or disengaged "
+lab var  Policy_2c_3"When introducing a new concept"
+lab var  Policy_2c_4"When giving instructions for activities"
+lab var  Policy_2c_5"When addressing individuals during one-on-one support"
+lab var  Policy_2c_6"When translating key vocabulary terms"
+lab var  Policy_2c_7"I alternate languages with every instruction"
+lab var  Policy_2c_8"I spend half of the class speaking one language and then switch to the other"
+lab var  Policy_3a"Policy_3a. In the CI classroom you teach, which language(s) do you use to teach reading in class?"
+lab var  Policy_3a_1"French"
+lab var  Policy_3a_2"Wolof"
+lab var  Policy_3a_3"Pulaar"
+lab var  Policy_3a_4"Serer"
+
+gen Policy_3b = .
+order Policy_3b,before(Policy_3b_1)
+lab var  Policy_3b"Policy_3b. In the CI classroom you teach, how much time do you spend teaching reading in each language, on a daily basis?"
+lab var  Policy_3b_1"French"
+lab var  Policy_3b_2"Wolof"
+lab var  Policy_3b_3"Pulaar"
+lab var  Policy_3b_4"Serer"
+
+lab var  Policy_3c"Policy_3c. While teaching reading in the CI classroom, at what point do you switch languages?"
+
+lab var  Policy_3c_0"I do not switch languages"
+lab var  Policy_3c_1"When a student asks a question in a different language"
+lab var  Policy_3c_2"When students appear confused or disengaged "
+lab var  Policy_3c_3"When introducing a new concept"
+lab var  Policy_3c_4"When giving instructions for activities"
+lab var  Policy_3c_5"When addressing individuals during one-on-one support"
+lab var  Policy_3c_6"When translating key vocabulary terms"
+lab var  Policy_3c_7"I alternate languages with every instruction"
+lab var  Policy_3c_8"I spend half of the class speaking one language and then switch to the other"
+lab var  Policy_4a"Policy_4a. In the CP classroom you teach, which language(s) do you use to teach math in class?"
+lab var  Policy_4a_1"French"
+lab var  Policy_4a_2"Wolof"
+lab var  Policy_4a_3"Pulaar"
+lab var  Policy_4a_4"Serer"
+
+gen Policy_4b = .
+order Policy_4b,before(Policy_4b_1)
+lab var  Policy_4b"Policy_4b. In the CP classroom you teach, how much time do you spend teaching math in each language, on a daily basis?"
+
+lab var  Policy_4b_1"French"
+lab var  Policy_4b_2"Wolof"
+lab var  Policy_4b_3"Pulaar"
+lab var  Policy_4b_4"Serer"
+
+lab var  Policy_4c"Policy_4c. While teaching math in the CP classroom, at what point do you switch languages?"
+lab var  Policy_4c_0"I do not switch languages"
+lab var  Policy_4c_1"When a student asks a question in a different language"
+lab var  Policy_4c_2"When students appear confused or disengaged "
+lab var  Policy_4c_3"When introducing a new concept"
+lab var  Policy_4c_4"When giving instructions for activities"
+lab var  Policy_4c_5"When addressing individuals during one-on-one support"
+lab var  Policy_4c_6"When translating key vocabulary terms"
+lab var  Policy_4c_7"I alternate languages with every instruction"
+lab var  Policy_4c_8"I spend half of the class speaking one language and then switch to the other"
+
+lab var  Policy_5a"Policy_5a. In the CP classroom you teach, which language(s) do you use to teach reading in class?"
+lab var  Policy_5a_1"French"
+lab var  Policy_5a_2"Wolof"
+lab var  Policy_5a_3"Pulaar"
+lab var  Policy_5a_4"Serer"
+gen Policy_5b = .
+order Policy_5b,before(Policy_5b_1)
+lab var  Policy_5b"Policy_5b. In the CP classroom you teach, how much time do you spend teaching reading in each language,on a daily basis?"
+lab var  Policy_5b_1"French"
+lab var  Policy_5b_2"Wolof"
+lab var  Policy_5b_3"Pulaar"
+lab var  Policy_5b_4"Serer"
+
+lab var  Policy_5c"Policy_5c. While teaching reading in the CP classroom, at what point do you switch languages?"
+
+lab var  Policy_5c_0"I do not switch languages"
+lab var  Policy_5c_1"When a student asks a question in a different language"
+lab var  Policy_5c_2"When students appear confused or disengaged "
+lab var  Policy_5c_3"When introducing a new concept"
+lab var  Policy_5c_4"When giving instructions for activities"
+lab var  Policy_5c_5"When addressing individuals during one-on-one support"
+lab var  Policy_5c_6"When translating key vocabulary terms"
+lab var  Policy_5c_7"I alternate languages with every instruction"
+lab var  Policy_5c_8"I spend half of the class speaking one language and then switch to the other"
+
+lab var  Lang_7"Lang_7. Do any of your CI students NOT speak the school language of instruction in this classroom? "
+lab var  Lang_7a"Lang_7a. How many students is that?"
+lab var  Lang_7b"Lang_7b. Out of how many students in the CI class? "
+lab var  Lang_8"Lang_8. Do any of your CP students NOT speak ${Policy_calc} in this classroom? "
+lab var  Lang_8a"Lang_8a. How many students is that for ${Policy_calc} ? "
+lab var  Lang_8b"Lang_8b. Out of how many students in the CP class?  ${Policy_calc}"
+lab var  Lang_9"Lang_9. How do you manage teaching in a multilingual classroom?"
+lab var  nl_1a"nl_1a. Did you participate in the CI MOHEBS math training (formation de base) at the start of the school year?"
+lab var  nl_1b"nl_1b. Was this training sufficient? "
+lab var  nl_1c"nl_1c. How many days did you attend in total?"
+lab var  nl_2a"nl_2a. Did you participate in the Remédiation Harmonisée training at the start of the school year?"
+lab var  nl_2b"nl_2b. Was this training sufficient? "
+lab var  nl_2c"nl_2c. How many days did you attend in total?"
+lab var  nl_3a"nl_3a. Did you participate in the training related to teaching reading in the national languages at the start of the school year?"
+lab var  nl_3b"nl_3b. Was this training sufficient? "
+lab var  nl_3c"nl_3c. How many days did you attend in total?"
+lab var  exp_1"exp_1. How many service years do you have as a teacher?"
+
+lab var  Mat_1"Mat_1. Do you have the student math textbooks in national language for the CI classroom you teach?"
+lab var  Mat_2"Mat_2. Do you have the teacher's math guide in national language for the CI classroom you teach?"
+lab var  Mat_3"Mat_3. Do students in your classroom have their own national language math textbooks?"
+lab var  Mat_4"Mat_4. What is the math textbook/student ratio in your CI classroom?"
+lab var  Mat_5"Mat_5. Are there national language supplementary math materials available for you to support your lesson in this classroom?"
+lab var  Mat_6"Mat_6. Are these national language supplementary math materials accessible to the students you teach?"
+lab var  Mat_7"Mat_7. Does the school provide you with the necessary support in your effort to teach students how to do math in their national language?"
+lab var  Mat_8"Mat_8. Do you have the student math textbooks in national language for the Remédiation Harmonisée classroom you teach?"
+lab var  Mat_9"Mat_9. Do you have the teacher's math guide in national language for the Remédiation Harmonisée classroom you teach?"
+lab var  Mat_10"Mat_10. Do students in your Remédiation Harmonisée classroom have their own national language math textbooks?"
+lab var  Mat_11"Mat_11. What is the math textbook/student ratio in your Remédiation Harmonisée classroom? "
+lab var  Mat_12"Mat_12. Are there national language supplementary math materials available for you to support your lesson in this Remédiation Harmonisée classroom?"
+lab var  Mat_13"Mat_13. Are these national language supplementary math materials accessible to the students you teach in this Remédiation Harmonisée classroom?"
+lab var  Mat_14"Mat_14. Do you have  student reading textbooks in the national language for the Remédiation Harmonisée classroom you teach?"
+lab var  Mat_15"Mat_15. Do you have the teacher's reading guide in national language for the Remédiation Harmonisée classroom you teach?"
+lab var  Mat_16"Mat_16. Do students in your Remédiation Harmonisée classroom have their own national language reading textbooks?"
+lab var  Mat_17"Mat_17. What is the reading textbook/student ratio in your Remédiation Harmonisée classroom? "
+lab var  Mat_18"Mat_18. Are there national language supplementary reading materials available for you to support your lesson in this Remédiation Harmonisée classroom?"
+lab var  Mat_19"Mat_19. Are these national language supplementary reading materials accessible to the students you teach in this Remédiation Harmonisée classroom?"
+lab var  E1"Enumerator Question: How confident are you that the teacher understood all your questions in the ${lang_calc1}?"
+lab var  Lang_9_1"I only teach in one language"
+lab var  Lang_9_2"I repeat every instruction and lecture line-by-line in each language"
+lab var  Lang_9_3"I teach in the majority language first and then repeat in the second language"
+lab var  Lang_9_4"I lecture in the majority language and give instructions in all languages"
+
+
+
+// drop START_TIME_str END_TIME_str grppp1 lan1 Calc1 Calc2 Calc3 Calc4 Calc5 Calc6 Calc7 Calc8 Calc9 Calc10 Calc11 Calc12 lang_calc1 Policy_calc Firstname	Lastname	RES_NAME
 
 *save dataset
 cd "${gsdData}\Raw"
-save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 06-12 v01.dta",replace
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 10-12 v01.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

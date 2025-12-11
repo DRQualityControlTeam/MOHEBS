@@ -4,10 +4,9 @@
 *********************************************************************************************************************************************
 ***STUDENT SURVEY
 
-get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Student\MOHEBS Student Baseline Processed Dataset 06-12 v01.dta".
+get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Student\MOHEBS Student Baseline Processed Dataset 10-12 v01.dta".
 
 ************************************************************************************************************************************************************************************.
-
 variable level INT_DATE ENUM_NAME Ecole (Nominal).
 
 *Output Tally.
@@ -57,7 +56,7 @@ OUTPUT CLOSE *.
 
 ***TEACHERS SURVEY
 
-get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 06-12 v01.dta".
+get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 10-12 v01.dta".
 
 ************************************************************************************************************************************************************************************.
 variable level INT_DATE School (nominal).

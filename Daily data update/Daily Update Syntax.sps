@@ -4,7 +4,7 @@
 *********************************************************************************************************************************************
 ***STUDENT SURVEY
 
-get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Student\MOHEBS Student Baseline Processed Dataset 10-12 v01.dta".
+get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Student\MOHEBS Student Baseline Processed Dataset 11-12 v01.dta".
 
 ************************************************************************************************************************************************************************************.
 variable level INT_DATE ENUM_NAME Ecole (Nominal).
@@ -25,7 +25,6 @@ CTABLES
   /TITLES TITLE="MOHEBS Student Survey - Team achievements".
 
 * Daily Achievement Output for Student Survey by Schools, Intervention group, and Grade.
-* Custom Tables.
 * Custom Tables.
 CTABLES
   /VLABELS VARIABLES=Echantillon IEF Ecole B4 DISPLAY=LABEL
@@ -56,10 +55,10 @@ OUTPUT CLOSE *.
 
 ***TEACHERS SURVEY
 
-get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 10-12 v01.dta".
+get stata file = "C:\Users\oyoo\OneDrive - Dalberg Global Development Advisors\QUALITY CONTROL\Projects\2025\MOHEBS\Data\Raw\Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 11-12 v01.dta".
 
 ************************************************************************************************************************************************************************************.
-variable level INT_DATE School (nominal).
+variable level INT_DATE ENUM_NAME School (nominal).
 
 *Output Tally.
 OUTPUT NEW.

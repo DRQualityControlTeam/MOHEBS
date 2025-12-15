@@ -21,7 +21,7 @@ cd "${gsdData}\Raw"
 
 ***import dataset
 
-import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765439867155.csv", case(preserve)
+import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765606996163.csv", case(preserve)
 
 *****************************************************************************************************************
 ****Formating date
@@ -1510,10 +1510,11 @@ foreach x in semantic_language_timer1time_rem semantic_language_timer2time_rem s
 	replace `x' = 0  if !missing(`x') & (`x' > 0 | `x' < 0)
 }
 
+replace INT_DATE=  td(08dec2025) if interview_ID == "7c7ce476-52ae-46d1-b214-b24d120eac32"
+
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 11-12 v01.dta",replace
-
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 13-12 v01.dta",replace
 
 // Semantic - No auto stop
 // Phonological - Auto stop after first 5 wrongs
@@ -2046,48 +2047,53 @@ lab var Grade_3"CE1 (third grade)"
 lab var Grade_96"Other, specify"
 
 *correction
-replace Policy_2b_4 = 60 if inlist(KEY,"uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9", "uuid:4a06c160-0357-40e9-bbed-2e9b6386c823","uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9","uuid:4a06c160-0357-40e9-bbed-2e9b6386c823")
+replace Policy_2b_4 = 60 if inlist(KEY,"uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9", "uuid:4a06c160-0357-40e9-bbed-2e9b6386c823","uuid:13be05b0-67d9-4d59-8bbb-949c71ab1323","uuid:01be1d22-0d4e-42dd-a612-d4d75454a3ac","uuid:0f2e41b2-e374-41c7-b1ac-0e8eceb227b0")
+
+replace Policy_2b_4 = 300 if KEY == "uuid:5aabf678-237e-4fb0-8c56-71c2eecbf136"
 
 replace Policy_2b_2 = 60 if inlist(KEY,"uuid:3eb84e41-41a8-4401-b592-2e4f79d54ba6", "uuid:1088507b-fb7b-404f-9015-0d717f279931","uuid:5d6da021-050f-4c5b-b735-c843bb904eeb","uuid:1e228b04-6d08-4cbd-a1d1-5aac081dfab1")
 
 replace Policy_3b_1 = 120 if inlist(KEY,"uuid:1e228b04-6d08-4cbd-a1d1-5aac081dfab1")
-replace Policy_3b_1 = 60 if inlist(KEY,"uuid:3eb84e41-41a8-4401-b592-2e4f79d54ba6")
+
+replace Policy_3b_1 = 60 if inlist(KEY,"uuid:3eb84e41-41a8-4401-b592-2e4f79d54ba6","uuid:3eb84e41-41a8-4401-b592-2e4f79d54ba6")
+
 replace Policy_3b_1 = 300 if inlist(KEY,"uuid:9fcc85e0-1322-4600-85cd-7aba28b13daa","uuid:af5363f0-58c7-4414-b79c-fc98944a650e")
 
+replace Policy_3b_1 = 120 if KEY == "uuid:1e228b04-6d08-4cbd-a1d1-5aac081dfab1"
 
 replace Policy_3b_2 = 60 if inlist(KEY,"uuid:5d6da021-050f-4c5b-b735-c843bb904eeb","uuid:3eb84e41-41a8-4401-b592-2e4f79d54ba6")
+
 replace Policy_3b_2 = 180 if inlist(KEY,"uuid:1088507b-fb7b-404f-9015-0d717f279931")
+
 replace Policy_3b_2 = 240 if inlist(KEY,"uuid:1e228b04-6d08-4cbd-a1d1-5aac081dfab1")
+
 replace Policy_3b_2 = 300 if inlist(KEY,"uuid:3143c533-280b-4b21-9ffc-75f848b08269")
 
 replace Policy_3b_3 = 300 if inlist(KEY,"uuid:9fcc85e0-1322-4600-85cd-7aba28b13daa")
 replace Policy_3b_4 = 180 if inlist(KEY,"uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9")
 
-foreach x in  Policy_3b_1 Policy_3b_2	Policy_3b_4{
-	replace `x' = `x' * 60 if inlist(KEY,"uuid:5d6da021-050f-4c5b-b735-c843bb904eeb","uuid:3eb84e41-41a8-4401-b592-2e4f79d54ba6","uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9","uuid:1088507b-fb7b-404f-9015-0d717f279931","uuid:1e228b04-6d08-4cbd-a1d1-5aac081dfab1")
-} 
+replace Policy_3b_4=Policy_3b_4*60 if inlist(KEY,"uuid:13be05b0-67d9-4d59-8bbb-949c71ab1323","uuid:0f2e41b2-e374-41c7-b1ac-0e8eceb227b0","uuid:5aabf678-237e-4fb0-8c56-71c2eecbf136","uuid:01be1d22-0d4e-42dd-a612-d4d75454a3ac")
 
-replace Policy_4b_1 = Policy_4b_1*60 if inlist(KEY, "uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:c9b81b90-20ae-4cb4-b7f1-686b0c6c54fb","uuid:def5b794-0023-4a0e-b709-7ac768d28d19","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:e9762f7c-acc9-4723-b6c0-8092f5c4796a","uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:9fcc85e0-1322-4600-85cd-7aba28b13daa")
+
+//////
+replace Policy_4b_1 = Policy_4b_1 * 60 if inlist(KEY,"uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:c9b81b90-20ae-4cb4-b7f1-686b0c6c54fb","uuid:def5b794-0023-4a0e-b709-7ac768d28d19","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:e9762f7c-acc9-4723-b6c0-8092f5c4796a","uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:9fcc85e0-1322-4600-85cd-7aba28b13daa")
+
+replace Policy_4b_1 = Policy_4b_1 * 60 if inlist(KEY,"uuid:13be05b0-67d9-4d59-8bbb-949c71ab1323","uuid:e5dcdb6f-11c5-4e96-8e93-d7c6dcfe1d7e","uuid:12dcd295-5e99-430e-a7b9-6af729fda951","uuid:a9c4b952-e16f-4509-b0d0-bc3c5eee44fe","uuid:10b9c100-ca7b-42de-aa6e-9450e3ea00f2")
 
 replace Policy_4b_2 = Policy_4b_2*60 if inlist(KEY, "uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:c9b81b90-20ae-4cb4-b7f1-686b0c6c54fb","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:7e5596b4-082b-4935-b293-72556ebd2347","uuid:0d35b9d9-f50f-4a27-b640-784fb9f87360")
 
 replace Policy_4b_3 = Policy_4b_3*60 if inlist(KEY, "uuid:9fcc85e0-1322-4600-85cd-7aba28b13daa","uuid:d1de3d83-1eab-4d23-8dcb-6b7b053a0743")
 
-foreach x in Policy_4b_1 Policy_4b_2 Policy_4b_3{
-	replace `x' = `x' * 60 if inlist(KEY,"uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:c9b81b90-20ae-4cb4-b7f1-686b0c6c54fb","uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:def5b794-0023-4a0e-b709-7ac768d28d19")
-} 
-
-replace Policy_5b_1 = Policy_5b_1*60 if inlist(KEY, "uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:def5b794-0023-4a0e-b709-7ac768d28d19","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:7e5596b4-082b-4935-b293-72556ebd2347","uuid:e9762f7c-acc9-4723-b6c0-8092f5c4796a")
+replace Policy_5b_1 = Policy_5b_1*60 if inlist(KEY, "uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:def5b794-0023-4a0e-b709-7ac768d28d19","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:7e5596b4-082b-4935-b293-72556ebd2347","uuid:e9762f7c-acc9-4723-b6c0-8092f5c4796a","uuid:13be05b0-67d9-4d59-8bbb-949c71ab1323","uuid:e5dcdb6f-11c5-4e96-8e93-d7c6dcfe1d7e")
 
 replace Policy_5b_2 = Policy_5b_2*60 if inlist(KEY, "uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:c9b81b90-20ae-4cb4-b7f1-686b0c6c54fb","uuid:def5b794-0023-4a0e-b709-7ac768d28d19","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b")
 
+
 replace Policy_5b_3 = Policy_5b_3*60 if inlist(KEY, "uuid:9fcc85e0-1322-4600-85cd-7aba28b13daa","uuid:d1de3d83-1eab-4d23-8dcb-6b7b053a0743")
 
-replace Policy_5b_4 = Policy_5b_4*60 if inlist(KEY, "uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:7e5596b4-082b-4935-b293-72556ebd2347")
 
-foreach x in Policy_5b_1 Policy_5b_2 Policy_5b_4{
-	replace `x' = `x' * 60 if inlist(KEY,"uuid:c9b81b90-20ae-4cb4-b7f1-686b0c6c54fb","uuid:9a19fdf5-aff8-4906-831f-16eb3ac4eb78","uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:def5b794-0023-4a0e-b709-7ac768d28d19","uuid:145784b4-fad8-4fd3-95b6-41792ea4ee4b","uuid:7e5596b4-082b-4935-b293-72556ebd2347")
-}
+replace Policy_5b_4 = Policy_5b_4*60 if inlist(KEY, "uuid:0643e63e-745d-4163-8d74-2811197ae644","uuid:7e5596b4-082b-4935-b293-72556ebd2347","uuid:13be05b0-67d9-4d59-8bbb-949c71ab1323","uuid:12dcd295-5e99-430e-a7b9-6af729fda951","uuid:10b9c100-ca7b-42de-aa6e-9450e3ea00f2","uuid:e5dcdb6f-11c5-4e96-8e93-d7c6dcfe1d7e")
+
 
 order KEY
 
@@ -2274,9 +2280,11 @@ lab var  Lang_9_4"I lecture in the majority language and give instructions in al
 
 // drop START_TIME_str END_TIME_str grppp1 lan1 Calc1 Calc2 Calc3 Calc4 Calc5 Calc6 Calc7 Calc8 Calc9 Calc10 Calc11 Calc12 lang_calc1 Policy_calc Firstname	Lastname	RES_NAME
 
+// drop if INT_DATE > td(05dec2025)
+
 *save dataset
 cd "${gsdData}\Raw"
-save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 11-12 v01.dta",replace
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 13-12 v01.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

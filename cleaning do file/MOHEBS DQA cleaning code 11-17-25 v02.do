@@ -21,7 +21,7 @@ cd "${gsdData}\Raw"
 
 ***import dataset
 
-import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765606996163.csv", case(preserve)
+import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765861558661.csv", case(preserve)
 
 *****************************************************************************************************************
 ****Formating date
@@ -1514,7 +1514,8 @@ replace INT_DATE=  td(08dec2025) if interview_ID == "7c7ce476-52ae-46d1-b214-b24
 
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 13-12 v01.dta",replace
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 16-12 v01.dta",replace
+
 
 // Semantic - No auto stop
 // Phonological - Auto stop after first 5 wrongs
@@ -2276,6 +2277,8 @@ lab var  Lang_9_2"I repeat every instruction and lecture line-by-line in each la
 lab var  Lang_9_3"I teach in the majority language first and then repeat in the second language"
 lab var  Lang_9_4"I lecture in the majority language and give instructions in all languages"
 
+*correction
+drop if KEY == "uuid:1c4905eb-47ba-4a42-b1be-3025b87a791d"
 
 
 // drop START_TIME_str END_TIME_str grppp1 lan1 Calc1 Calc2 Calc3 Calc4 Calc5 Calc6 Calc7 Calc8 Calc9 Calc10 Calc11 Calc12 lang_calc1 Policy_calc Firstname	Lastname	RES_NAME
@@ -2284,7 +2287,7 @@ lab var  Lang_9_4"I lecture in the majority language and give instructions in al
 
 *save dataset
 cd "${gsdData}\Raw"
-save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 13-12 v01.dta",replace
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 16-12 v01.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

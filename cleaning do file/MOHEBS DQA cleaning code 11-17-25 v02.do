@@ -21,7 +21,7 @@ cd "${gsdData}\Raw"
 
 ***import dataset
 
-import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765861558661.csv", case(preserve)
+import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765947737271.csv", case(preserve)
 
 *****************************************************************************************************************
 ****Formating date
@@ -1512,10 +1512,377 @@ foreach x in semantic_language_timer1time_rem semantic_language_timer2time_rem s
 
 replace INT_DATE=  td(08dec2025) if interview_ID == "7c7ce476-52ae-46d1-b214-b24d120eac32"
 
+*Corrections.
+*Client Query 1.
+replace survey_language = 1 if B4 == 3 & survey_language != 1
+replace survey_language = official_language if B4 == 1 & survey_language == 1
+
+*Query 2.
+replace teaching_language =1 if interview_ID =="d03e46ec-dd62-4a81-b2c3-7594ec03ff79"
+replace teaching_language =3 if interview_ID =="6deb405f-a52e-4547-8927-1d9789a58eba"
+replace teaching_language =1 if interview_ID =="6bfd7f9f-8346-4772-b4e4-85b95389bea6"
+replace teaching_language =1 if interview_ID =="0a0bac0b-7fee-4684-bd91-88a4b9034726"
+replace teaching_language =3 if interview_ID =="f33fd61f-2d41-4ebc-a7e5-d48c2bc8643d"
+replace teaching_language =3 if interview_ID =="e9acb732-0e86-4c23-a4ab-b1fd28bb32b4"
+replace teaching_language =3 if interview_ID =="acfd0e15-e404-4719-a042-b32fb68e29b1"
+replace teaching_language =3 if interview_ID =="47e9f5fc-92a6-4c4f-bbb3-3e16af493fd5"
+replace teaching_language =3 if interview_ID =="3506df89-9581-4a5b-ac89-fb274d49d350"
+replace teaching_language =3 if interview_ID =="d6b9c0c5-667b-4f6b-9f41-301b44cdada0"
+replace teaching_language =3 if interview_ID =="eb556751-a143-44ca-a4fa-bc9a93833f69"
+replace teaching_language =3 if interview_ID =="ceb56aff-c84a-48f1-8fb5-28aa6a4a7408"
+replace teaching_language =3 if interview_ID =="b4318f26-486e-4833-bc9b-e6e03a6387f6"
+replace teaching_language =3 if interview_ID =="45451da8-6aea-4ccd-a668-fcf6fcca1084"
+replace teaching_language =3 if interview_ID =="9e4ed0cc-3d30-4f77-814d-a4c56e292587"
+replace teaching_language =3 if interview_ID =="e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4"
+replace teaching_language =3 if interview_ID =="91fd21c5-3d48-456a-b33e-9ccc1199647b"
+replace teaching_language =3 if interview_ID =="a45cd6b0-302a-47c6-8ac0-24f9949d65b4"
+replace teaching_language =3 if interview_ID =="987c1aba-d5ae-4fc1-b977-11d61c1accc2"
+replace teaching_language =3 if interview_ID =="d171cc2c-40d1-462e-8531-23811ab76b1d"
+replace teaching_language =3 if interview_ID =="827ab6a2-6ab0-44b8-8926-42b61b393e58"
+replace teaching_language =3 if interview_ID =="ae264f26-2482-435a-ab2b-7f496a34d19c"
+replace teaching_language =3 if interview_ID =="fac45cb0-0101-475c-a7a8-432678d7643d"
+replace teaching_language =3 if interview_ID =="dbe08ef8-79d1-4966-b423-c8df4ea4acbf"
+replace teaching_language =3 if interview_ID =="e23bc4d0-8eaf-4b1f-910a-98c0b0386594"
+replace teaching_language =3 if interview_ID =="c7aeb8c7-81c8-4f3f-8584-421e61eb4dc3"
+replace teaching_language =3 if interview_ID =="3a64ac6c-1dd1-490e-a6f5-d6509f56bcad"
+replace teaching_language =3 if interview_ID =="021c7c83-722d-4818-a494-ab5274360532"
+replace teaching_language =3 if interview_ID =="ed131b98-c787-4c82-882c-1d2796ab369a"
+replace teaching_language =3 if interview_ID =="a69faeaf-9aa1-4e50-a309-13c75bcb7da1"
+replace teaching_language =3 if interview_ID =="58e215ac-afef-42d9-8cb7-7e6bdefb9d62"
+replace teaching_language =3 if interview_ID =="3dba3444-f931-4192-a026-0592fed5c4db"
+replace teaching_language =3 if interview_ID =="28d6e665-18e3-496c-84bd-57f5ae998d08"
+replace teaching_language =1 if interview_ID =="f9a21cb3-0622-4552-a3ca-975394b9ca03"
+replace teaching_language =1 if interview_ID =="57e40005-7add-4dd2-bb9d-5759c2981aa1"
+replace teaching_language =1 if interview_ID =="ffa369ac-4283-4a90-98fc-8846a6c6fb4e"
+replace teaching_language =3 if interview_ID =="1c99fea7-31d3-4fbe-9949-e030e0c2fe22"
+replace teaching_language =3 if interview_ID =="ac518c97-0e79-4799-89cb-51f1acc52413"
+replace teaching_language =3 if interview_ID =="f9c51d62-9d83-492a-90d2-a376ba12b8a6"
+replace teaching_language =1 if interview_ID =="48422b8d-42ad-4294-95f3-7bb2d2701d36"
+replace teaching_language =3 if interview_ID =="b27b2164-9414-41ed-ad4c-6ad383f86e44"
+replace teaching_language =1 if interview_ID =="24e563f4-7d09-4d17-8169-d8814d697ffb"
+replace teaching_language =1 if interview_ID =="d988403c-a0a2-44eb-86f0-2de65ce7db54"
+replace teaching_language =1 if interview_ID =="e331d060-57d1-41a4-8848-e2f62d57ae65"
+replace teaching_language =1 if interview_ID =="56bb62c2-a467-4786-8eef-bfe55ba3ba9b"
+replace teaching_language =3 if interview_ID =="196aa4be-9aac-4248-b02e-de881f76db71"
+replace teaching_language =3 if interview_ID =="371e0e95-b6f3-4517-9852-942506c8e086"
+replace teaching_language =3 if interview_ID =="952690be-cd52-4bc5-ad46-62bf83c09b3a"
+replace teaching_language =1 if interview_ID =="54045343-38e8-4bc7-aa0c-b56350f62bfc"
+replace teaching_language =3 if interview_ID =="20d2bb4a-d1ab-46e9-bf57-70c07c123719"
+replace teaching_language =3 if interview_ID =="6860cd27-31b9-4c21-a54c-0d0fd8f8209d"
+replace teaching_language =1 if interview_ID =="3c155564-2174-4b0f-8542-ce0c061257eb"
+replace teaching_language =1 if interview_ID =="189318b4-6126-40eb-bbcd-da310507f175"
+replace teaching_language =3 if interview_ID =="fa7c730e-4e47-4e56-9adf-331a3dbce907"
+replace teaching_language =3 if interview_ID =="b4918c03-457a-44b9-a048-aa68b8846e21"
+replace teaching_language =3 if interview_ID =="c2bfffc5-9f55-416f-a8b4-01fe9b77ba4c"
+replace teaching_language =3 if interview_ID =="c13e00e0-9036-46a4-be98-80d9df50bdd1"
+replace teaching_language =1 if interview_ID =="764eaee0-b5be-4432-874b-69b1261cc181"
+replace teaching_language =1 if interview_ID =="0603e745-4755-4735-ab8b-81a7133999a8"
+replace teaching_language =1 if interview_ID =="2166db2f-c8b8-4a12-898e-8296e1b10890"
+replace teaching_language =1 if interview_ID =="c905025e-4182-40be-831f-b476507dfa77"
+replace teaching_language =1 if interview_ID =="9bbde13b-062c-4f07-8cc5-7561b17a480d"
+replace teaching_language =3 if interview_ID =="85bc6364-0680-4751-86cd-ee3fda033816"
+replace teaching_language =1 if interview_ID =="840d9ee5-ca5a-43f6-a855-9257880755da"
+replace teaching_language =1 if interview_ID =="a86a2cd3-f0b6-4a89-91e5-25c1db9a269d"
+replace teaching_language =3 if interview_ID =="90e20319-9fc1-4c08-a9b9-3f851839aded"
+replace teaching_language =1 if interview_ID =="be0cd69b-653b-4da4-bfc5-a1d41d6d12e2"
+replace teaching_language =3 if interview_ID =="24b7ec03-358c-4ac7-af7f-32137d492cb2"
+replace teaching_language =3 if interview_ID =="03da1bc6-09f3-40b8-bef9-2cbc0d0cca5d"
+replace teaching_language =3 if interview_ID =="17011753-34e8-4c53-853a-d2cb0f2f83f3"
+replace teaching_language =3 if interview_ID =="1d852e1b-7029-450f-937e-09975a21638b"
+replace teaching_language =3 if interview_ID =="16a2a2e2-7692-4df3-a6e0-0b4183b70642"
+replace teaching_language =3 if interview_ID =="9fedd8b1-26d4-4f91-bbc0-dfa887f6c186"
+replace teaching_language =3 if interview_ID =="3f55022b-b396-4388-8f39-d8f36054d20a"
+replace teaching_language =3 if interview_ID =="04d1d201-dfd2-4a7b-9a58-8902ce9ee60a"
+replace teaching_language =1 if interview_ID =="f925fc1d-0d39-41ac-95d4-93679ff6d84c"
+replace teaching_language =3 if interview_ID =="903bd68a-d26b-491a-94c2-0cf91418cf6d"
+replace teaching_language =3 if interview_ID =="5bcc1c7d-0f28-4158-a2df-6ebfff0e3701"
+replace teaching_language =3 if interview_ID =="7316171a-365c-4f27-bc5c-a2d19739d52a"
+replace teaching_language =3 if interview_ID =="146af2fd-2f60-4d50-aae1-5449c556cd7b"
+replace teaching_language =1 if interview_ID =="cf6b59a7-6ed5-4f0a-83e1-3b6554e76190"
+replace teaching_language =3 if interview_ID =="828a231d-8d3b-4515-82f2-4db8720c1887"
+replace teaching_language =3 if interview_ID =="4dc7b3e5-f8c8-4a66-9acb-4185ede2c16b"
+replace teaching_language =3 if interview_ID =="4963cf77-9f2b-40ed-a8b4-1bb0b7561e25"
+replace teaching_language =3 if interview_ID =="b48552c3-08bd-4b63-8e07-8a9b534653fe"
+replace teaching_language =3 if interview_ID =="7f0e472f-7946-44f4-8b11-535c2c87545e"
+replace teaching_language =3 if interview_ID =="c3b4ea71-c3bc-424a-aa3d-a97c73caf437"
+replace teaching_language =3 if interview_ID =="87d312cc-e8e9-484f-b63a-50f0a4daec07"
+replace teaching_language =3 if interview_ID =="5c2a2905-8d24-420d-8a50-8031ecf83e0e"
+replace teaching_language =3 if interview_ID =="297ad4cd-9734-4d17-9424-ed3fa3594af6"
+replace teaching_language =3 if interview_ID =="d9c218e5-e0e6-493c-a1d1-0fabfbfc039b"
+replace teaching_language =1 if interview_ID =="f472aa19-e4ee-4e09-b6ab-8bd600de957d"
+replace teaching_language =1 if interview_ID =="7a7ca376-9da9-4ba4-a445-802999b1d569"
+replace teaching_language =1 if interview_ID =="2fbdb190-ce6b-4db3-bd3d-86eeb77f4c2f"
+replace teaching_language =2 if interview_ID =="664c5d1c-1210-4aaf-b804-5b42b7057989"
+replace teaching_language =1 if interview_ID =="e6112283-c0b2-4c38-8292-1ffa830d7dc8"
+replace teaching_language =1 if interview_ID =="6f2c99cb-779a-47ef-ba75-450073085f94"
+replace teaching_language =1 if interview_ID =="2d4589ca-0227-430d-ab9d-3f48b9852abb"
+replace teaching_language =1 if interview_ID =="33af1dd8-7b97-40ca-90a3-ff9bf5cc78b9"
+replace teaching_language =2 if interview_ID =="775fdf37-148c-42cf-9e6e-789e29b752e0"
+replace teaching_language =1 if interview_ID =="49d3258b-2f7f-4a5b-b7da-a94119a1741d"
+replace teaching_language =1 if interview_ID =="fc083b06-21a2-4665-8228-d741d3d22d15"
+replace teaching_language =1 if interview_ID =="df33a347-224b-4d44-b56a-ff31036cff13"
+replace teaching_language =2 if interview_ID =="74a5d05b-d0ef-46ff-a1f8-ef76b03464ce"
+replace teaching_language =2 if interview_ID =="9aa0c22e-d171-4b2d-a3c7-37fdcd43484b"
+replace teaching_language =1 if interview_ID =="d0273b2f-d376-49d6-b1dc-82fc45816d0d"
+replace teaching_language =1 if interview_ID =="ce096236-6d51-45ee-9bf3-c71e9644f103"
+replace teaching_language =1 if interview_ID =="5f855822-db47-4379-8082-f4b892591670"
+replace teaching_language =2 if interview_ID =="80f5c997-81f6-4501-b289-0acbe647690f"
+replace teaching_language =1 if interview_ID =="bba9da36-baf3-489d-8964-49514a08ae95"
+replace teaching_language =2 if interview_ID =="2e1d1197-4bb8-43ee-8ec6-43c71f5fc1af"
+replace teaching_language =1 if interview_ID =="4eae42ee-944c-48e1-a67e-650538cc8941"
+replace teaching_language =1 if interview_ID =="34240a67-95fe-48e6-9dc3-481a5eb995f8"
+replace teaching_language =2 if interview_ID =="687b58cd-3781-4864-8956-3254c912f3dc"
+replace teaching_language =1 if interview_ID =="70692290-12f9-4600-8e8b-161b8d6b6dd8"
+replace teaching_language =2 if interview_ID =="3ab06563-d43a-4539-8a4a-2fe171d9f713"
+replace teaching_language =2 if interview_ID =="f497c2b1-6436-4d4a-80d5-c36f7c31aafc"
+replace teaching_language =1 if interview_ID =="b508dc8b-253b-42b1-b88f-435fdbe52869"
+replace teaching_language =2 if interview_ID =="38bdc126-72b7-4df0-8444-c471ca2a87e4"
+replace teaching_language =1 if interview_ID =="18e148e8-0d56-481d-addc-401cd8a79600"
+replace teaching_language =2 if interview_ID =="96c50de6-a383-4198-a9df-d2dc2e6c678c"
+replace teaching_language =2 if interview_ID =="bb896380-88b3-426b-b1cb-c992b1145c15"
+replace teaching_language =2 if interview_ID =="016920bf-44b8-4d91-a780-c6a0e957484d"
+replace teaching_language =1 if interview_ID =="958c05fe-fa40-4655-b83a-c9653c7ddfd4"
+replace teaching_language =2 if interview_ID =="64f00d50-e875-4e77-92c1-f4d53ba1a922"
+replace teaching_language =2 if interview_ID =="2eeabd68-3ed4-49f5-a54d-375966e9f7e8"
+replace teaching_language =1 if interview_ID =="4aad058f-af72-471c-95cb-20e762b2f6d8"
+replace teaching_language =2 if interview_ID =="cdacae65-f165-42ee-8668-d30927fa89b4"
+replace teaching_language =2 if interview_ID =="a83d057f-42b8-4ce6-a7e3-c2fb4f1e9cf4"
+replace teaching_language =1 if interview_ID =="c9c31e8d-6685-43f6-abdb-acb22510e956"
+replace teaching_language =2 if interview_ID =="27ff1a9b-b5d9-4ed0-9fc5-a3dcc1e64519"
+replace teaching_language =1 if interview_ID =="cc4ccbd3-15ab-4f89-b523-6aaba6d526e9"
+replace teaching_language =1 if interview_ID =="2d855cfe-06f0-4c0f-88b6-4e2f1b6e9659"
+replace teaching_language =1 if interview_ID =="d4172b31-e410-4ae7-9e35-df10df8671e3"
+replace teaching_language =1 if interview_ID =="695d3744-bced-4b2d-a3c7-f9dab6c0dd92"
+replace teaching_language =1 if interview_ID =="4592a6d6-e884-4dcf-9010-cf8ac8140ede"
+replace teaching_language =1 if interview_ID =="db5e40e9-5901-4841-bb67-5ae1a3c6a7eb"
+replace teaching_language =1 if interview_ID =="ae1ce825-0716-42b8-8df0-f4c03de0b574"
+replace teaching_language =1 if interview_ID =="16de6940-63b3-46ea-bbe8-bbcb02e7f9fe"
+replace teaching_language =1 if interview_ID =="eab63d34-d938-449e-ab1d-55de9b38c544"
+replace teaching_language =2 if interview_ID =="ecd24a66-fb95-406e-a056-30c082ccc370"
+replace teaching_language =1 if interview_ID =="fd081796-3a85-40a8-9ac2-0ab56af3c176"
+replace teaching_language =2 if interview_ID =="1ccccc68-0735-4dab-b908-a0d3a80a4c9a"
+replace teaching_language =2 if interview_ID =="8290158c-8202-4707-a821-c6ca4e5f4cf7"
+replace teaching_language =2 if interview_ID =="e1d5d06e-04d1-488f-9f20-0be1971b0b14"
+replace teaching_language =2 if interview_ID =="5875efa2-2b0b-4353-b809-e69b1c767cc7"
+replace teaching_language =2 if interview_ID =="b2810855-8afa-47f4-b6fa-9c5ebb61fba4"
+replace teaching_language =2 if interview_ID =="ef097054-041a-4ff4-985f-27d9e373255e"
+replace teaching_language =2 if interview_ID =="a59b6d10-2cb8-4c01-8442-e59478955834"
+replace teaching_language =1 if interview_ID =="05cc7dad-1032-4141-b32f-b29e2b442c53"
+replace teaching_language =1 if interview_ID =="4a7aab47-6fa0-4d04-87dc-3a23946705b9"
+replace teaching_language =2 if interview_ID =="de6386c0-0baf-49b3-bffb-3cac46465ed0"
+replace teaching_language =1 if interview_ID =="3676f691-4038-4d35-850f-081bb916d90e"
+replace teaching_language =2 if interview_ID =="04af0d11-cd0a-438a-84b3-b07badf6126d"
+replace teaching_language =2 if interview_ID =="2f95b04e-68ef-4dec-bba4-0aa80fe4c337"
+replace teaching_language =1 if interview_ID =="4bb9439e-83db-41e3-873d-67a4d77efc3e"
+replace teaching_language =2 if interview_ID =="849563d3-9773-4a1d-89d8-b7b3a16beb89"
+replace teaching_language =1 if interview_ID =="dfbcf07f-5330-48e9-992f-5234859a41a6"
+replace teaching_language =2 if interview_ID =="ae218944-f91c-4924-b5ea-1b31a3b0f013"
+replace teaching_language =1 if interview_ID =="4644aea1-f044-4cb4-b79a-638800249e8e"
+replace teaching_language =1 if interview_ID =="fb9c234b-de3a-40b1-877d-e0774134e95a"
+replace teaching_language =2 if interview_ID =="54450ef7-08f0-4f9a-a288-f09d7a6c382d"
+replace teaching_language =1 if interview_ID =="896bdf68-1cc1-4b29-bba7-c19e80e50af4"
+replace teaching_language =1 if interview_ID =="e5ffddbc-31f4-41e2-a5ad-a63bf0a2f196"
+replace teaching_language =1 if interview_ID =="987e3c29-0aa1-4a9c-8aac-916cbc79c550"
+replace teaching_language =2 if interview_ID =="278c20ad-72e0-474f-98a2-eb146c877e82"
+replace teaching_language =1 if interview_ID =="7e029362-f6a3-411d-8b23-17cd283b7bd8"
+replace teaching_language =2 if interview_ID =="b14a5f5e-8b6c-45ed-9ccd-fa1aef85d4dc"
+replace teaching_language =1 if interview_ID =="371c0317-3508-4318-b597-f78fe787d8c2"
+replace teaching_language =1 if interview_ID =="8036d97d-de52-4a90-be25-312c7151c8b4"
+replace teaching_language =1 if interview_ID =="8d3c5fd7-5873-4bf9-81a7-17cc5e4bf39e"
+replace teaching_language =1 if interview_ID =="2d0edb86-ec51-4056-a030-9e611ed03ac5"
+replace teaching_language =1 if interview_ID =="e9c0ac27-52af-4d1a-8db0-8144b2c5b136"
+replace teaching_language =1 if interview_ID =="a0932450-5d6a-4c41-a840-7e8d3073dbe1"
+replace teaching_language =2 if interview_ID =="d894d25a-03bc-4663-9dea-fbdf62608d63"
+replace teaching_language =1 if interview_ID =="94a31cc7-278a-4dc1-a99f-69fedfbfb4ff"
+replace teaching_language =1 if interview_ID =="906a3c39-e317-44ac-a320-b9e0e7bf872c"
+replace teaching_language =2 if interview_ID =="36c27614-ece9-4128-8f7e-4e1d7c5a0fa2"
+replace teaching_language =2 if interview_ID =="bd2b73ce-9bf3-476d-b89c-47f166f60259"
+replace teaching_language =2 if interview_ID =="3cd2c24c-6a2c-470f-90c2-a025d028238d"
+replace teaching_language =1 if interview_ID =="4ccb1827-b89e-4397-9de0-746a9203fa5f"
+replace teaching_language =2 if interview_ID =="3e41e2ff-9e52-4d18-b6e8-6faf47694c1f"
+replace teaching_language =1 if interview_ID =="721f4c0a-19e0-44a6-a988-9dcb1099479e"
+replace teaching_language =2 if interview_ID =="dc021baf-6958-4b75-ab39-a6963e4177c4"
+replace teaching_language =2 if interview_ID =="f6bdb475-82a5-47e7-aa3a-728b13a2906b"
+replace teaching_language =2 if interview_ID =="cfee0ae8-ab33-49d0-8a64-e9828e7b273e"
+replace teaching_language =1 if interview_ID =="b186bac0-cc7f-409d-853f-6e45b086c73d"
+replace teaching_language =1 if interview_ID =="8c21f71d-6af5-489c-b9c0-71360d00efce"
+replace teaching_language =2 if interview_ID =="2cd65397-d824-480c-97ed-cf25d86de3e3"
+replace teaching_language =1 if interview_ID =="e323eca7-90a5-408f-881d-f97277b5a5d7"
+replace teaching_language =2 if interview_ID =="2205b7de-57f0-4715-85cc-73673f868678"
+replace teaching_language =2 if interview_ID =="b0a34862-9126-4fbe-a263-1b445ef70ef3"
+replace teaching_language =2 if interview_ID =="8f2109f7-7b96-4b23-8383-7fa94872f586"
+replace teaching_language =1 if interview_ID =="4c2c557a-2499-4a4e-99d6-41547e8c1a5d"
+replace teaching_language =2 if interview_ID =="6f4445ff-dc73-4064-9174-0044d2973395"
+replace teaching_language =1 if interview_ID =="480d348e-70f2-4c4e-8a30-cb6f8cd3ffb8"
+replace teaching_language =1 if interview_ID =="1d4c9450-8d69-4f4b-8795-11257f6bfeab"
+replace teaching_language =1 if interview_ID =="b10da94e-4ef1-4886-9ee2-be6be009489b"
+replace teaching_language =1 if interview_ID =="3c9bd3bb-5071-44b4-a65d-50f28f9608a4"
+replace teaching_language =1 if interview_ID =="f6f55a81-b07b-4ddc-8c70-0a9d77a7f56d"
+replace teaching_language =1 if interview_ID =="0f1e6edb-fbdd-49a6-98b4-8a29a96c6fce"
+replace teaching_language =1 if interview_ID =="ddf9180a-94dd-4109-a1d3-e26552185847"
+replace teaching_language =1 if interview_ID =="6129d954-3047-43e7-97a6-b58e5870603b"
+replace teaching_language =1 if interview_ID =="e2a5aa95-3efe-4176-8de2-a917e416f892"
+replace teaching_language =1 if interview_ID =="eff2f8f1-8eca-4e81-937a-6cb060ad35fe"
+replace teaching_language =2 if interview_ID =="56645761-47d9-4afd-abac-085730b553b4"
+replace teaching_language =1 if interview_ID =="ec1cca0d-209a-422a-add1-556ab98ff141"
+replace teaching_language =2 if interview_ID =="5d269cb5-2db4-4006-881f-d0c5cf95d158"
+replace teaching_language =2 if interview_ID =="fc355bf6-b25a-4cf0-9e92-a866fd8c9cda"
+replace teaching_language =1 if interview_ID =="a88f1ef6-f60a-43a9-931f-4739f52c69d7"
+replace teaching_language =1 if interview_ID =="52db65f5-3c9f-4d76-bade-daa69c6693f7"
+replace teaching_language =1 if interview_ID =="d7c38247-d416-4855-b261-5050a11bac45"
+replace teaching_language =2 if interview_ID =="32083ff4-497b-470c-83d3-ef7e448879be"
+replace teaching_language =2 if interview_ID =="d747478e-c559-4fa5-a205-dd55d2e84615"
+replace teaching_language =2 if interview_ID =="7644de24-742d-4cbe-bbc6-0e4916ed7133"
+replace teaching_language =2 if interview_ID =="ba3d30d5-2d1b-4345-88dc-4687ca935d06"
+replace teaching_language =1 if interview_ID =="342492e9-a75c-415e-9303-e4fff2ef6019"
+replace teaching_language =2 if interview_ID =="423b834f-e93d-4f99-a392-d2cedd3a09ec"
+replace teaching_language =1 if interview_ID =="cc2c09e4-d50e-4db2-b70a-1343534512c4"
+replace teaching_language =1 if interview_ID =="5a8c8e58-9d6a-4a8b-8802-079294482ae1"
+replace teaching_language =1 if interview_ID =="763ea2cb-2ba2-4707-b96a-0209f4d0ca55"
+replace teaching_language =2 if interview_ID =="585e2373-1621-41c8-a53c-c84166907d78"
+replace teaching_language =2 if interview_ID =="3eb87b48-e1b1-4004-aced-ffa569170df3"
+replace teaching_language =2 if interview_ID =="a5cbd55d-9a46-4dc9-8d9f-bf71d9e2e05b"
+replace teaching_language =2 if interview_ID =="cbc373d5-d289-4b98-b8b8-8d13ce9e469e"
+replace teaching_language =1 if interview_ID =="50e669b7-5e85-4250-b834-d2bd5ef2f6a2"
+replace teaching_language =2 if interview_ID =="86700737-288a-4b8e-b7fd-0db7c2f3ddce"
+replace teaching_language =1 if interview_ID =="7301d1e7-6c89-4219-9050-27e16a5bb8fb"
+replace teaching_language =2 if interview_ID =="9a624f36-28c4-436e-b0a6-1e4d914d0d30"
+replace teaching_language =2 if interview_ID =="9ece55b5-5dd4-4a2b-9d27-3eb4087925e5"
+replace teaching_language =1 if interview_ID =="41dc0aa6-9bbe-4fa0-aae9-a563b1c49456"
+replace teaching_language =2 if interview_ID =="744dcc9a-7871-446d-9161-ac97cbd808df"
+replace teaching_language =2 if interview_ID =="57af00e3-d5db-4f4d-8741-d5a691d27744"
+replace teaching_language =1 if interview_ID =="82eea277-0346-4c40-b235-30f785cc6a8c"
+replace teaching_language =2 if interview_ID =="f956d6aa-5c0c-4739-9e00-dc2e3a315c71"
+replace teaching_language =2 if interview_ID =="e66b02e8-0253-423a-970c-c354079d37fb"
+replace teaching_language =1 if interview_ID =="76da393a-4246-4d2d-87eb-f5c0fa97db92"
+replace teaching_language =2 if interview_ID =="1eeedaaf-eecb-45b0-a69d-ea362dd1c425"
+replace teaching_language =2 if interview_ID =="dd445b1c-916f-4b7c-9059-24f0a45655a8"
+replace teaching_language =2 if interview_ID =="a3799748-5d88-4de6-a038-c5923894507d"
+replace teaching_language =2 if interview_ID =="500d304c-1438-41e4-96b5-9c38c84f7e39"
+replace teaching_language =2 if interview_ID =="02cddc5e-7724-4cec-8019-f15ca2aaf6da"
+replace teaching_language =2 if interview_ID =="4dd8a3b9-5493-40ac-8625-55221a642082"
+replace teaching_language =2 if interview_ID =="6e2f6dad-354e-4bf6-8452-21008ad88ca7"
+replace teaching_language =2 if interview_ID =="2611f2db-a04a-47da-b261-259ccd28e338"
+replace teaching_language =2 if interview_ID =="ccde7f7d-4080-427c-8805-3c9dea4bf1cc"
+replace teaching_language =2 if interview_ID =="75ded4fd-27e2-440e-90d2-977194e4e0f9"
+replace teaching_language =2 if interview_ID =="1e82a138-c1bd-40da-b7f5-bc1c37566c7f"
+replace teaching_language =2 if interview_ID =="7451cbf4-4128-4e20-aa6a-fd1d09750f3a"
+replace teaching_language =1 if interview_ID =="2ddf89db-e7bb-4cc4-a5bf-3284a3536072"
+replace teaching_language =1 if interview_ID =="2ea90b08-8d95-441e-a8a4-8bd812e0aa57"
+replace teaching_language =2 if interview_ID =="5f3c57b5-a7b6-4031-b106-64c6a4969f01"
+replace teaching_language =2 if interview_ID =="eeda558d-9be8-46c0-a2f7-dc543d34a5dc"
+replace teaching_language =2 if interview_ID =="0efe8e10-f0fa-4fa8-b28e-da8c9192a60f"
+replace teaching_language =1 if interview_ID =="1f111b6a-387e-4e61-81c9-622d207742f7"
+replace teaching_language =2 if interview_ID =="ca332f93-3166-4d0a-90ef-44d651ebf19a"
+replace teaching_language =2 if interview_ID =="3a3d32d6-3da6-4f5d-a72b-c57591490ea2"
+replace teaching_language =2 if interview_ID =="6eb72794-efc0-48af-92e2-a90b403de61f"
+replace teaching_language =2 if interview_ID =="bbdfb929-3c53-480a-a728-4633f329f833"
+replace teaching_language =2 if interview_ID =="8cf7dab5-e361-4e11-a07b-53b4ddb07d3b"
+replace teaching_language =2 if interview_ID =="dab6f85d-1dcf-420d-a750-47681dea2b8e"
+replace teaching_language =2 if interview_ID =="967f49aa-c855-4fcb-b32c-a46e896964a8"
+replace teaching_language =2 if interview_ID =="d2bd98e7-64bd-499e-bbcf-95f2ef86650b"
+replace teaching_language =2 if interview_ID =="5d3e5dbf-5132-4f46-b027-e401fd6611f4"
+replace teaching_language =2 if interview_ID =="7d5e030b-01da-4e7c-b0d7-237e2a63754f"
+replace teaching_language =2 if interview_ID =="6ebca319-337b-40fc-a0e7-170ea5dc629f"
+replace teaching_language =2 if interview_ID =="5d3db37f-b6ac-43ec-9130-af7edc8149cd"
+replace teaching_language =2 if interview_ID =="d67f831d-b280-4f07-b17f-d350388e3e01"
+replace teaching_language =2 if interview_ID =="f830bab3-74e7-45f4-b0e2-8c3885992c71"
+replace teaching_language =2 if interview_ID =="e654d973-eae8-4dfa-849b-4b7b226911bc"
+replace teaching_language =2 if interview_ID =="dbd1c883-0268-4394-a86c-9ba0d1e56d09"
+replace teaching_language =2 if interview_ID =="bc95181a-9571-4c52-afdc-a3eac063cfcb"
+replace teaching_language =2 if interview_ID =="97d71f6c-98da-4cd9-bc86-dce05b13fb44"
+replace teaching_language =2 if interview_ID =="f7f16800-2a85-442b-9f83-69ffbc18021c"
+replace teaching_language =2 if interview_ID =="c36a9870-8acb-41cb-b989-78b7f52753a9"
+replace teaching_language =1 if interview_ID =="7895b14d-fcb2-45d4-b877-8b48e14e4457"
+replace teaching_language =1 if interview_ID =="8ad12e26-7380-4936-8b9d-7771e5b65fec"
+replace teaching_language =2 if interview_ID =="fac43095-6f57-476e-bc3f-6364aab4708e"
+replace teaching_language =2 if interview_ID =="2abb8dd0-08b8-41a7-9637-3e8e64ae7276"
+replace teaching_language =2 if interview_ID =="74ac1b56-86c2-4946-86a3-1b850eeeed35"
+replace teaching_language =2 if interview_ID =="992de92e-d253-43df-9fce-5d6937cc4b1a"
+replace teaching_language =1 if interview_ID =="32c49089-74ee-45b7-9679-59f048b79e51"
+replace teaching_language =2 if interview_ID =="c860a452-4dca-422b-927b-af6f89153562"
+replace teaching_language =2 if interview_ID =="2c2d763c-77a2-46a8-8bcd-a46e75709bca"
+replace teaching_language =2 if interview_ID =="aa71dbcc-9fd7-4b18-8b0e-480a4869766d"
+replace teaching_language =2 if interview_ID =="73fff59c-a151-4d4d-b903-fb2d1485a31d"
+replace teaching_language =2 if interview_ID =="b3d2bace-76f2-4c37-8dae-bd6d50d38057"
+replace teaching_language =2 if interview_ID =="00aa1fe9-0240-4be0-b851-223e592e7bf5"
+replace teaching_language =2 if interview_ID =="5dd52609-089b-4200-9ce6-ec1b0e3100bb"
+replace teaching_language =2 if interview_ID =="de3c2ea7-219c-420e-922b-c6c8d9cc6aa0"
+replace teaching_language =2 if interview_ID =="ff7bcb16-4d87-4766-8924-fb161da2e83e"
+replace teaching_language =2 if interview_ID =="acedeb6c-4873-4230-8a07-2e059b91d746"
+replace teaching_language =2 if interview_ID =="08b9b550-4288-456e-8452-10720aed8fa4"
+
+*Query 4.
+*phonological_awareness
+
+foreach x in phonological_awareness_fr_1 phonological_awareness_fr_2 phonological_awareness_fr_3 phonological_awareness_fr_4 phonological_awareness_fr_5 phonological_awareness_fr_6 phonological_awareness_fr_7 phonological_awareness_fr_8 phonological_awareness_fr_9 phonological_awareness_fr_10 phonological_awareness_frnumber_ phonological_awareness_frnum_att phonological_awareness_frgridAut phonological_awareness_frautoSto phonological_stop_fr{
+	replace `x' = . if B4 == 1
+}
+
+foreach x in  phonological_awareness_sr_1 phonological_awareness_sr_2 phonological_awareness_sr_3 phonological_awareness_sr_4 phonological_awareness_sr_5 phonological_awareness_sr_6 phonological_awareness_sr_7 phonological_awareness_sr_8 phonological_awareness_sr_9 phonological_awareness_sr_10 phonological_awareness_srnumber_ phonological_awareness_srnum_att phonological_awareness_srgridAut phonological_awareness_srautoSto phonological_stop_sr phonological_awareness_pr_1 phonological_awareness_pr_2 phonological_awareness_pr_3 phonological_awareness_pr_4 phonological_awareness_pr_5 phonological_awareness_pr_6 phonological_awareness_pr_7 phonological_awareness_pr_8 phonological_awareness_pr_9 phonological_awareness_pr_10 phonological_awareness_prnumber_ phonological_awareness_prnum_att phonological_awareness_prgridAut phonological_awareness_prautoSto phonological_stop_pr{
+	replace `x' = . if B4 == 2 & survey_language == 2 & official_language == 2
+}
+
+foreach x in   phonological_awareness_wf_1 phonological_awareness_wf_2 phonological_awareness_wf_3 phonological_awareness_wf_4 phonological_awareness_wf_5 phonological_awareness_wf_6 phonological_awareness_wf_7 phonological_awareness_wf_8 phonological_awareness_wf_9 phonological_awareness_wf_10 phonological_awareness_wfnumber_ phonological_awareness_wfnum_att phonological_awareness_wfgridAut phonological_awareness_wfautoSto phonological_stop_wf phonological_awareness_pr_1 phonological_awareness_pr_2 phonological_awareness_pr_3 phonological_awareness_pr_4 phonological_awareness_pr_5 phonological_awareness_pr_6 phonological_awareness_pr_7 phonological_awareness_pr_8 phonological_awareness_pr_9 phonological_awareness_pr_10 phonological_awareness_prnumber_ phonological_awareness_prnum_att phonological_awareness_prgridAut phonological_awareness_prautoSto phonological_stop_pr{
+	replace `x' = . if B4 == 2 & survey_language == 3 & official_language == 3
+}
+
+foreach x in   phonological_awareness_wf_1 phonological_awareness_wf_2 phonological_awareness_wf_3 phonological_awareness_wf_4 phonological_awareness_wf_5 phonological_awareness_wf_6 phonological_awareness_wf_7 phonological_awareness_wf_8 phonological_awareness_wf_9 phonological_awareness_wf_10 phonological_awareness_wfnumber_ phonological_awareness_wfnum_att phonological_awareness_wfgridAut phonological_awareness_wfautoSto phonological_stop_wf  phonological_awareness_sr_1 phonological_awareness_sr_2 phonological_awareness_sr_3 phonological_awareness_sr_4 phonological_awareness_sr_5 phonological_awareness_sr_6 phonological_awareness_sr_7 phonological_awareness_sr_8 phonological_awareness_sr_9 phonological_awareness_sr_10 phonological_awareness_srnumber_ phonological_awareness_srnum_att phonological_awareness_srgridAut phonological_awareness_srautoSto phonological_stop_sr{
+	replace `x' = . if B4 == 2 & survey_language == 4 & official_language == 4
+}
+
+foreach x in  phonological_awareness_wf_1 phonological_awareness_wf_2 phonological_awareness_wf_3 phonological_awareness_wf_4 phonological_awareness_wf_5 phonological_awareness_wf_6 phonological_awareness_wf_7 phonological_awareness_wf_8 phonological_awareness_wf_9 phonological_awareness_wf_10 phonological_awareness_wfnumber_ phonological_awareness_wfnum_att phonological_awareness_wfgridAut phonological_awareness_wfautoSto phonological_stop_wf phonological_awareness_sr_1 phonological_awareness_sr_2 phonological_awareness_sr_3 phonological_awareness_sr_4 phonological_awareness_sr_5 phonological_awareness_sr_6 phonological_awareness_sr_7 phonological_awareness_sr_8 phonological_awareness_sr_9 phonological_awareness_sr_10 phonological_awareness_srnumber_ phonological_awareness_srnum_att phonological_awareness_srgridAut phonological_awareness_srautoSto phonological_stop_sr phonological_awareness_pr_1 phonological_awareness_pr_2 phonological_awareness_pr_3 phonological_awareness_pr_4 phonological_awareness_pr_5 phonological_awareness_pr_6 phonological_awareness_pr_7 phonological_awareness_pr_8 phonological_awareness_pr_9 phonological_awareness_pr_10 phonological_awareness_prnumber_ phonological_awareness_prnum_att phonological_awareness_prgridAut phonological_awareness_prautoSto phonological_stop_pr{
+	replace `x' = . if B4 == 3 & survey_language == 1
+}
+
+//////////////////////////////////////////////////
+
+******OTHER ASSESSMENT SECTIONS TO BE SORTED.
+//////////////////////////////////////////////////
+
+*Query 5
+*fr
+egen corr_lett_fr = rowtotal(letter_knowledge_fr_1 - letter_knowledge_fr_20)
+
+replace letter_knowledge_frnumber_of_ite = corr_lett_fr
+drop corr_lett_fr
+
+*wf
+egen corr_lett_wf = rowtotal(letter_knowledge_wf_1 - letter_knowledge_wf_20)
+
+replace letter_knowledge_wfnumber_of_ite = corr_lett_wf
+
+drop corr_lett_wf
+
+*sr
+egen corr_lett_sr = rowtotal(letter_knowledge_sr_1 - letter_knowledge_sr_20)
+
+replace letter_knowledge_srnumber_of_ite = corr_lett_sr
+
+drop corr_lett_sr
+
+*pr
+egen corr_lett_pr = rowtotal(letter_knowledge_pr_1 - letter_knowledge_pr_20)
+
+replace letter_knowledge_prnumber_of_ite = corr_lett_pr
+
+drop corr_lett_pr
+
+///////////////////////////////////////////////
+*Do for other assessment sections too.
+///////////////////////////////////////////////
+
+*Query 6/7.
+//
+// drop if inlist(interview_ID, "f481619c-ce36-4071-9723-cdef053c2a1b","47e9f5fc-92a6-4c4f-bbb3-3e16af493fd5","3dba3444-f931-4192-a026-0592fed5c4db","9ae1afd4-343c-4676-aaa1-794fcf1401f0","ce096236-6d51-45ee-9bf3-c71e9644f103","db5e40e9-5901-4841-bb67-5ae1a3c6a7eb","d9c218e5-e0e6-493c-a1d1-0fabfbfc039b","5c2a2905-8d24-420d-8a50-8031ecf83e0e","f925fc1d-0d39-41ac-95d4-93679ff6d84c","cf6b59a7-6ed5-4f0a-83e1-3b6554e76190","5e1ab6e9-06c6-439c-b861-8fc5bef186e1","e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4","7e41401a-2629-47d3-989b-331096ec30d2","5f727244-96b2-401e-8b19-5a3b5bb464ce","ae1ce825-0716-42b8-8df0-f4c03de0b574","05cc7dad-1032-4141-b32f-b29e2b442c53","b508dc8b-253b-42b1-b88f-435fdbe52869","fd078077-4f3f-4e65-82ce-7f10b8982c97")
+
+*GPS issue
+drop if inlist(interview_ID, "2c2d763c-77a2-46a8-8bcd-a46e75709bca", "00aa1fe9-0240-4be0-b851-223e592e7bf5","5dd52609-089b-4200-9ce6-ec1b0e3100bb")
+
+
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 16-12 v01.dta",replace
-
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 17-12 v01.dta",replace
 
 // Semantic - No auto stop
 // Phonological - Auto stop after first 5 wrongs
@@ -1642,6 +2009,37 @@ replace issue_comment ="The interviews have duplicates, kindly clarify"
 keep if int_dup>0
 cap export excel $var_kept int_dup issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Interv_dupl_main_issues,replace)firstrow(variables)
 restore
+
+////////
+
+*Official language against Survey_language
+*Grade 1 C1.
+preserve
+replace issue_comment ="The survey language is different from the official language yet it is grade 1 student, Kindly clarify"
+keep if survey_language == 1 & B4 == 1
+cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Language_mismatch_gr1,replace)firstrow(variables)
+restore 
+
+*Grade 1 C3.
+preserve
+replace issue_comment ="The survey language is not French yet the student is grade 3, Kindly clarify"
+keep if survey_language != 1 & B4 == 3
+cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Language_mismatch_gr3,replace)firstrow(variables)
+restore 
+
+*Teaching language against school.
+bysort Ecole teaching_language: gen tag = _n == 1
+bysort Ecole: egen teaching_language_uniq = total(tag)
+
+sort Ecole teaching_language
+
+preserve
+replace issue_comment ="The school teaching language seems inconsitent, kindly clarify"
+keep if teaching_language_uniq > 1
+cap export excel $var_kept issue_comment using "MOHEBS DQA issues ${dates} v01.xlsx", sheet(Teach_School,replace)firstrow(variables)
+restore 
+
+/////////
 
 *Semantic section
 *Semantic 1
@@ -2287,7 +2685,7 @@ drop if KEY == "uuid:1c4905eb-47ba-4a42-b1be-3025b87a791d"
 
 *save dataset
 cd "${gsdData}\Raw"
-save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 16-12 v01.dta",replace
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 17-12 v01.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

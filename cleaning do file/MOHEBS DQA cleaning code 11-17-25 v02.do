@@ -21,7 +21,7 @@ cd "${gsdData}\Raw"
 
 ***import dataset
 
-import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1765947737271.csv", case(preserve)
+import delimited "Main\Student\MOHEBS-MOHEBS_Baseline_Student_Survey_Field-1766035164941.csv", case(preserve)
 
 *****************************************************************************************************************
 ****Formating date
@@ -576,9 +576,9 @@ foreach x in letter_knowledge_wf_15	letter_knowledge_wf_16	letter_knowledge_wf_1
 }
 
 egen letter_knowledge_wfnum_of_ite1 = rowtotal(letter_knowledge_wf_1 - letter_knowledge_wf_20)
-replace letter_knowledge_wfnumber_of_ite = letter_knowledge_wfnum_of_ite1 if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d")
+replace letter_knowledge_wfnumber_of_ite = letter_knowledge_wfnum_of_ite1 if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d","67b71d7b-c519-402a-8ecb-9bff07849803", "3ec4200b-e4fc-4b5d-8508-165b7dda4b7d","dd2019e6-d5da-4e39-a73e-086054939141")
 
-replace letter_knowledge_wfitems_per_min = letter_knowledge_wfnumber_of_ite if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d")
+replace letter_knowledge_wfitems_per_min = letter_knowledge_wfnumber_of_ite if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d","67b71d7b-c519-402a-8ecb-9bff07849803","3ec4200b-e4fc-4b5d-8508-165b7dda4b7d","dd2019e6-d5da-4e39-a73e-086054939141")
 
 foreach x in letter_knowledge_wf_Bduration	letter_knowledge_wf_Btime_remain	letter_knowledge_wf_BgridAutoSto	letter_knowledge_wf_Bnumber_of_i	letter_knowledge_wf_Bnum_att	letter_knowledge_wf_Bitems_per_m{
 	replace `x' = . if inlist(interview_ID,"a3799748-5d88-4de6-a038-c5923894507d") | letter_knowledge_wfnumber_of_ite < 13
@@ -945,7 +945,7 @@ destring read_invented_word_wf_Bnum_att,replace
 replace read_invented_words_wf_Btime_rem = read_invented_words_wf_Bduration - 63 if read_invented_words_wf_Bnumber_o == 0 & read_invented_word_wf_Bnum_att == 0
 
 egen corrr1 = rowtotal(read_invented_words_wf_B_1 -read_invented_words_wf_B_30)
-replace read_invented_words_wf_Bnumber_o = corrr1 if read_invented_word_wf_Bnum_att == 0 & read_invented_words_wf_Bnumber_o == 0 
+replace read_invented_words_wf_Bnumber_o = corrr1 if read_invented_word_wf_Bnum_att == 0 & read_invented_words_wf_Bnumber_o == 0
 
 replace read_invented_words_wf_Bitems_pe = round(60*(corrr1/(read_invented_words_wf_Bduration-read_invented_words_wf_Btime_rem))) if read_invented_word_wf_Bnum_att == 0 & read_invented_words_wf_Bnumber_o == 0 | !missing(read_invented_words_wf_Btime_rem)
 
@@ -954,6 +954,11 @@ replace read_invented_word_wf_Bnum_att = att1 if read_invented_word_wf_Bnum_att 
 
 drop att1 corrr1
 
+egen corrr1 = rowtotal(read_invented_words_wf_1 -read_invented_words_wf_20)
+replace read_invented_words_wfnumber_of_ = corrr1 if inlist(interview_ID ,"c8ff5326-e9dd-4955-94ef-52e0164bd216","73c00981-7704-45c1-a0b1-c68f526a6c20")
+
+replace read_invented_words_wfitems_per_ = round(60*(corrr1/(read_invented_words_wfduration-read_invented_words_wftime_remai))) if inlist(interview_ID ,"c8ff5326-e9dd-4955-94ef-52e0164bd216","73c00981-7704-45c1-a0b1-c68f526a6c20") 
+drop corrr1
 
 *sr
 foreach x in read_invented_words_sr_9	read_invented_words_sr_10	read_invented_words_sr_11	read_invented_words_sr_12	read_invented_words_sr_13	read_invented_words_sr_14	read_invented_words_sr_15	read_invented_words_sr_16	read_invented_words_sr_17	read_invented_words_sr_18	read_invented_words_sr_19	read_invented_words_sr_20{
@@ -1874,15 +1879,61 @@ drop corr_lett_pr
 
 *Query 6/7.
 //
-// drop if inlist(interview_ID, "f481619c-ce36-4071-9723-cdef053c2a1b","47e9f5fc-92a6-4c4f-bbb3-3e16af493fd5","3dba3444-f931-4192-a026-0592fed5c4db","9ae1afd4-343c-4676-aaa1-794fcf1401f0","ce096236-6d51-45ee-9bf3-c71e9644f103","db5e40e9-5901-4841-bb67-5ae1a3c6a7eb","d9c218e5-e0e6-493c-a1d1-0fabfbfc039b","5c2a2905-8d24-420d-8a50-8031ecf83e0e","f925fc1d-0d39-41ac-95d4-93679ff6d84c","cf6b59a7-6ed5-4f0a-83e1-3b6554e76190","5e1ab6e9-06c6-439c-b861-8fc5bef186e1","e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4","7e41401a-2629-47d3-989b-331096ec30d2","5f727244-96b2-401e-8b19-5a3b5bb464ce","ae1ce825-0716-42b8-8df0-f4c03de0b574","05cc7dad-1032-4141-b32f-b29e2b442c53","b508dc8b-253b-42b1-b88f-435fdbe52869","fd078077-4f3f-4e65-82ce-7f10b8982c97")
+// drop if inlist(interview_ID, "f481619c-ce36-4071-9723-cdef053c2a1b","47e9f5fc-92a6-4c4f-bbb3-3e16af493fd5","3dba3444-f931-4192-a026-0592fed5c4db","9ae1afd4-343c-4676-aaa1-794fcf1401f0","ce096236-6d51-45ee-9bf3-c71e9644f103","d9c218e5-e0e6-493c-a1d1-0fabfbfc039b","5c2a2905-8d24-420d-8a50-8031ecf83e0e","f925fc1d-0d39-41ac-95d4-93679ff6d84c","cf6b59a7-6ed5-4f0a-83e1-3b6554e76190","5e1ab6e9-06c6-439c-b861-8fc5bef186e1","e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4","7e41401a-2629-47d3-989b-331096ec30d2","5f727244-96b2-401e-8b19-5a3b5bb464ce","ae1ce825-0716-42b8-8df0-f4c03de0b574","05cc7dad-1032-4141-b32f-b29e2b442c53","b508dc8b-253b-42b1-b88f-435fdbe52869","fd078077-4f3f-4e65-82ce-7f10b8982c97")
 
 *GPS issue
 drop if inlist(interview_ID, "2c2d763c-77a2-46a8-8bcd-a46e75709bca", "00aa1fe9-0240-4be0-b851-223e592e7bf5","5dd52609-089b-4200-9ce6-ec1b0e3100bb")
 
+*Corrections on school grade data
+*Student-CE1
+replace Ecole = 60 if inlist(interview_ID,"34240a67-95fe-48e6-9dc3-481a5eb995f8")
+drop if inlist(interview_ID,"db5e40e9-5901-4841-bb67-5ae1a3c6a7eb","f155b559-9343-422f-b48a-534e15410db8")
+
+*CP
+drop if inlist(interview_ID,"50ea1893-d501-4ac3-9caf-39c180bc5790","ec024bd8-7641-4d5f-b311-045fc7b45c4c")
+
+replace Ecole = 60 if inlist(interview_ID,"6f2c99cb-779a-47ef-ba75-450073085f94","d0273b2f-d376-49d6-b1dc-82fc45816d0d","4aad058f-af72-471c-95cb-20e762b2f6d8","fc083b06-21a2-4665-8228-d741d3d22d15","18e148e8-0d56-481d-addc-401cd8a79600","33af1dd8-7b97-40ca-90a3-ff9bf5cc78b9")
+
+*CE1
+replace Ecole = 17 if inlist(interview_ID,"f6d5a07d-0d19-4411-a497-155614f3e724")
+replace Ecole = 60 if inlist(interview_ID,"cdacae65-f165-42ee-8668-d30927fa89b4","a83d057f-42b8-4ce6-a7e3-c2fb4f1e9cf4","323e8c24-dd56-4749-a507-d0699efc9619","687b58cd-3781-4864-8956-3254c912f3dc","80f5c997-81f6-4501-b289-0acbe647690f","64f00d50-e875-4e77-92c1-f4d53ba1a922","2eeabd68-3ed4-49f5-a54d-375966e9f7e8","38bdc126-72b7-4df0-8444-c471ca2a87e4")
+
+*semantic 6-12 corr
+replace semantic_language_timer1time_rem = 0 if inlist(interview_ID,"c661d318-bc92-4a49-bdaa-82467b79d913","1e0571ed-db76-4822-8c23-8af79ce41085")
+
+replace semantic_language_timer2time_rem = 0 if interview_ID == "47e9f5fc-92a6-4c4f-bbb3-3e16af493fd5"
+
+*09-12 Corrections
+egen corr_red_fr = rowtotal(read_familiar_words_wf_1 - read_familiar_words_wf_20)
+
+replace read_familiar_words_wfnumber_of_ = corr_red_fr
+
+drop corr_red_fr
+
+*Dropping incomplete interviews.
+drop if inlist(interview_ID,"eb556751-a143-44ca-a4fa-bc9a93833f69","9e4ed0cc-3d30-4f77-814d-a4c56e292587","3dba3444-f931-4192-a026-0592fed5c4db","bbdfb929-3c53-480a-a728-4633f329f833","d9c218e5-e0e6-493c-a1d1-0fabfbfc039b","47e9f5fc-92a6-4c4f-bbb3-3e16af493fd5","ce096236-6d51-45ee-9bf3-c71e9644f103","5f855822-db47-4379-8082-f4b892591670")
+
+drop if inlist(interview_ID,"de3c2ea7-219c-420e-922b-c6c8d9cc6aa0","fd078077-4f3f-4e65-82ce-7f10b8982c97","05cc7dad-1032-4141-b32f-b29e2b442c53")
+
+drop if inlist(interview_ID,"7869334c-cd3d-4388-8419-a216dd14caef","f2a4e283-d553-4d14-ad0e-a58a1bcb8424","8ff22001-8c87-4dd9-98d4-eeaa9a822b54","9ed45e5b-3930-43cb-b03c-b810974c8c56","43ac1534-7f8e-425d-88f8-cc93e82f173b","78ba35a8-bcb9-405a-9f4e-266a98275e54","419c2b74-de5a-4aad-a54b-280d098d1ce5","840ba10d-cf58-4833-b331-89cd74cc9772")
+
+drop if inlist(interview_ID,"2d9cb548-7200-48a5-9566-e17039a1bff8","06c17ef7-1608-458f-8473-2f736870f4b5","86cd1e56-aa42-499b-b877-74f71485d830","c95c2b98-bd5b-4dcf-9238-210b23130ed2","38e8446d-f142-427a-b3cf-027bb64cd917","f07daf03-9221-4709-9d1c-e99ebe5119bd","cef32e30-7229-4564-8eb9-541425055a67","22495d80-cb3c-435f-b21f-d801f89a6629")
+
+drop if inlist(interview_ID,"840ef329-dacb-462e-9009-f55d1296f1b4","126795ed-3114-45b3-8d85-d753a0d7108f","827947db-1c1a-4ad7-9979-6ae5296b56d9","7dc317cb-d5b9-46bd-b8e2-7195df5fbb6d","8ba63e44-856f-4478-8d36-c8ae3d911b19","d3816a4b-33c6-4b32-80d2-d89b53157feb","9dcd5ddd-7c4f-49c4-a82e-49cdc3a63daa","b55c5039-e885-42f7-b59c-3352d7a7ba4a")
+
+drop if inlist(interview_ID,"46d53249-ec7e-4b7a-87d5-ed5f0f5c8ca9","6beb9aa4-212a-4448-833c-0ae62c737a71","a732939c-eee6-45d4-bfa5-a226f9ff321c","349f62ac-f24d-47ae-92c8-3b893d44d528","19641916-5d8a-44dc-84f7-14687a0f1dc5","5d84205a-b25f-4b07-ba84-ad4967439d32","7416e101-ba15-4426-b0ce-f749708f7653","d0df4be5-d867-4bf2-8354-3273d271108b")
+
+drop if inlist(interview_ID,"2353cf8a-8572-440f-bf88-7fe4b897108b","0ac45d66-8ac1-43e3-892d-526c644742fa")
+
+drop if inlist(interview_ID,"159f4fce-be16-48c4-9bfb-23d143ee91db")
+
+drop if inlist(interview_ID,"a7ff331e-4908-4621-8ef0-88a94e169773","f5df61f6-7e29-4a91-af8f-cfe4d479a6a5","40d3557b-f93e-497f-b805-dea78f5f3e59")
+
+
 
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 17-12 v01.dta",replace
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 18-12 v01.dta",replace
 
 // Semantic - No auto stop
 // Phonological - Auto stop after first 5 wrongs
@@ -2678,14 +2729,96 @@ lab var  Lang_9_4"I lecture in the majority language and give instructions in al
 *correction
 drop if KEY == "uuid:1c4905eb-47ba-4a42-b1be-3025b87a791d"
 
+*correction school
+replace School = 21 if KEY == "uuid:b2fb7271-d881-4991-b183-34112d05e4f5"
+replace School = 35 if inlist(KEY,"uuid:4cb3de4f-a249-40a4-9328-4ef0599449e5","uuid:232da800-f169-45ac-9abf-a05c1cd4e259")
+
+*6-12
+replace Policy_2c_7 = 0 if inlist(KEY,"uuid:4a079558-5dad-4c9a-bad7-b855dd6888ac","uuid:5d6da021-050f-4c5b-b735-c843bb904eeb","uuid:8ea4c161-60fd-4438-91f4-72a2578e48fe")
+replace Policy_2c_0 = 1 if inlist(KEY,"uuid:4a079558-5dad-4c9a-bad7-b855dd6888ac","uuid:5d6da021-050f-4c5b-b735-c843bb904eeb","uuid:8ea4c161-60fd-4438-91f4-72a2578e48fe")
+replace Policy_2c = "0" if inlist(KEY,"uuid:4a079558-5dad-4c9a-bad7-b855dd6888ac","uuid:5d6da021-050f-4c5b-b735-c843bb904eeb","uuid:8ea4c161-60fd-4438-91f4-72a2578e48fe")
+
+replace Policy_2c_2 = 0 if inlist(KEY,"uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9","uuid:821df7ab-67ff-437a-8ae3-8fc29415d968")
+replace Policy_2c_0 = 1 if inlist(KEY,"uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9","uuid:821df7ab-67ff-437a-8ae3-8fc29415d968")
+replace Policy_2c = "0" if inlist(KEY,"uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9","uuid:821df7ab-67ff-437a-8ae3-8fc29415d968")
+
+replace Policy_2c_3 = 0 if inlist(KEY,"uuid:f8541d27-5e55-4799-8914-4feb81647cff")
+replace Policy_2c_0 = 1 if inlist(KEY,"uuid:f8541d27-5e55-4799-8914-4feb81647cff")
+replace Policy_2c = "0" if inlist(KEY,"uuid:f8541d27-5e55-4799-8914-4feb81647cff")
+
+replace Policy_4c_2 = 0 if inlist(KEY,"uuid:114000bf-25ef-4e9f-a3de-406820fcc4f9","uuid:821df7ab-67ff-437a-8ae3-8fc29415d968")
+replace Policy_4c_0 = 1 if inlist(KEY,"uuid:4e5c8c66-8fef-4357-b7ed-c05c0283e5f1","uuid:c127f20c-c009-4c82-8e38-df6a8318b1e7","uuid:0643e63e-745d-4163-8d74-2811197ae644")
+replace Policy_4c = "0" if inlist(KEY,"uuid:4e5c8c66-8fef-4357-b7ed-c05c0283e5f1","uuid:c127f20c-c009-4c82-8e38-df6a8318b1e7","uuid:0643e63e-745d-4163-8d74-2811197ae644")
+
+*9-12
+replace Policy_4b_1 = 120 if KEY == "uuid:54b234c2-1262-42d6-8319-3fee863498bc"
+
+replace Policy_4b_4 = 120 if KEY == "uuid:54b234c2-1262-42d6-8319-3fee863498bc"
+
+replace Policy_5b_1 = 120 if KEY == "uuid:54b234c2-1262-42d6-8319-3fee863498bc"
+replace Policy_5b_2 = 120 if KEY == "uuid:54b234c2-1262-42d6-8319-3fee863498bc"
+
+replace Policy_4c_2 = 0 if inlist(KEY,"uuid:6534acef-d634-4f96-817f-2f09a8f71a03","uuid:54b234c2-1262-42d6-8319-3fee863498bc")
+replace Policy_4c_0 = 1 if inlist(KEY,"uuid:6534acef-d634-4f96-817f-2f09a8f71a03","uuid:54b234c2-1262-42d6-8319-3fee863498bc")
+replace Policy_4c = "0" if inlist(KEY,"uuid:6534acef-d634-4f96-817f-2f09a8f71a03","uuid:54b234c2-1262-42d6-8319-3fee863498bc")
+
+replace Policy_4c_7 = 0 if KEY == "uuid:56324526-16fb-4629-8476-4c83651f6c89"
+replace Policy_4c_0 = 1 if KEY == "uuid:56324526-16fb-4629-8476-4c83651f6c89"
+replace Policy_4c = "0" if KEY == "uuid:56324526-16fb-4629-8476-4c83651f6c89"
+
+replace Policy_2c_7 = 0 if KEY == "uuid:397f2d5a-75d7-4a89-a4e3-13a64fda34f9"
+replace Policy_2c_0 = 1 if KEY == "uuid:397f2d5a-75d7-4a89-a4e3-13a64fda34f9"
+replace Policy_2c = "0" if KEY == "uuid:397f2d5a-75d7-4a89-a4e3-13a64fda34f9"
+
+*10-12
+replace Policy_2c_7 = 0 if KEY == "uuid:909ffbd4-1771-4958-81a6-7c9c05b86d0c"
+replace Policy_2c_0 = 1 if KEY == "uuid:909ffbd4-1771-4958-81a6-7c9c05b86d0c"
+replace Policy_2c = "0" if KEY == "uuid:909ffbd4-1771-4958-81a6-7c9c05b86d0c"
+
+replace Policy_4c_2 = 0 if KEY == "uuid:c0153de4-6d99-4f05-8deb-c9f34ec00b66"
+replace Policy_4c_0 = 1 if KEY == "uuid:c0153de4-6d99-4f05-8deb-c9f34ec00b66"
+replace Policy_4c = "0" if KEY == "uuid:c0153de4-6d99-4f05-8deb-c9f34ec00b66"
+
+*11-12
+replace Policy_3b_4 = 240 if KEY == "uuid:1d248b04-b7b5-44e1-b1eb-cbb985a2602c"
+
+*12-12
+replace Policy_4b_1 = 60 if KEY == "uuid:e6415062-657e-47f4-98cc-b67fd5c15ba1"
+replace Policy_3b_2 = 120 if KEY == "uuid:868ebc27-e83b-4c04-beee-df1ff11885ce"
+replace Policy_2b_2 = 60 if KEY == "uuid:868ebc27-e83b-4c04-beee-df1ff11885ce"
+
+*13-12
+replace Policy_4c_3 = 0 if KEY == "uuid:ee853fdd-1c1a-42d5-8f93-8b03c7f788a2"
+replace Policy_4c_0 = 1 if KEY == "uuid:ee853fdd-1c1a-42d5-8f93-8b03c7f788a2"
+replace Policy_4c = "0" if KEY == "uuid:ee853fdd-1c1a-42d5-8f93-8b03c7f788a2"
+
+*15-12
+replace Policy_2c_5 = 0 if KEY == "uuid:0ab3b0f1-b3f9-4b99-b152-ea1d1a748ef0"
+replace Policy_2c_0 = 1 if KEY == "uuid:0ab3b0f1-b3f9-4b99-b152-ea1d1a748ef0"
+replace Policy_2c = "0" if KEY == "uuid:0ab3b0f1-b3f9-4b99-b152-ea1d1a748ef0"
+
+replace Policy_4b_1 = 60 if KEY == "uuid:f4c9fda5-00c5-4ee9-a3df-28a2eb28f27a"
+
+
+replace Policy_4c_3 = 0 if KEY == "uuid:ee853fdd-1c1a-42d5-8f93-8b03c7f788a2"
+replace Policy_4c_0 = 1 if KEY == "uuid:ee853fdd-1c1a-42d5-8f93-8b03c7f788a2"
+replace Policy_4c = "0" if KEY == "uuid:ee853fdd-1c1a-42d5-8f93-8b03c7f788a2"
+
+replace Policy_4c_1 = 0 if KEY == "uuid:f4c9fda5-00c5-4ee9-a3df-28a2eb28f27a"
+replace Policy_4c_0 = 1 if KEY == "uuid:f4c9fda5-00c5-4ee9-a3df-28a2eb28f27a"
+replace Policy_4c = "0" if KEY == "uuid:f4c9fda5-00c5-4ee9-a3df-28a2eb28f27a"
+
+replace Policy_4c_2 = 0 if KEY == "uuid:b917086a-00ec-4b5d-b51e-e3c66eb9152f"
+replace Policy_4c_0 = 1 if KEY == "uuid:b917086a-00ec-4b5d-b51e-e3c66eb9152f"
+replace Policy_4c = "0" if KEY == "uuid:b917086a-00ec-4b5d-b51e-e3c66eb9152f"
+
 
 // drop START_TIME_str END_TIME_str grppp1 lan1 Calc1 Calc2 Calc3 Calc4 Calc5 Calc6 Calc7 Calc8 Calc9 Calc10 Calc11 Calc12 lang_calc1 Policy_calc Firstname	Lastname	RES_NAME
 
-// drop if INT_DATE > td(05dec2025)
 
 *save dataset
 cd "${gsdData}\Raw"
-save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 17-12 v01.dta",replace
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 18-12 v01.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

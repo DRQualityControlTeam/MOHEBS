@@ -2643,8 +2643,209 @@ drop if inlist(interview_ID,"9abf1bf7-c3e2-4613-ae84-030adc69af86","b82ab1de-c81
 *18-12
 drop if inlist(interview_ID,"efbf2b31-fa00-4227-89a2-c0399a58414c","0587f7b5-8cbd-4ccd-97b2-06b0c85ef07f","8906ba92-3881-4b0c-a77d-088f42df9d46","d6717c6c-f9e4-49ea-8827-b23b46dc9aeb","663ad069-2a87-4c15-9ef2-06b4fecde15b","983ef8a4-d482-4d35-bd4b-d0d0bacafc0d","2b1c2df1-4df9-4638-9edf-4cdef133567a","44b42643-c356-477b-a4a8-0411c1531b41")
 
+replace teaching_language = 1 if interview_ID == "59dbde91-a816-4240-b61a-0c83e967dc7b"
+replace teaching_language = 1 if interview_ID == "0ada33d9-ea04-4d6f-9d0f-21d9883381f8"
+replace teaching_language = 1 if interview_ID == "af771052-6cc1-4b80-b9da-4e4ad39a22ff"
+replace teaching_language = 3 if interview_ID == "aff4970e-afe1-4cd8-926b-27a6383cdac9"
+replace teaching_language = 3 if interview_ID == "a6f7672a-4526-48c3-b868-7b3b946a204d"
+replace teaching_language = 3 if interview_ID == "9dff3ae8-b9fe-451c-b3d4-edcbdcb7c633"
+replace teaching_language = 3 if interview_ID == "7d9a0607-313d-4307-968c-42e0fa0736ed"
+replace teaching_language = 3 if interview_ID == "184a0f0c-776b-452d-b6f0-41ce75d4a0c7"
+replace teaching_language = 3 if interview_ID == "be4d5e90-25ce-475b-b8bf-bdac2beaa18a"
+replace teaching_language = 3 if interview_ID == "13165d81-f3c3-4341-b45c-3a6a14bd0974"
+replace teaching_language = 3 if interview_ID == "a07295bf-c64c-4f2a-b136-60e2bc338696"
+replace teaching_language = 3 if interview_ID == "c01283f9-d213-4ea0-a22a-fec3a05589c9"
+replace teaching_language = 3 if interview_ID == "2a7febcd-9c97-4f9a-8597-4bf1fd6ceca6"
+replace teaching_language = 3 if interview_ID == "e088d5f3-5411-410d-95b4-3c6b7c89c30d"
+replace teaching_language = 3 if interview_ID == "e3a9e1fd-3a11-477a-bae9-1f1ed59f7b31"
+replace teaching_language = 3 if interview_ID == "dc237945-7bef-4bb6-ac31-2f0092bab4b4"
+replace teaching_language = 3 if interview_ID == "ec85a16c-b26c-43a6-ad32-273918f28686"
+replace teaching_language = 3 if interview_ID == "420aa0b0-2a95-445a-9842-a2c1cc7fac6b"
+replace teaching_language = 3 if interview_ID == "101fe090-af9d-4869-ae28-442cb9270d98"
+replace teaching_language = 3 if interview_ID == "f387aff0-d066-4ba9-9b1e-556e347178f7"
+replace teaching_language = 3 if interview_ID == "68eb3021-03af-4741-b7ac-22ad4ef0f568"
+replace teaching_language = 3 if interview_ID == "6ea03661-f088-4a1a-ab64-8be8950fdc7a"
+replace teaching_language = 3 if interview_ID == "9f4485ba-e1ff-4965-9270-b7bcecd8b13c"
+replace teaching_language = 3 if interview_ID == "090b9158-d427-4856-9cf3-beec47354d2d"
+replace teaching_language = 3 if interview_ID == "da59b912-708b-4d22-b7d8-f2fe57b9feaa"
+replace teaching_language = 3 if interview_ID == "afe3e4d0-17d6-4b1b-b0ca-a00acbb80348"
+replace teaching_language = 3 if interview_ID == "7cd7e302-e525-4511-95a8-93d2a4b0d7a6"
+replace teaching_language = 3 if interview_ID == "06691d62-7cab-4ca0-a0aa-55f7fbc12867"
+replace teaching_language = 3 if interview_ID == "b76f6e77-2054-409b-9c96-c9f01394e27e"
+replace teaching_language = 3 if interview_ID == "5e33b04c-1075-4ce6-8720-0f9fa5715ae9"
+replace teaching_language = 3 if interview_ID == "a9a22aea-03d3-4b02-a9b8-1c15b3af14b9"
+replace teaching_language = 3 if interview_ID == "49e96a47-8eaa-4d0c-8019-45dfc8b18cfe"
+replace teaching_language = 3 if interview_ID == "59b85ddf-63ec-4265-81e6-a804c4fd21e7"
+replace teaching_language = 1 if interview_ID == "25d15318-2e38-41a9-ba7f-a56de906cc7f"
+replace teaching_language = 1 if interview_ID == "7c4c7db5-3f6e-457d-9f2f-516a002cdbfd"
+replace teaching_language = 1 if interview_ID == "19ebb2e3-ed01-4712-bb91-a745aa914ea6"
+replace teaching_language = 1 if interview_ID == "290377b2-af13-407b-8748-b0c84324c520"
+replace teaching_language = 1 if interview_ID == "61063fa4-3a7c-42db-b2c0-133bcff996b3"
+replace teaching_language = 1 if interview_ID == "ba8225bd-a1eb-4bad-8aab-f5689a809b31"
+replace teaching_language = 1 if interview_ID == "d2edba9b-becb-4b92-973f-ac1e5139a783"
+replace teaching_language = 1 if interview_ID == "fb84eda8-e8cd-4d65-9b81-548353f17d74"
+replace teaching_language = 1 if interview_ID == "d63bb10e-dbb7-4a2d-8414-9d40b5b918ea"
+replace teaching_language = 1 if interview_ID == "9953b512-5f6f-4a91-8e6a-e58fb348bc93"
+replace teaching_language = 1 if interview_ID == "5d68e054-e0a9-41e0-b0c3-ba1f2ddad9b7"
+replace teaching_language = 1 if interview_ID == "766f8ad4-f11a-4816-ba35-3702e5cf7e19"
+replace teaching_language = 1 if interview_ID == "d7e78a59-5874-4239-9391-8f4b0865cd18"
+replace teaching_language = 1 if interview_ID == "19fa8c35-c778-44f6-ae05-02d4834d11e2"
+replace teaching_language = 1 if interview_ID == "2322ffe1-bc85-4769-99f5-57cf3156f581"
+replace teaching_language = 1 if interview_ID == "b1b97ec2-6b9e-4dca-8ad3-db2e66ce29e2"
+replace teaching_language = 3 if interview_ID == "54b13313-4cdb-44cc-b865-40d355e602ad"
+replace teaching_language = 1 if interview_ID == "d238436d-fee5-46e7-ad4b-1e490f54c108"
+replace teaching_language = 3 if interview_ID == "72729516-fd51-413d-b037-3c02210c5f0e"
+replace teaching_language = 3 if interview_ID == "a19467a0-938a-4869-b10e-fdaa1f14b2bb"
+replace teaching_language = 3 if interview_ID == "438a6bd5-9aad-4d7e-830d-e1cb94e83201"
+replace teaching_language = 3 if interview_ID == "4cf5864e-baf6-44d7-a490-36a337ab67ae"
+replace teaching_language = 3 if interview_ID == "81a32ca1-e57b-420a-a366-75606653b461"
+replace teaching_language = 3 if interview_ID == "f5aafe4d-a460-4b3a-b678-c632fb56ea2a"
+replace teaching_language = 3 if interview_ID == "d2e1f3ef-b614-4850-a693-23ef219b50d7"
+replace teaching_language = 3 if interview_ID == "2fbb0ba5-3d7e-4d05-8d91-d13e0867b956"
+replace teaching_language = 3 if interview_ID == "48db46d8-b3ac-4ab5-b06b-1606d3a7e701"
+replace teaching_language = 3 if interview_ID == "792d4e39-5497-486e-962b-6a717625d339"
+replace teaching_language = 3 if interview_ID == "69a61dac-f835-4015-b842-1ca56a9415b9"
+replace teaching_language = 3 if interview_ID == "20617e2e-c9b3-42c2-a226-9664955f51c5"
+replace teaching_language = 3 if interview_ID == "e7b11eb9-8bd0-4b91-8b27-e40aca35b94c"
+replace teaching_language = 3 if interview_ID == "7228d066-0295-426a-821b-454645ef4c8a"
+
+
 *19-12
 drop if inlist(interview_ID,"b92ff6f5-791f-4d47-b488-729482e50d16","21b9a97e-a0be-4f82-9a47-bfbd86f0a076")
+
+replace teaching_language = 1 if interview_ID == "06fb6339-f6c5-4134-899c-23317d36e879"
+replace teaching_language = 1 if interview_ID == "ac6bd1de-8a68-4829-bdff-cbc1f4296fcc"
+replace teaching_language = 1 if interview_ID == "1eb16329-c5e1-4d76-b8ca-f13f6740a130"
+replace teaching_language = 4 if interview_ID == "48765bee-7382-4dc4-a8ad-b043f6e8f2cd"
+replace teaching_language = 4 if interview_ID == "5136b684-922f-49d7-b4f3-5e2e773633c7"
+replace teaching_language = 4 if interview_ID == "4c6b70ab-34b6-45db-8821-063a62965351"
+replace teaching_language = 4 if interview_ID == "9a07d9d9-e9b8-467e-b22a-b31cbb110b0a"
+replace teaching_language = 4 if interview_ID == "0658f402-e5a1-44c8-8f07-b7b378fa2bd6"
+replace teaching_language = 4 if interview_ID == "ca40162a-c1df-4535-8615-1ec454c289e2"
+replace teaching_language = 4 if interview_ID == "4e93e87f-edc3-4cac-8bc3-f17acbe9e479"
+replace teaching_language = 4 if interview_ID == "53922b68-5cb7-42cc-8292-5658de74f50a"
+replace teaching_language = 4 if interview_ID == "c0f2eeba-6677-4d04-a74e-4c6f3c3fc46d"
+replace teaching_language = 4 if interview_ID == "d08041ee-96d8-44d0-a3e8-c8536bdff41b"
+replace teaching_language = 4 if interview_ID == "d5d38bcd-9fde-4930-aaff-1753911fcca8"
+replace teaching_language = 4 if interview_ID == "32347704-d81c-4e2e-bbf8-3b002684271b"
+replace teaching_language = 4 if interview_ID == "dd98c291-43d0-4946-9124-dea638d44596"
+replace teaching_language = 4 if interview_ID == "4ecbd3bc-1376-4e5f-b42a-9612d7f78112"
+replace teaching_language = 4 if interview_ID == "7183fd95-fe90-47ab-8130-2a8aa5460802"
+replace teaching_language = 4 if interview_ID == "9262473b-7b29-4edd-a4ee-0aae3bef517e"
+replace teaching_language = 4 if interview_ID == "18b0147a-3936-4b70-a157-228cbc569d96"
+replace teaching_language = 4 if interview_ID == "0c173654-0a49-410c-a638-e63921cc4577"
+replace teaching_language = 4 if interview_ID == "9b9f431d-25d6-498a-9aec-442b33c38002"
+replace teaching_language = 4 if interview_ID == "3df4f11a-06a6-405c-bee1-cb2bf9a5068c"
+replace teaching_language = 4 if interview_ID == "3a563f9e-0c9a-4355-b989-0e812fecb7a3"
+replace teaching_language = 4 if interview_ID == "9b08b48a-cacd-4878-9711-94b876d7ac52"
+replace teaching_language = 4 if interview_ID == "795e3e03-59cd-4798-9fd5-64b370d25d11"
+replace teaching_language = 4 if interview_ID == "6e827057-5501-4e70-85e3-e3948c1a6dd9"
+replace teaching_language = 4 if interview_ID == "5c7ae7a1-8d95-4468-a06e-f67f919f43a6"
+replace teaching_language = 4 if interview_ID == "c8c669af-05e3-4e8f-b574-93b5f383b47b"
+replace teaching_language = 4 if interview_ID == "6e743c32-be75-4ad1-be91-7ea7358ec0ae"
+replace teaching_language = 4 if interview_ID == "0dacfdcf-c0bc-4414-8746-805a0a07a1a2"
+replace teaching_language = 4 if interview_ID == "ae513efd-0ff8-43c3-8a11-918f656c002f"
+replace teaching_language = 4 if interview_ID == "d9ed801f-31fc-45b2-b10f-48249f09a52a"
+replace teaching_language = 1 if interview_ID == "dd94f688-61e3-4551-9d27-b69eac1375b5"
+replace teaching_language = 1 if interview_ID == "6462dc72-be58-4e12-ae58-cd9adb2120c3"
+replace teaching_language = 1 if interview_ID == "ce4d23f6-b313-49db-b5d0-45bde8140740"
+replace teaching_language = 2 if interview_ID == "4b82aebb-fba7-4855-8ef5-fa9c716cc1a8"
+replace teaching_language = 2 if interview_ID == "7ae35e44-b9d6-414c-8c0b-3d0dcfb3cdb9"
+replace teaching_language = 2 if interview_ID == "b0948ce1-f0fe-4ce5-8dc2-cdff223018bf"
+replace teaching_language = 2 if interview_ID == "51e501df-cb2c-4568-a139-19ba1ab88970"
+replace teaching_language = 2 if interview_ID == "cf8a83a1-d9c9-425c-8fd0-fc8d63bae4c6"
+replace teaching_language = 2 if interview_ID == "7070efc2-3a8f-416b-b232-d99eeee1e5ae"
+replace teaching_language = 2 if interview_ID == "37380133-07c8-458c-bfcc-344efcff96de"
+replace teaching_language = 2 if interview_ID == "bd35578e-95b7-4553-8cda-c7c57b7ac3c9"
+replace teaching_language = 2 if interview_ID == "22cf458e-f742-4291-bb8c-c1d659bb7744"
+replace teaching_language = 2 if interview_ID == "05053c0a-fe90-4ca1-9a2f-b144d7a13f07"
+replace teaching_language = 2 if interview_ID == "dcc4ac82-ce9a-4be1-8650-49afbbb9c196"
+replace teaching_language = 2 if interview_ID == "895617d5-4905-4cdc-8eee-5a9996f78eb3"
+replace teaching_language = 2 if interview_ID == "66603a23-c423-438a-a357-b0bbeaa41441"
+replace teaching_language = 2 if interview_ID == "8fd502db-bef8-4729-b673-0fddafbb69f0"
+replace teaching_language = 2 if interview_ID == "ef414160-b1e6-4a11-9e28-d48d5cb2c4c7"
+replace teaching_language = 2 if interview_ID == "6bc2c898-9bd8-4882-b9cd-5c58c4406070"
+replace teaching_language = 2 if interview_ID == "787eba5e-b59b-412f-9a0a-053d9de91c2b"
+replace teaching_language = 2 if interview_ID == "185f320f-fd83-4fc3-8749-5e872ea8e8f3"
+replace teaching_language = 2 if interview_ID == "b1c193e4-da8e-40a4-a063-49a792503d10"
+replace teaching_language = 2 if interview_ID == "45ae1c22-f849-4963-a0e6-81f17952cdd5"
+replace teaching_language = 2 if interview_ID == "0f539a76-684e-420c-a796-b5a3bee76ed5"
+replace teaching_language = 2 if interview_ID == "e54b53d3-2ad6-41d1-a0f4-5cf267d239cc"
+replace teaching_language = 2 if interview_ID == "d99c7ef3-5ede-4051-bad3-0397cfd9a5af"
+replace teaching_language = 2 if interview_ID == "cf7cb1b9-3dce-460f-a44e-719b39ae56de"
+replace teaching_language = 2 if interview_ID == "3c53fd4b-cebd-4da9-81ff-1239631749d2"
+replace teaching_language = 2 if interview_ID == "6ba09826-f4b1-4633-81ad-ce55976ba973"
+replace teaching_language = 2 if interview_ID == "5be6cc18-0872-4e37-be8f-bfe8ce8ab763"
+replace teaching_language = 2 if interview_ID == "686d61b1-45a9-4c13-a390-d1653bb02be8"
+replace teaching_language = 2 if interview_ID == "fd6b9eba-da3a-456c-b05a-c07c717a7435"
+replace teaching_language = 2 if interview_ID == "635b341c-b288-4928-9e48-b0293dbdaf43"
+replace teaching_language = 1 if interview_ID == "49c22686-b976-4978-b98e-688d17146860"
+replace teaching_language = 1 if interview_ID == "629b976f-786d-46da-96f7-19e7be5a09c3"
+replace teaching_language = 1 if interview_ID == "f9b7a79c-6095-49d5-be36-84c87e9d7b47"
+replace teaching_language = 3 if interview_ID == "8a668c5b-bbc3-47fa-9c0f-0ee5b605269b"
+replace teaching_language = 3 if interview_ID == "f6647380-6f5b-4cbf-a450-8eb70f95f99b"
+replace teaching_language = 3 if interview_ID == "d8d4a5a2-c611-4cf9-9eb3-520363f3cbff"
+replace teaching_language = 3 if interview_ID == "bb1ee7bb-5709-4c36-8c14-7782ea6f9396"
+replace teaching_language = 3 if interview_ID == "72419dbf-c362-421b-bc6b-27191fed676c"
+replace teaching_language = 3 if interview_ID == "2884659e-905f-42e9-8f0f-3ac0e3eee1c2"
+replace teaching_language = 3 if interview_ID == "538c5ee8-2940-432b-b6cd-339d5b24f01e"
+replace teaching_language = 3 if interview_ID == "b1ae5c38-7ebd-447d-971c-4df373c38a14"
+replace teaching_language = 3 if interview_ID == "04297724-daed-4479-8ff1-0977427ccc55"
+replace teaching_language = 3 if interview_ID == "c1577374-b069-41d5-a6c2-034b72424d24"
+replace teaching_language = 3 if interview_ID == "1d49074e-3b49-4e90-a2de-9f79102dbb0f"
+replace teaching_language = 3 if interview_ID == "2d367424-1843-49e2-b3e4-c2217cc90279"
+replace teaching_language = 3 if interview_ID == "2fdd33c6-46ef-4a31-b5aa-5a44b192b166"
+replace teaching_language = 3 if interview_ID == "5f4b423c-3f5b-4a16-923b-46937cb8eded"
+replace teaching_language = 3 if interview_ID == "1b1ddcf5-f2af-4f69-8a21-33cf9e737396"
+replace teaching_language = 3 if interview_ID == "af384a2f-633b-483e-8613-1769e379f8f1"
+replace teaching_language = 3 if interview_ID == "aa50495c-af1d-4207-91ba-4c2de2f4e87c"
+replace teaching_language = 3 if interview_ID == "9c8ff015-8e4c-43fd-9e41-eeceb2669091"
+replace teaching_language = 3 if interview_ID == "820acefe-346e-4270-b5f8-73775b154a14"
+replace teaching_language = 3 if interview_ID == "e9eaac0c-d21b-429c-ac56-7bb6e280d0f6"
+replace teaching_language = 3 if interview_ID == "a4daa452-118e-4b6f-8816-14b1ede25c74"
+replace teaching_language = 3 if interview_ID == "88d9d498-844a-4884-a281-118165b55c2c"
+replace teaching_language = 3 if interview_ID == "56b22575-5037-4c85-abf1-9b32c7d14817"
+replace teaching_language = 3 if interview_ID == "deac7f1a-b7f3-410b-9936-22d6942a2442"
+replace teaching_language = 3 if interview_ID == "e4168b90-5d24-4956-8bef-311550fa93fd"
+replace teaching_language = 3 if interview_ID == "93971e19-2a86-423b-a92e-fcf24546e030"
+replace teaching_language = 3 if interview_ID == "0e39f25b-7207-4944-93c5-b1ed087d46b1"
+replace teaching_language = 3 if interview_ID == "a1e72744-d49f-41e0-a6f4-11f4bf5404ad"
+replace teaching_language = 3 if interview_ID == "dfd5bd34-9080-43ea-ad02-a38515b7cf0b"
+replace teaching_language = 3 if interview_ID == "81f182a2-b8ea-4d68-a2b0-4b609de87925"
+replace teaching_language = 1 if interview_ID == "58f0731d-a2e9-4802-a4db-659ceb6e7277"
+replace teaching_language = 1 if interview_ID == "e04249ff-2759-43cf-b3fd-1d02d025a55b"
+replace teaching_language = 1 if interview_ID == "e2e709aa-466f-4760-931c-ef711e7f3ad4"
+replace teaching_language = 1 if interview_ID == "f73aa4b2-ad9b-468f-bd43-6c8e48b27652"
+replace teaching_language = 1 if interview_ID == "b92ff6f5-791f-4d47-b488-729482e50d16"
+replace teaching_language = 1 if interview_ID == "629accfd-5d95-44b0-8b4f-fbecfe310a2e"
+replace teaching_language = 1 if interview_ID == "5f71cc23-e8b7-4311-a80a-8cc69b96fe89"
+replace teaching_language = 1 if interview_ID == "dd576692-4564-45a7-a314-f38ed19487bb"
+replace teaching_language = 1 if interview_ID == "d28687c6-c1bb-4603-acac-93a485ccc7c3"
+replace teaching_language = 1 if interview_ID == "cbe57208-42c6-4cb9-a50a-6d671f12c1ac"
+replace teaching_language = 1 if interview_ID == "d548cc18-18fd-4edd-9a36-36d4f3bb33a2"
+replace teaching_language = 1 if interview_ID == "6f73e14c-cbb5-46dd-a95d-3209e94f43ef"
+replace teaching_language = 1 if interview_ID == "8c2ff819-0fb0-4e5c-94ba-2245cc321009"
+replace teaching_language = 1 if interview_ID == "1a354681-c266-4dc6-b435-84cdd831bb4d"
+replace teaching_language = 1 if interview_ID == "215ce12a-c4a9-41fc-ab82-b97158e10375"
+replace teaching_language = 1 if interview_ID == "2bd2079c-47c9-4d5f-8931-a89205f3626d"
+replace teaching_language = 1 if interview_ID == "06b625ba-85b8-4c5d-b448-82391a190763"
+replace teaching_language = 3 if interview_ID == "19513c2d-4a84-4a2a-be1f-a2ef023ec8c5"
+replace teaching_language = 3 if interview_ID == "6a9d5279-55f2-46f6-b6fd-3cd9c14349ea"
+replace teaching_language = 3 if interview_ID == "717497de-b442-43f4-a1fe-1063b5ee5cf6"
+replace teaching_language = 3 if interview_ID == "09fe424c-6131-46b3-b94e-94a814dd1228"
+replace teaching_language = 3 if interview_ID == "e5bd2780-e837-42d7-9994-cab31811e412"
+replace teaching_language = 3 if interview_ID == "d0a68cfb-1c83-4da3-93c1-f62f26dd1997"
+replace teaching_language = 3 if interview_ID == "cd827057-24e1-4015-a0e6-769cfac1ef38"
+replace teaching_language = 3 if interview_ID == "a8dba994-9dc7-45ea-accd-9086e3f47776"
+replace teaching_language = 3 if interview_ID == "ba56a309-68f5-4fa8-b9d3-04337d743348"
+replace teaching_language = 3 if interview_ID == "57c561f7-ea1d-40a2-872c-309374901c76"
+replace teaching_language = 3 if interview_ID == "ecda14ce-53fe-4b0f-99fb-d9e24b9dd0ed"
+replace teaching_language = 3 if interview_ID == "e5fe2764-d3c8-4c0b-97de-b8c593f39c55"
+replace teaching_language = 3 if interview_ID == "90ce701a-1a4a-4ab2-8f7f-bcba19798782"
+replace teaching_language = 3 if interview_ID == "69a856c5-6072-4d8c-90c3-137b590debd1"
+replace teaching_language = 3 if interview_ID == "6ed60be7-cfce-4602-845b-2c6c000dea61"
+replace teaching_language = 1 if interview_ID == "90326198-19b8-4792-b126-f979d597b7dc"
+
 
 *20-12
 drop if inlist(interview_ID,"88cb16c9-5436-4991-9b3f-b31f43873a38")
@@ -2655,17 +2856,784 @@ replace ENUM_NAME = 23 if interview_ID == "6a3df464-5eb5-4e79-b97b-cb3ea2c9ad6e"
 replace SUP_NAME = 5 if interview_ID == "f2b25984-966a-42c4-a907-7dc0dd9ffb35"
 replace ENUM_NAME = 25 if interview_ID == "f2b25984-966a-42c4-a907-7dc0dd9ffb35"
 
+replace teaching_language = 1 if interview_ID == "b5a39bbe-530d-459d-8f76-bcef1cb865f7"
+replace teaching_language = 2 if interview_ID == "f4812f80-450b-4c0d-86ed-a21356e88b61"
+replace teaching_language = 2 if interview_ID == "ad003360-678d-4610-806f-f8e391bdfcfe"
+replace teaching_language = 2 if interview_ID == "fd3d8e7b-b6d9-4e5d-b023-fba94faf264f"
+replace teaching_language = 2 if interview_ID == "33c2d3ad-7dff-495f-b985-547e15c11400"
+replace teaching_language = 2 if interview_ID == "c21eea29-d5cd-479b-88f8-36330279596e"
+replace teaching_language = 2 if interview_ID == "997e5583-3507-4899-9af6-a97269562087"
+replace teaching_language = 2 if interview_ID == "bb0b0a97-754b-4992-a916-feb2be85d2ee"
+replace teaching_language = 2 if interview_ID == "d0ec1b72-c94a-459c-9e7e-262643185722"
+replace teaching_language = 2 if interview_ID == "6da62714-f01e-4468-8aca-2df50b814676"
+replace teaching_language = 2 if interview_ID == "1a3e9111-5558-4f07-aceb-850d3b1b806a"
+replace teaching_language = 2 if interview_ID == "628a445c-5a0a-455d-940a-d81920166473"
+replace teaching_language = 2 if interview_ID == "ea24c04f-3b14-47fe-890f-d483a586c430"
+replace teaching_language = 2 if interview_ID == "28eded12-98f1-48e0-af1f-3a5d469d1e6f"
+replace teaching_language = 2 if interview_ID == "6a3df464-5eb5-4e79-b97b-cb3ea2c9ad6e"
+replace teaching_language = 2 if interview_ID == "d0560bb6-122c-48f7-b94b-4b357b6c88e6"
+replace teaching_language = 2 if interview_ID == "1d2b7177-08c7-417d-9f49-32e671ff0f7b"
+replace teaching_language = 2 if interview_ID == "fadf56f5-88a6-421f-a1f8-806770b21676"
+replace teaching_language = 2 if interview_ID == "0a6368e9-ea81-4d02-a9c7-15ebe8fbcea4"
+replace teaching_language = 2 if interview_ID == "9e93324a-eb17-4be3-b915-ea64ff1075a8"
+replace teaching_language = 1 if interview_ID == "37669e6e-dfe9-445e-ae7e-b50a5707510b"
+replace teaching_language = 1 if interview_ID == "9a0ebaef-434f-4cbf-bcfa-9d5df07d9c1c"
+
 *23-12
+replace teaching_language = 1 if interview_ID == "41589498-bc0a-4ccd-8d6a-a60de062d072"
+replace teaching_language = 1 if interview_ID == "a6725c3a-7479-4863-a933-030c458c2b62"
+replace teaching_language = 1 if interview_ID == "5182809c-6be1-4d73-8abe-6d58632d5aeb"
+replace teaching_language = 1 if interview_ID == "a5fbe66c-6cdb-47b2-93ae-25f0ea2576fb"
+replace teaching_language = 1 if interview_ID == "3122f87b-bf1b-4c4f-a07e-2e891b814b4c"
+replace teaching_language = 1 if interview_ID == "d9c058a2-f459-416c-b9f0-534f64f9b7d4"
+replace teaching_language = 1 if interview_ID == "13ba90a8-993c-409f-9847-2e91ebaa132a"
+replace teaching_language = 2 if interview_ID == "42d70da8-57f1-4838-9e9b-0b05ae570d0a"
+replace teaching_language = 1 if interview_ID == "f03948d5-6cce-4aba-8ec1-28efe2cfa731"
+replace teaching_language = 1 if interview_ID == "3da903f2-a9a6-450f-925d-4a72126b82ec"
+replace teaching_language = 1 if interview_ID == "cc34e29e-6ca7-414f-862d-118780f7350d"
+replace teaching_language = 2 if interview_ID == "7522ea5a-55f7-4f4a-bca5-37fd3ed9fc39"
+replace teaching_language = 2 if interview_ID == "257b9f02-7c31-4218-8882-9f65210f06cb"
+replace teaching_language = 2 if interview_ID == "185b4d3e-c1ab-4190-8a4b-c25eeee130b8"
+replace teaching_language = 2 if interview_ID == "78a49041-d127-4435-8039-b1b24678b8d2"
+replace teaching_language = 2 if interview_ID == "16e10e5a-74b2-4ed1-92fd-5f570ed23187"
+replace teaching_language = 2 if interview_ID == "44565545-dbd1-4967-a79b-1e8734bf7bf4"
+replace teaching_language = 2 if interview_ID == "706f7650-e48c-4037-86f4-52e8ca58d956"
+replace teaching_language = 2 if interview_ID == "d9adfa28-6b3d-4369-afee-21dfa85a9b4c"
+replace teaching_language = 2 if interview_ID == "a0009359-dd41-4cef-be92-c8d7e9be870a"
+replace teaching_language = 2 if interview_ID == "8764d008-37d1-4283-9a6c-d6fe42bc968c"
+replace teaching_language = 2 if interview_ID == "1d56fc80-0f93-4d3d-b401-393cfaaef250"
+replace teaching_language = 2 if interview_ID == "3e59b488-40f5-47f0-a7c5-14efc851a16b"
+replace teaching_language = 2 if interview_ID == "1894bf3e-640d-4036-bdc5-88727258ddfd"
+replace teaching_language = 2 if interview_ID == "3b331ee8-bd6c-427a-a36d-e0e01354e092"
+replace teaching_language = 2 if interview_ID == "7ea07b27-b812-4a7b-b376-0eee6a7574be"
+replace teaching_language = 2 if interview_ID == "b2580000-6ab8-4c9e-ab37-d78f651f70a9"
+replace teaching_language = 2 if interview_ID == "c5eb7db9-ca06-4571-80be-888a304a2211"
+replace teaching_language = 2 if interview_ID == "209c3b2b-b464-4c85-b4d8-e804c9a120e8"
+replace teaching_language = 2 if interview_ID == "61982048-720e-4e7a-a7fa-8ff3ebbdf7a9"
+replace teaching_language = 2 if interview_ID == "72e6289b-e5c8-41b8-8ea6-5237b1fe4bf2"
+replace teaching_language = 2 if interview_ID == "1596bedf-921f-447d-8da5-7d498df3d6a2"
+replace teaching_language = 2 if interview_ID == "2b29acbf-80bc-4fa5-acba-ad4a1d8116fb"
+replace teaching_language = 2 if interview_ID == "4f005a01-7469-490f-a3ed-420eb50d46ae"
+replace teaching_language = 2 if interview_ID == "aaa6de8f-89b3-4570-84fc-ab77e9bb7186"
+replace teaching_language = 2 if interview_ID == "5f7b8010-04d1-45fe-99a2-beb7dde997fa"
+replace teaching_language = 2 if interview_ID == "0a2b3fa6-97ba-4194-844b-254dfe0b8742"
+replace teaching_language = 2 if interview_ID == "5e02cd7a-b096-41b3-8969-2982630af2f1"
+replace teaching_language = 2 if interview_ID == "55d0fe44-60e0-4459-a3e5-9ee099e06adc"
+replace teaching_language = 2 if interview_ID == "175a1e60-6e35-43a3-a7af-f1b2e05c2985"
+replace teaching_language = 2 if interview_ID == "42e879ae-62f9-492b-a5d6-578934def43e"
+replace teaching_language = 2 if interview_ID == "d20561fa-0589-4bdf-a7bc-0da0993a5fb2"
+replace teaching_language = 1 if interview_ID == "e0e2eb4e-acb7-42b2-b9d4-449c487d9913"
+replace teaching_language = 2 if interview_ID == "d6513c14-d985-4a1a-a112-cab3556e8507"
+replace teaching_language = 1 if interview_ID == "e261c368-6c36-4ab7-b9af-fb4aec8da3fd"
+replace teaching_language = 2 if interview_ID == "aca1ba89-81b6-42c4-8e2e-81e9bc8db60e"
+replace teaching_language = 1 if interview_ID == "3abe7bad-ae05-41a1-a3fc-92114f340b1e"
+replace teaching_language = 2 if interview_ID == "4b934f6a-45c0-4a64-9416-46b346f21acc"
+replace teaching_language = 1 if interview_ID == "c9a065cd-cab2-4583-9658-9fe14376716d"
+replace teaching_language = 2 if interview_ID == "f93dbef1-0704-4a98-9636-17619e58269f"
+replace teaching_language = 2 if interview_ID == "d35d2383-0a47-4ed2-bee8-68275cc26b0a"
+replace teaching_language = 2 if interview_ID == "984b9d35-d5c7-42b0-8a4a-f68e4d035fd6"
+replace teaching_language = 2 if interview_ID == "009a0a05-3bc1-4d86-991d-7fc7dfeacfd9"
+replace teaching_language = 2 if interview_ID == "da61f6f3-e699-4546-93b8-686d284255a5"
+replace teaching_language = 2 if interview_ID == "cce03981-4996-4a5d-b475-d2868e34783e"
+
 drop if inlist(interview_ID,"a5fbe66c-6cdb-47b2-93ae-25f0ea2576fb","13ba90a8-993c-409f-9847-2e91ebaa132a")
 
+*Corrections
+*letter knowledge
+foreach x in letter_knowledge_fr_16 letter_knowledge_fr_17 letter_knowledge_fr_18 letter_knowledge_fr_19 letter_knowledge_fr_20{
+	replace `x' = 0 if interview_ID == "a6725c3a-7479-4863-a933-030c458c2b62"
+}
+
+replace letter_knowledge_frnum_att = 20 if interview_ID == "a6725c3a-7479-4863-a933-030c458c2b62"
+
+foreach x in letter_knowledge_wf_B_31	letter_knowledge_wf_B_32	letter_knowledge_wf_B_33	letter_knowledge_wf_B_34	letter_knowledge_wf_B_35	letter_knowledge_wf_B_36{
+	replace `x' = 0 if inlist(interview_ID,"4b934f6a-45c0-4a64-9416-46b346f21acc","d35d2383-0a47-4ed2-bee8-68275cc26b0a")
+}
+					
+foreach x in letter_knowledge_wf_B_25	letter_knowledge_wf_B_26	letter_knowledge_wf_B_27	letter_knowledge_wf_B_28	letter_knowledge_wf_B_29	letter_knowledge_wf_B_30{
+	replace `x' = 0 if inlist(interview_ID,"d35d2383-0a47-4ed2-bee8-68275cc26b0a")
+}
+
+replace letter_knowledge_wf_Bnum_att = 36 if inlist(interview_ID,"4b934f6a-45c0-4a64-9416-46b346f21acc","d35d2383-0a47-4ed2-bee8-68275cc26b0a")
+
+***GENERAL CORRECTIONS and order
+*phonological_awareness
+ren phonological_awareness_frnumber_ phonological_awareness_frnumCorr
+ren phonological_awareness_wfnumber_ phonological_awareness_wfnumCorr
+ren phonological_awareness_srnumber_ phonological_awareness_srnumCorr
+ren phonological_awareness_prnumber_ phonological_awareness_prnumCorr
+
+replace phonological_awareness_frnum_att = 10 if phonological_awareness_frnum_att == 0
+replace phonological_awareness_wfnum_att = 10 if phonological_awareness_wfnum_att == 0
+replace phonological_awareness_sr_5 = 0 if interview_ID == "d5ce0f5a-f00b-4d86-9557-4fca07a8351c"
+replace phonological_awareness_srnumCorr = 0 if interview_ID == "d5ce0f5a-f00b-4d86-9557-4fca07a8351c"
+replace phonological_awareness_srnum_att = 5 if interview_ID == "d5ce0f5a-f00b-4d86-9557-4fca07a8351c"
+replace phonological_awareness_srnum_att = 10 if phonological_awareness_srnum_att == 0
+replace phonological_awareness_prnum_att = 10 if phonological_awareness_prnum_att == 0
+
+replace survey_language = 3 if interview_ID == "47666102-d07b-4124-9f18-3e70cec3d3e5"
+
+foreach x in phonological_awareness_fr_1 phonological_awareness_fr_2	phonological_awareness_fr_3	phonological_awareness_fr_4	phonological_awareness_fr_5{
+	replace `x' = 0 if interview_ID == "b6ada92b-db03-4fb8-ae3c-aa68909d7c20"
+}
+replace phonological_awareness_frnum_att = 5 if interview_ID == "b6ada92b-db03-4fb8-ae3c-aa68909d7c20"				
+replace phonological_awareness_frnumCorr = 0 if interview_ID == "b6ada92b-db03-4fb8-ae3c-aa68909d7c20"
+replace phonological_awareness_frgridAut = 1 if interview_ID == "b6ada92b-db03-4fb8-ae3c-aa68909d7c20"
+replace phonological_awareness_frautoSto = 5 if interview_ID == "b6ada92b-db03-4fb8-ae3c-aa68909d7c20"	
+replace phonological_stop_fr = 1 if interview_ID == "b6ada92b-db03-4fb8-ae3c-aa68909d7c20"
+
+replace survey_language = official_language if B4 == 1 & survey_language != official_language
+
+replace pr_oral_vocabulary_example_1 = 1  if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_oral_vocabulary_example_2 = 3 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q1 = 2 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q2 = 2 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f" 
+replace pr_ov_picture_matching_q3 = 1 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q4 = 3 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q5 = 4 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q6 = 4 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q7 = 1 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q8 = 4 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q9 = 2 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q10 = 3 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q11 = 3 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q12 = 4 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q13 = 4 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q14 = 2 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+replace pr_ov_picture_matching_q15 = 2 if interview_ID == "bb3899a2-3c0d-4d2e-868a-33889996bf0f"
+
+*Letter knowledge
+replace letter_knowledge_frnumber_of_ite = . if letter_knowledge_frgridAutoStopp == .
+replace letter_knowledge_wfnumber_of_ite = . if letter_knowledge_wfgridAutoStopp == .
+replace letter_knowledge_srnumber_of_ite = . if letter_knowledge_srgridAutoStopp == .
+replace letter_knowledge_prnumber_of_ite = . if letter_knowledge_prgridAutoStopp == .
+
+replace letter_knowledge_wf_11 = 0 if interview_ID == "2682570a-c0cb-433d-952f-87fc71639c5f"
+replace letter_knowledge_wfnumber_of_ite = 2 if interview_ID == "2682570a-c0cb-433d-952f-87fc71639c5f"
+
+foreach x in letter_knowledge_wf_12	letter_knowledge_wf_13	letter_knowledge_wf_14	letter_knowledge_wf_15 letter_knowledge_wf_16{
+	replace `x' = . if inlist(interview_ID,"ad003360-678d-4610-806f-f8e391bdfcfe","d80424bc-7e1a-41a9-bf1d-12d1816dc263")
+}
+
+replace letter_knowledge_wfnum_att = 11 if inlist(interview_ID,"ad003360-678d-4610-806f-f8e391bdfcfe","d80424bc-7e1a-41a9-bf1d-12d1816dc263")
+replace letter_knowledge_wfnumber_of_ite = 1 if inlist(interview_ID,"ad003360-678d-4610-806f-f8e391bdfcfe","d80424bc-7e1a-41a9-bf1d-12d1816dc263")
+replace letter_knowledge_wfitems_per_min = 1 if inlist(interview_ID,"ad003360-678d-4610-806f-f8e391bdfcfe","d80424bc-7e1a-41a9-bf1d-12d1816dc263")
+
+replace letter_knowledge_wf_16 = . if interview_ID == "2c9b3e83-0ab8-4137-8a81-3bf80bf7fa31"
+replace letter_knowledge_wfnumber_of_ite = 2 if interview_ID == "2c9b3e83-0ab8-4137-8a81-3bf80bf7fa31"
+replace letter_knowledge_wfnum_att = 15 if interview_ID == "2c9b3e83-0ab8-4137-8a81-3bf80bf7fa31"
+
+foreach x in letter_knowledge_wf_11	letter_knowledge_wf_12	letter_knowledge_wf_13	letter_knowledge_wf_14	letter_knowledge_wf_15	letter_knowledge_wf_16	letter_knowledge_wf_17	letter_knowledge_wf_18	letter_knowledge_wf_19{
+	replace `x' = . if interview_ID == "e9fd15ba-5704-40be-8886-6235129bb81d"
+}
+
+replace letter_knowledge_wf_10 = 0 if interview_ID == "e9fd15ba-5704-40be-8886-6235129bb81d"
+replace letter_knowledge_wf_2 = 1 if interview_ID == "e9fd15ba-5704-40be-8886-6235129bb81d"
+
+replace letter_knowledge_wfnumber_of_ite = 2 if interview_ID == "e9fd15ba-5704-40be-8886-6235129bb81d"
+replace letter_knowledge_wfnum_att = 10 if interview_ID == "e9fd15ba-5704-40be-8886-6235129bb81d"
+replace letter_knowledge_wfitems_per_min = 2 if interview_ID == "e9fd15ba-5704-40be-8886-6235129bb81d"
+
+foreach x in letter_knowledge_wf_14	letter_knowledge_wf_15	letter_knowledge_wf_16	letter_knowledge_wf_17	letter_knowledge_wf_18	letter_knowledge_wf_19{
+	replace `x' = . if interview_ID == "f497c2b1-6436-4d4a-80d5-c36f7c31aafc"
+}
+
+replace letter_knowledge_wfnumber_of_ite = 4 if interview_ID == "f497c2b1-6436-4d4a-80d5-c36f7c31aafc"
+replace letter_knowledge_wfnum_att = 13 if interview_ID == "f497c2b1-6436-4d4a-80d5-c36f7c31aafc"
+replace letter_knowledge_wfitems_per_min = 4 if interview_ID == "f497c2b1-6436-4d4a-80d5-c36f7c31aafc"
+
+foreach x in letter_knowledge_wf_16	letter_knowledge_wf_17	letter_knowledge_wf_18	letter_knowledge_wf_19	letter_knowledge_wf_20{
+	replace `x' = . if interview_ID == "56645761-47d9-4afd-abac-085730b553b4"
+}
+
+replace letter_knowledge_wfnumber_of_ite = 1 if interview_ID == "56645761-47d9-4afd-abac-085730b553b4"
+replace letter_knowledge_wfnum_att = 15 if interview_ID == "56645761-47d9-4afd-abac-085730b553b4"
+replace letter_knowledge_wfitems_per_min = 1 if interview_ID == "56645761-47d9-4afd-abac-085730b553b4"
+
+foreach x in letter_knowledge_wf_15	letter_knowledge_wf_16	letter_knowledge_wf_17	letter_knowledge_wf_18	letter_knowledge_wf_19	letter_knowledge_wf_20{
+	replace `x' = 0 if interview_ID == "74ac1b56-86c2-4946-86a3-1b850eeeed35"
+}
+
+replace letter_knowledge_wfnum_att = 20 if interview_ID == "74ac1b56-86c2-4946-86a3-1b850eeeed35"
+replace letter_knowledge_wfitems_per_min = 11 if interview_ID == "74ac1b56-86c2-4946-86a3-1b850eeeed35"
+
+foreach x in letter_knowledge_wf_B_31	letter_knowledge_wf_B_32	letter_knowledge_wf_B_33	letter_knowledge_wf_B_34	letter_knowledge_wf_B_35	letter_knowledge_wf_B_36{
+	replace `x' = 1 if interview_ID == "3f197fd3-1df0-4d5f-abbb-df99f67083ec"
+}
+
+replace letter_knowledge_wfnumber_of_ite = 32 if interview_ID == "3f197fd3-1df0-4d5f-abbb-df99f67083ec"
+replace letter_knowledge_wfnum_att = 36 if interview_ID == "3f197fd3-1df0-4d5f-abbb-df99f67083ec"
+replace letter_knowledge_wfitems_per_min = 32 if interview_ID == "3f197fd3-1df0-4d5f-abbb-df99f67083ec"
+
+replace letter_knowledge_wf_16 =. if interview_ID == "103908ef-ba91-4b6a-8921-9971bf647149"
+replace letter_knowledge_wfnumber_of_ite = 3 if interview_ID == "103908ef-ba91-4b6a-8921-9971bf647149"
+replace letter_knowledge_wfnum_att = 15 if interview_ID == "103908ef-ba91-4b6a-8921-9971bf647149"
+replace letter_knowledge_wfitems_per_min = 4 if interview_ID == "103908ef-ba91-4b6a-8921-9971bf647149"
+
+replace letter_knowledge_fr_20 = 0 if interview_ID == "b4f87406-afd2-40d1-8bba-f3ec88cf4a55"
+replace letter_knowledge_fr_12 = 1 if interview_ID == "b4f87406-afd2-40d1-8bba-f3ec88cf4a55"
+
+replace letter_knowledge_fr_12 = 1 if interview_ID == "bd029f92-31a8-4f2b-baa0-36002d217c31"
+replace letter_knowledge_fr_20 = 0 if interview_ID == "bd029f92-31a8-4f2b-baa0-36002d217c31"
+
+replace letter_knowledge_fr_10 = 1 if interview_ID == "0f8ff879-aca7-4168-9d16-83b37e608677"
+replace letter_knowledge_fr_18 = 0 if interview_ID == "0f8ff879-aca7-4168-9d16-83b37e608677"
+
+foreach x in letter_knowledge_fr_11	letter_knowledge_fr_12	letter_knowledge_fr_13	letter_knowledge_fr_14{
+	replace `x' = 1 if interview_ID == "83019b95-ff10-46b5-a59f-348b6d819b43"
+}
+
+foreach x in letter_knowledge_fr_15	letter_knowledge_fr_16	letter_knowledge_fr_17	letter_knowledge_fr_18	letter_knowledge_fr_19	letter_knowledge_fr_20{
+	replace `x' = 0 if interview_ID == "83019b95-ff10-46b5-a59f-348b6d819b43"
+}
+									
+replace letter_knowledge_frnumber_of_ite = 10 if interview_ID == "83019b95-ff10-46b5-a59f-348b6d819b43"
+replace letter_knowledge_frnum_att = 20 if interview_ID == "83019b95-ff10-46b5-a59f-348b6d819b43"
+replace letter_knowledge_wfitems_per_min = 10 if interview_ID == "83019b95-ff10-46b5-a59f-348b6d819b43"
+
+foreach x in letter_knowledge_fr_19	letter_knowledge_fr_20{
+	replace `x' = 0 if interview_ID == "5c83cb5c-2fbe-498a-9f67-94072021d431"
+}
+
+replace letter_knowledge_frnum_att = 20 if interview_ID == "5c83cb5c-2fbe-498a-9f67-94072021d431"
+
+foreach x in letter_knowledge_fr_14	letter_knowledge_fr_15	letter_knowledge_fr_16{
+	replace `x' = 0 if interview_ID == "0ed0e89b-99ca-4d19-a536-248a2c971655"
+}
+
+foreach x in letter_knowledge_fr_6	letter_knowledge_fr_7	letter_knowledge_fr_8 {
+	replace `x' = 1 if interview_ID == "0ed0e89b-99ca-4d19-a536-248a2c971655"
+}
+
+replace letter_knowledge_fr_12 = 0 if interview_ID == "9953b512-5f6f-4a91-8e6a-e58fb348bc93"
+replace letter_knowledge_fr_4 = 1 if interview_ID == "9953b512-5f6f-4a91-8e6a-e58fb348bc93"
+
+foreach x in letter_knowledge_fr_12	letter_knowledge_fr_13	letter_knowledge_fr_14	letter_knowledge_fr_15{
+	replace `x' = 1 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"
+}
+
+foreach x in letter_knowledge_fr_16	letter_knowledge_fr_17	letter_knowledge_fr_18	letter_knowledge_fr_19	letter_knowledge_fr_20{
+	replace `x' = 0 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"
+}
+
+replace letter_knowledge_frnumber_of_ite = 7 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"	
+replace letter_knowledge_frnum_att = 20 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"				
+
+foreach x in letter_knowledge_sr_15	letter_knowledge_sr_16	letter_knowledge_sr_17	letter_knowledge_sr_18	letter_knowledge_sr_19	letter_knowledge_sr_20{
+	replace `x' = 0 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"
+}
+
+replace letter_knowledge_srnum_att = 20 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"
+
+foreach x in letter_knowledge_sr_B_26	letter_knowledge_sr_B_27	letter_knowledge_sr_B_28	letter_knowledge_sr_B_29	letter_knowledge_sr_B_30	letter_knowledge_sr_B_31	letter_knowledge_sr_B_32	letter_knowledge_sr_B_33	letter_knowledge_sr_B_34	letter_knowledge_sr_B_35	letter_knowledge_sr_B_36{
+	replace `x' = 1 if interview_ID == "dc237945-7bef-4bb6-ac31-2f0092bab4b4"
+}
+
+foreach x in letter_knowledge_sr_B_6	letter_knowledge_sr_B_7	letter_knowledge_sr_B_8	letter_knowledge_sr_B_9	letter_knowledge_sr_B_10	letter_knowledge_sr_B_11	letter_knowledge_sr_B_12	letter_knowledge_sr_B_13	letter_knowledge_sr_B_14	letter_knowledge_sr_B_15	letter_knowledge_sr_B_16	letter_knowledge_sr_B_17	letter_knowledge_sr_B_18	letter_knowledge_sr_B_19	letter_knowledge_sr_B_20	letter_knowledge_sr_B_21	letter_knowledge_sr_B_22	letter_knowledge_sr_B_23	letter_knowledge_sr_B_24	letter_knowledge_sr_B_25	letter_knowledge_sr_B_26	letter_knowledge_sr_B_27	letter_knowledge_sr_B_28	letter_knowledge_sr_B_29	letter_knowledge_sr_B_30	letter_knowledge_sr_B_31	letter_knowledge_sr_B_32	letter_knowledge_sr_B_33	letter_knowledge_sr_B_34	letter_knowledge_sr_B_35	letter_knowledge_sr_B_36{
+	replace `x'= 1 if interview_ID == "13edcb48-f3a1-4066-ba2a-7fe3c73f2959"
+}
+		
+
+foreach x in letter_knowledge_fr_19	letter_knowledge_fr_20{
+	replace `x' = 0 if interview_ID == "8b390415-7b64-43e1-9ee1-e67e697b8363"
+}
+		
+
+
+foreach x in letter_knowledge_fr_16	letter_knowledge_fr_17	letter_knowledge_fr_18	letter_knowledge_fr_19	letter_knowledge_fr_20{
+	replace `x' = 0 if interview_ID == "f925fc1d-0d39-41ac-95d4-93679ff6d84c"
+}
+
+replace letter_knowledge_fr_20 = 0 if interview_ID == "3a3a0832-5e45-4ad6-bd05-89dac7be312e"
+
+foreach x in letter_knowledge_fr_13	letter_knowledge_fr_14	letter_knowledge_fr_15	letter_knowledge_fr_16{
+	replace `x' = . if interview_ID == "a9a22aea-03d3-4b02-a9b8-1c15b3af14b9"
+}
+
+replace letter_knowledge_fr_14 = . if interview_ID == "016eeae1-a795-4405-bb27-4b781052595f"
+
+foreach x in letter_knowledge_wf_B_35	letter_knowledge_wf_B_36{
+	replace `x' = 0 if interview_ID == "321720b4-f07d-456e-a814-1c83fd10d396"
+}
+
+replace letter_knowledge_sr_10 = . if interview_ID == "eab6ab41-0ea4-4ba1-962f-5e69c884c0a9"
+replace letter_knowledge_sr_12 = . if interview_ID == "c13e00e0-9036-46a4-be98-80d9df50bdd1"
+replace letter_knowledge_sr_19 = . if interview_ID == "19513c2d-4a84-4a2a-be1f-a2ef023ec8c5"
+replace letter_knowledge_sr_18 = . if interview_ID == "19513c2d-4a84-4a2a-be1f-a2ef023ec8c5"
+replace letter_knowledge_sr_17 = . if interview_ID == "19513c2d-4a84-4a2a-be1f-a2ef023ec8c5"
+
+foreach x in letter_knowledge_sr_14	letter_knowledge_sr_15	letter_knowledge_sr_16	letter_knowledge_sr_17	letter_knowledge_sr_18	letter_knowledge_sr_19	letter_knowledge_sr_20{
+	replace `x' = 0 if interview_ID == "297ad4cd-9734-4d17-9424-ed3fa3594af6"
+}
+				
+foreach x in letter_knowledge_sr_18	letter_knowledge_sr_19	letter_knowledge_sr_20{
+	replace `x' = 0 if interview_ID == "a9f3cd1c-abc3-4869-8811-35b13feb0605"
+}				
+				
+
+foreach x in letter_knowledge_fr_12	letter_knowledge_fr_13	letter_knowledge_fr_14	letter_knowledge_fr_15	letter_knowledge_fr_16{
+	replace `x' = . if interview_ID == "eff2f8f1-8eca-4e81-937a-6cb060ad35fe"
+}
+
+foreach x in letter_knowledge_wf_17	letter_knowledge_wf_18	letter_knowledge_wf_19	letter_knowledge_wf_20{
+	replace `x' = . if interview_ID == "aff6cc3a-5b78-47db-9f6b-131b698f8747"
+}
+
+foreach x in letter_knowledge_sr_B_31	letter_knowledge_sr_B_32	letter_knowledge_sr_B_33	letter_knowledge_sr_B_34	letter_knowledge_sr_B_35	letter_knowledge_sr_B_36{
+	replace `x' = 1 if interview_ID == "6f05653a-06c3-484e-b644-981d47abd64e"
+}
+
+foreach x in letter_knowledge_sr_10	letter_knowledge_sr_11	letter_knowledge_sr_12	letter_knowledge_sr_13	letter_knowledge_sr_14	letter_knowledge_sr_15 letter_knowledge_sr_16{
+	replace `x' = . if interview_ID == "0bf6b66e-d8fb-4b93-8823-0f0553372775"
+}
+
+foreach x in letter_knowledge_sr_19	letter_knowledge_sr_20{
+	replace `x' = . if interview_ID == "e9eaac0c-d21b-429c-ac56-7bb6e280d0f6"
+}
+
+foreach x in letter_knowledge_sr_17	letter_knowledge_sr_18	letter_knowledge_sr_19	letter_knowledge_sr_20{
+	replace `x' = . if interview_ID == "4bd6ed53-ffbc-4619-b2e1-fde9ea22a61b"
+}
+
+foreach x in letter_knowledge_sr_17	letter_knowledge_sr_18	letter_knowledge_sr_19	letter_knowledge_sr_20{
+	replace `x' = . if interview_ID == "1f0ed039-51e2-470e-b829-fcbbaa74cf25"
+}
+
+foreach x in letter_knowledge_pr_12	letter_knowledge_pr_13	letter_knowledge_pr_14	letter_knowledge_pr_15{
+	replace `x' = . if interview_ID == "20c72d9f-b7fb-448e-bb20-fc8806183901"
+}
+
+*fr
+egen tots = rowtotal(letter_knowledge_fr_1 - letter_knowledge_fr_20)
+
+replace letter_knowledge_frnumber_of_ite = tots if !missing(letter_knowledge_frnumber_of_ite)
+
+egen tots1 = rownonmiss(letter_knowledge_fr_1 - letter_knowledge_fr_20)
+replace letter_knowledge_frnum_att = tots1 if !missing(letter_knowledge_frnum_att)
+
+replace letter_knowledge_fritems_per_min = round(60*(letter_knowledge_frnumber_of_ite/(letter_knowledge_frduration-letter_knowledge_frtime_remainin))) if !missing(letter_knowledge_frtime_remainin)
+
+drop tots tots1
+
+egen tots = rowtotal(letter_knowledge_fr_B_1 - letter_knowledge_fr_B_36)
+
+replace letter_knowledge_fr_Bnumber_of_i = tots if !missing(letter_knowledge_fr_Bnumber_of_i)
+
+egen tots1 = rownonmiss(letter_knowledge_fr_B_1 - letter_knowledge_fr_B_36)
+replace letter_knowledge_fr_Bnum_att = tots1 if !missing(letter_knowledge_fr_Bnum_att)
+
+replace letter_knowledge_fr_Bitems_per_m = round(60*(letter_knowledge_fr_Bnumber_of_i/(letter_knowledge_fr_Bduration-letter_knowledge_fr_Btime_remain))) if !missing(letter_knowledge_fr_Btime_remain)
+
+drop tots tots1
+
+*wf
+
+egen tots = rowtotal(letter_knowledge_wf_1 - letter_knowledge_wf_20)
+
+replace letter_knowledge_wfnumber_of_ite = tots if !missing(letter_knowledge_wfnumber_of_ite)
+
+egen tots1 = rownonmiss(letter_knowledge_wf_1 - letter_knowledge_wf_20)
+replace letter_knowledge_wfnum_att = tots1 if !missing(letter_knowledge_wfnum_att)
+
+replace letter_knowledge_wfitems_per_min = round(60*(letter_knowledge_wfnumber_of_ite/(letter_knowledge_wfduration-letter_knowledge_wftime_remainin))) if !missing(letter_knowledge_wftime_remainin)
+
+drop tots tots1
+
+egen tots = rowtotal(letter_knowledge_wf_B_1 - letter_knowledge_wf_B_36)
+
+replace letter_knowledge_wf_Bnumber_of_i = tots if !missing(letter_knowledge_wf_Bnumber_of_i)
+
+egen tots1 = rownonmiss(letter_knowledge_wf_B_1 - letter_knowledge_wf_B_36)
+replace letter_knowledge_wf_Bnum_att = tots1 if !missing(letter_knowledge_wf_Bnum_att)
+
+replace letter_knowledge_wf_Bitems_per_m = round(60*(letter_knowledge_wf_Bnumber_of_i/(letter_knowledge_wf_Bduration-letter_knowledge_wf_Btime_remain))) if !missing(letter_knowledge_wf_Btime_remain)
+
+drop tots tots1
+
+*sr
+egen tots = rowtotal(letter_knowledge_sr_1 - letter_knowledge_sr_20)
+
+replace letter_knowledge_srnumber_of_ite = tots if !missing(letter_knowledge_srnumber_of_ite)
+
+egen tots1 = rownonmiss(letter_knowledge_sr_1 - letter_knowledge_sr_20)
+replace letter_knowledge_srnum_att = tots1 if !missing(letter_knowledge_srnum_att)
+
+replace letter_knowledge_sritems_per_min = round(60*(letter_knowledge_srnumber_of_ite/(letter_knowledge_srduration-letter_knowledge_srtime_remainin))) if !missing(letter_knowledge_srtime_remainin)
+
+drop tots tots1
+
+egen tots = rowtotal(letter_knowledge_sr_B_1 - letter_knowledge_sr_B_36)
+
+replace letter_knowledge_sr_Bnumber_of_i = tots if !missing(letter_knowledge_sr_Btime_remain)
+
+egen tots1 = rownonmiss(letter_knowledge_sr_B_1 - letter_knowledge_sr_B_36)
+replace letter_knowledge_sr_Bnum_att = tots1 if !missing(letter_knowledge_sr_Bnum_att)
+
+replace letter_knowledge_sr_Bitems_per_m = round(60*(letter_knowledge_sr_Bnumber_of_i/(letter_knowledge_sr_Bduration-letter_knowledge_sr_Btime_remain))) if !missing(letter_knowledge_sr_Btime_remain)
+
+drop tots tots1			
+
+*pr
+egen tots = rowtotal(letter_knowledge_pr_1 - letter_knowledge_pr_20)
+
+replace letter_knowledge_prnumber_of_ite = tots if !missing(letter_knowledge_prnumber_of_ite)
+
+egen tots1 = rownonmiss(letter_knowledge_pr_1 - letter_knowledge_pr_20)
+replace letter_knowledge_prnum_att = tots1 if !missing(letter_knowledge_prnum_att)
+
+replace letter_knowledge_pritems_per_min = round(60*(letter_knowledge_prnumber_of_ite/(letter_knowledge_prduration-letter_knowledge_prtime_remainin))) if !missing(letter_knowledge_prtime_remainin)
+
+drop tots tots1
+
+egen tots = rowtotal(letter_knowledge_pr_B_1 - letter_knowledge_pr_B_36)
+
+replace letter_knowledge_pr_Bnumber_of_i = tots if !missing(letter_knowledge_pr_Btime_remain)
+
+egen tots1 = rownonmiss(letter_knowledge_pr_B_1 - letter_knowledge_pr_B_36)
+replace letter_knowledge_pr_Bnum_att = tots1 if !missing(letter_knowledge_pr_Bnum_att)
+
+replace letter_knowledge_pr_Bitems_per_m = round(60*(letter_knowledge_pr_Bnumber_of_i/(letter_knowledge_pr_Bduration-letter_knowledge_pr_Btime_remain))) if !missing(letter_knowledge_pr_Btime_remain)
+
+drop tots tots1
+
+*rename
+ren (letter_knowledge_frnumber_of_ite letter_knowledge_fr_Bnumber_of_i letter_knowledge_wfnumber_of_ite letter_knowledge_wf_Bnumber_of_i letter_knowledge_srnumber_of_ite letter_knowledge_sr_Bnumber_of_i letter_knowledge_prnumber_of_ite letter_knowledge_pr_Bnumber_of_i) (letter_knowledge_frnum_corr letter_knowledge_fr_Bnum_corr letter_knowledge_wfnum_corr letter_knowledge_wf_Bnum_corr letter_knowledge_srnum_corr letter_knowledge_sr_Bnum_corr letter_knowledge_prnum_corr letter_knowledge_pr_Bnum_corr)
+
+drop if inlist(interview_ID,"964e7813-4dcd-41a9-9a24-31b13c6717c3","3ea9d43b-c79c-45ba-8cfa-f7d14497beaf","47ad1902-b5eb-4e37-bd3c-bf63d1415e8b") // Work on it --missing
+
+
+*Reading Familiar
+*fr
+drop read_familiar_words_fr_B_16	read_familiar_words_fr_B_17	read_familiar_words_fr_B_18	read_familiar_words_fr_B_19	read_familiar_words_fr_B_20
+				
+foreach x in read_familiar_words_fr_1	read_familiar_words_fr_2	read_familiar_words_fr_3	read_familiar_words_fr_4	read_familiar_words_fr_5	read_familiar_words_fr_6	read_familiar_words_fr_7	read_familiar_words_fr_8{
+	replace `x' = 0 if interview_ID == "8531b91c-31d7-434a-bbf5-de01dd922f1f"
+}
+
+replace read_familiar_words_fr_13 = . if interview_ID == "4a7aab47-6fa0-4d04-87dc-3a23946705b9"
+replace read_familiar_words_fr_14 = . if interview_ID == "06d394d5-de23-4af0-b8bb-9f7e8890860c"
+replace read_familiar_words_fr_15 = . if interview_ID == "b357ca16-5891-494b-981c-07200c5d0908"
+foreach x in read_familiar_words_fr_15	read_familiar_words_fr_16	read_familiar_words_fr_17	read_familiar_words_fr_18	read_familiar_words_fr_19{
+	replace `x' = . if interview_ID == "4644aea1-f044-4cb4-b79a-638800249e8e"
+}
+
+replace read_familiar_words_fr_20 = . if interview_ID == "ddeb78bf-5a97-495a-b6b9-97587ba7210c"
+replace read_familiar_words_fr_20 = . if interview_ID == "6d3906b5-2196-4cd2-86a2-fe350906db6f"
+
+foreach x in read_familiar_words_fr_19	read_familiar_words_fr_20{
+	replace `x' = 0 if interview_ID == "f481619c-ce36-4071-9723-cdef053c2a1b"
+}
+
+foreach x in read_familiar_words_fr_18	read_familiar_words_fr_19	read_familiar_words_fr_20{
+	replace `x' = 0 if interview_ID == "cf6b59a7-6ed5-4f0a-83e1-3b6554e76190"
+}
+
+foreach x in read_familiar_words_fr_17	read_familiar_words_fr_18	read_familiar_words_fr_19	read_familiar_words_fr_20{
+	replace `x' = 0 if interview_ID == "5e1ab6e9-06c6-439c-b861-8fc5bef186e1"
+}	
+
+foreach x in read_familiar_words_fr_15	read_familiar_words_fr_16	read_familiar_words_fr_17	read_familiar_words_fr_18	read_familiar_words_fr_19	read_familiar_words_fr_20{
+	replace `x' = 0 if interview_ID == "e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4"
+}
+
+foreach x in read_familiar_words_fr_13	read_familiar_words_fr_14	read_familiar_words_fr_15	read_familiar_words_fr_16	read_familiar_words_fr_17	read_familiar_words_fr_18	read_familiar_words_fr_19	read_familiar_words_fr_20{
+	replace `x' = 0 if interview_ID == "f925fc1d-0d39-41ac-95d4-93679ff6d84c"
+}
+
+foreach x in read_familiar_words_fr_11	read_familiar_words_fr_12	read_familiar_words_fr_13	read_familiar_words_fr_14	read_familiar_words_fr_15	read_familiar_words_fr_16	read_familiar_words_fr_17	read_familiar_words_fr_18	read_familiar_words_fr_19	read_familiar_words_fr_20{
+	replace `x' = 0 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"
+}
+
+foreach x in read_familiar_words_fr_B_11	read_familiar_words_fr_B_12	read_familiar_words_fr_B_13	read_familiar_words_fr_B_14	read_familiar_words_fr_B_15{
+	replace `x' = 0 if inlist(interview_ID,"42ab1e80-ba90-4662-869b-e17299b246db","d0ec1b72-c94a-459c-9e7e-262643185722","9689f590-7d70-4e06-a13d-cc0dd71d3eeb","1d56fc80-0f93-4d3d-b401-393cfaaef250","ccecdd5b-5546-4568-ac8c-ce6ba135389c","9a0ebaef-434f-4cbf-bcfa-9d5df07d9c1c","8177163f-7625-4dbd-809d-b732d2a7e147","8a8259b2-9b58-4c5b-971a-43da419b25d6")
+	replace `x' = 0 if inlist(interview_ID,"27c31cfb-fe79-4d9f-93dc-c1d455f2c219","2a739f6e-0d1b-483c-8521-135a7ed503ac","f33e5478-bbdb-43d3-ba0f-23d03414a3a2","9ae1afd4-343c-4676-aaa1-794fcf1401f0")
+}
+
+egen tots = rowtotal(read_familiar_words_fr_1 - read_familiar_words_fr_20)
+
+replace read_familiar_words_frnumber_of_ = tots if !missing(read_familiar_words_frnumber_of_)
+
+egen tots1 = rownonmiss(read_familiar_words_fr_1 - read_familiar_words_fr_20)
+replace reading_familiar_words_frnum_att = tots1 if !missing(reading_familiar_words_frnum_att)
+
+replace read_familiar_words_fritems_per_ = round(60*(read_familiar_words_frnumber_of_/(read_familiar_words_frduration-read_familiar_words_frtime_remai))) if !missing(read_familiar_words_frtime_remai)
+
+drop tots tots1
+
+egen tots = rowtotal(read_familiar_words_fr_B_1 - read_familiar_words_fr_B_15)
+
+replace read_familiar_words_fr_Bnumber_o = tots if !missing(read_familiar_words_fr_Bnumber_o)
+
+egen tots1 = rownonmiss(read_familiar_words_fr_B_1 - read_familiar_words_fr_B_15)
+replace reading_famila_word_fr_Bnum_att = tots1 if !missing(reading_famila_word_fr_Bnum_att)
+
+replace read_familiar_words_fr_Bitems_pe = round(60*(read_familiar_words_fr_Bnumber_o/(read_familiar_words_fr_Bduration-read_familiar_words_fr_Btime_rem))) if !missing(read_familiar_words_fr_Btime_rem)
+
+drop tots tots1
+
+*Wf
+replace read_familiar_words_wf_20 = 0 if interview_ID == "e6f2e82d-1582-454b-8f26-b97d0dc342de"
+replace read_familiar_words_wf_10 = . if interview_ID == "54a3da50-0c85-4e4d-a48a-c23707890669"
+replace read_familiar_words_wf_11 = . if interview_ID == "d1dc00b3-c575-4e71-a3fa-f3b2dc2934dc"
+
+foreach x in read_familiar_words_wf_10	read_familiar_words_wf_11	read_familiar_words_wf_12	read_familiar_words_wf_13{
+	replace `x' = . if interview_ID == "fc355bf6-b25a-4cf0-9e92-a866fd8c9cda"
+}
+
+
+egen tots = rowtotal(read_familiar_words_wf_1 - read_familiar_words_wf_20)
+
+replace read_familiar_words_wfnumber_of_ = tots if !missing(read_familiar_words_wfnumber_of_)
+
+egen tots1 = rownonmiss(read_familiar_words_wf_1 - read_familiar_words_wf_20)
+replace reading_familiar_words_wfnum_att = tots1 if !missing(reading_familiar_words_wfnum_att)
+
+replace read_familiar_words_wfitems_per_ = round(60*(read_familiar_words_wfnumber_of_/(read_familiar_words_wfduration-read_familiar_words_wftime_remai))) if !missing(read_familiar_words_wftime_remai)
+
+drop tots tots1
+
+*sr
+replace read_familiar_words_sr_16 = . if interview_ID == "4d218420-28c0-4260-9745-33c110e10268"
+replace read_familiar_words_sr_17 = . if interview_ID == "df4d5ab9-17e0-4ba8-92a4-0c1a5678b5f9"
+replace read_familiar_words_sr_20 = . if interview_ID == "ad8ac41d-6e8b-4542-99d3-f90c0ddf6951"
+replace read_familiar_words_sr_20 = . if interview_ID == "dd63f6b7-29f6-4fc8-9713-dc4ce9294e0a"
+replace read_familiar_words_sr_19 = . if interview_ID == "dd63f6b7-29f6-4fc8-9713-dc4ce9294e0a"
+
+foreach x in read_familiar_words_sr_16	read_familiar_words_sr_17	read_familiar_words_sr_18	read_familiar_words_sr_19	read_familiar_words_sr_20{
+	replace `x' = 0 if inlist(interview_ID,"5c2a2905-8d24-420d-8a50-8031ecf83e0e","e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4")
+}
+
+replace read_familiar_words_sr_20 = 0 if interview_ID == "5e1ab6e9-06c6-439c-b861-8fc5bef186e1"
+
+egen tots = rowtotal(read_familiar_words_sr_1 - read_familiar_words_sr_20)
+
+replace read_familiar_words_srnumber_of_ = tots if !missing(read_familiar_words_srnumber_of_)
+
+egen tots1 = rownonmiss(read_familiar_words_sr_1 - read_familiar_words_sr_20)
+replace reading_familiar_words_srnum_att = tots1 if !missing(reading_familiar_words_srnum_att)
+
+replace read_familiar_words_sritems_per_ = round(60*(read_familiar_words_srnumber_of_/(read_familiar_words_srduration-read_familiar_words_srtime_remai))) if !missing(read_familiar_words_srtime_remai)
+
+drop tots tots1
+
+*pr
+replace read_familiar_words_pr_20 = . if interview_ID == "5948ec97-e222-494d-bbc0-438f385e3414"
+
+egen tots = rowtotal(read_familiar_words_pr_1 - read_familiar_words_pr_20)
+
+replace read_familiar_words_prnumber_of_ = tots if !missing(read_familiar_words_prnumber_of_)
+
+egen tots1 = rownonmiss(read_familiar_words_pr_1 - read_familiar_words_pr_20)
+replace reading_familiar_words_prnum_att = tots1 if !missing(reading_familiar_words_prnum_att)
+
+replace read_familiar_words_pritems_per_ = round(60*(read_familiar_words_prnumber_of_/(read_familiar_words_prduration-read_familiar_words_prtime_remai))) if !missing(read_familiar_words_prtime_remai)
+
+drop tots tots1
+
+*rename
+ren (read_familiar_words_frnumber_of_ read_familiar_words_fritems_per_ read_familiar_words_fr_Bnumber_o read_familiar_words_fr_Bitems_pe read_familiar_words_wfnumber_of_ read_familiar_words_wfitems_per_ read_familiar_words_wf_Bnumber_o read_familiar_words_wf_Bitems_pe read_familiar_words_srnumber_of_ read_familiar_words_sritems_per_ read_familiar_words_sr_Bnumber_o read_familiar_words_sr_Bitems_pe read_familiar_words_prnumber_of_ read_familiar_words_pritems_per_ read_familiar_words_pr_Bnumber_o read_familiar_words_pr_Bitems_pe read_familiar_words_prtime_remai read_familiar_words_srtime_remai read_familiar_words_wftime_remai read_familiar_words_frtime_remai) (read_familiar_words_frnum_corr read_familiar_words_fr_permin read_familiar_words_fr_Bnum_corr read_familiar_words_fr_B_permin read_familiar_words_wfnum_corr read_familiar_words_wf_permin read_familiar_words_wf_Bnum_corr read_familiar_words_wf_B_permin read_familiar_words_srnum_corr read_familiar_words_sr_permin read_familiar_words_sr_Bnum_corr read_familiar_words_sr_B_permin read_familiar_words_prnum_corr read_familiar_words_pr_permin read_familiar_words_pr_Bnum_corr read_familiar_words_pr_B_permin read_familiar_words_prtime_rem read_familiar_words_srtime_rem read_familiar_words_wftime_rem read_familiar_words_frtime_rem)
+
+*invented words
+*fr
+replace read_invented_words_fr_12 = . if interview_ID == "a958a897-82f2-4ffb-b404-19d74922ba2c"
+replace read_invented_words_fr_13 = . if interview_ID == "0d96f6a7-d43a-41a8-a372-1351ea22b6b6"
+replace read_invented_words_fr_14 = . if interview_ID == "bd27d281-449a-4618-821f-cd292ab0ba3c"
+replace read_invented_words_fr_15 = . if interview_ID == "0c162021-056f-46dc-bcc8-f90dae15a258"
+replace read_invented_words_fr_15 = . if interview_ID == "b109d098-746c-47cf-884f-ed9e2dd05d80"
+
+foreach x in read_invented_words_fr_16	read_invented_words_fr_17{
+	replace `x' = . if interview_ID == "73c00981-7704-45c1-a0b1-c68f526a6c20"
+}
+
+foreach x in read_invented_words_fr_18	read_invented_words_fr_19	read_invented_words_fr_20{
+	replace `x' = . if interview_ID == "de7235b2-a59c-4a25-af2e-e8f5ac991255"
+}
+
+replace read_familiar_words_pr_20 = . if interview_ID == "5948ec97-e222-494d-bbc0-438f385e3414"
+
+foreach x in read_invented_words_fr_11	read_invented_words_fr_12	read_invented_words_fr_13	read_invented_words_fr_14	read_invented_words_fr_15	read_invented_words_fr_16	read_invented_words_fr_17	read_invented_words_fr_18{
+	replace `x' = 0 if interview_ID == "f925fc1d-0d39-41ac-95d4-93679ff6d84c"
+}
+
+foreach x in read_invented_words_fr_12	read_invented_words_fr_13	read_invented_words_fr_14	read_invented_words_fr_15	read_invented_words_fr_16	read_invented_words_fr_17	read_invented_words_fr_18 read_invented_words_fr_19{
+	replace `x' = 0 if interview_ID == "5c2a2905-8d24-420d-8a50-8031ecf83e0e"
+}
+
+foreach x in read_invented_words_fr_14	read_invented_words_fr_15	read_invented_words_fr_16	read_invented_words_fr_17	read_invented_words_fr_18 read_invented_words_fr_19 read_invented_words_fr_20{
+	replace `x' = 0 if inlist(interview_ID,"7e41401a-2629-47d3-989b-331096ec30d2")
+}
+
+
+foreach x in read_invented_words_fr_19 read_invented_words_fr_20{
+	replace `x' = 0 if inlist(interview_ID,"cf6b59a7-6ed5-4f0a-83e1-3b6554e76190")
+}
+
+foreach x in read_invented_words_fr_16	read_invented_words_fr_17	read_invented_words_fr_18 read_invented_words_fr_19 read_invented_words_fr_20{
+	replace `x' = 0 if inlist(interview_ID,"5e1ab6e9-06c6-439c-b861-8fc5bef186e1","e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4")
+}
+
+replace read_invented_words_frgridAutoSt = 1 if inlist(interview_ID,"f925fc1d-0d39-41ac-95d4-93679ff6d84c","5c2a2905-8d24-420d-8a50-8031ecf83e0e")
+
+replace read_invented_words_fr_13 = . if interview_ID == "46b2d1b6-7ad7-48ad-862f-c6be59093ca2"
+
+egen tots = rowtotal(read_invented_words_fr_1 - read_invented_words_fr_20)
+
+replace read_invented_words_frnumber_of_ = tots if !missing(read_invented_words_frnumber_of_)
+
+egen tots1 = rownonmiss(read_invented_words_fr_1 - read_invented_words_fr_20)
+replace read_invented_words_frnum_att = tots1 if !missing(read_invented_words_frnum_att)
+
+replace read_invented_words_fritems_per_ = round(60*(read_invented_words_frnumber_of_/(read_invented_words_frduration-read_invented_words_frtime_remai))) if !missing(read_invented_words_frtime_remai)
+
+drop tots tots1
+
+*wf
+replace read_invented_words_wf_19 = . if inlist(interview_ID,"46b2d1b6-7ad7-48ad-862f-c6be59093ca2","d1dc00b3-c575-4e71-a3fa-f3b2dc2934dc")
+replace read_invented_words_wf_20 = . if interview_ID == "a00516de-33bb-4505-a4fd-76a6d98369da"
+
+foreach x in read_invented_words_wf_B_21	read_invented_words_wf_B_22	read_invented_words_wf_B_23	read_invented_words_wf_B_24	read_invented_words_wf_B_25	read_invented_words_wf_B_26	read_invented_words_wf_B_27	read_invented_words_wf_B_28	read_invented_words_wf_B_29	read_invented_words_wf_B_30{
+	replace `x' = 0 if inlist(interview_ID,"8177163f-7625-4dbd-809d-b732d2a7e147","ae1ce825-0716-42b8-8df0-f4c03de0b574","b508dc8b-253b-42b1-b88f-435fdbe52869","42ab1e80-ba90-4662-869b-e17299b246db")
+
+}
+									
+
+egen tots = rowtotal(read_invented_words_wf_1 - read_invented_words_wf_20)
+
+replace read_invented_words_wfnumber_of_ = tots if !missing(read_invented_words_wfnumber_of_)
+
+egen tots1 = rownonmiss(read_invented_words_wf_1 - read_invented_words_wf_20)
+replace read_invented_words_wfnum_att = tots1 if !missing(read_invented_words_wfnum_att)
+
+replace read_invented_words_wfitems_per_ = round(60*(read_invented_words_wfnumber_of_/(read_invented_words_wfduration-read_invented_words_wftime_remai))) if !missing(read_invented_words_wftime_remai)
+
+drop tots tots1
+
+egen tots = rowtotal(read_invented_words_wf_B_1 - read_invented_words_wf_B_30)
+
+replace read_invented_words_wf_Bnumber_o = tots if !missing(read_invented_words_wf_Bnumber_o)
+
+egen tots1 = rownonmiss(read_invented_words_wf_B_1 - read_invented_words_wf_B_30)
+replace read_invented_word_wf_Bnum_att = tots1 if !missing(read_invented_word_wf_Bnum_att)
+
+replace read_invented_words_wf_Bitems_pe = round(60*(read_invented_words_wf_Bnumber_o/(read_invented_words_wf_Bduration-read_invented_words_wf_Btime_rem))) if !missing(read_invented_words_wf_Btime_rem)
+
+drop tots tots1
+
+*sr
+replace read_invented_words_sr_10 = . if interview_ID =="04019db5-34f1-4ec5-a3e3-34ac4388c46a"
+
+foreach x in read_invented_words_sr_15	read_invented_words_sr_16	read_invented_words_sr_17	read_invented_words_sr_18	read_invented_words_sr_19	read_invented_words_sr_20{
+	replace `x' = 0 if interview_ID =="e5ea7c5d-ae9e-408a-b6a3-190a650e4bb4"
+}
+
+foreach x in read_invented_words_sr_16	read_invented_words_sr_17	read_invented_words_sr_18	read_invented_words_sr_19	read_invented_words_sr_20{
+	replace `x' = 0 if interview_ID =="5e1ab6e9-06c6-439c-b861-8fc5bef186e1"
+}				
+
+
+egen tots = rowtotal(read_invented_words_sr_1 - read_invented_words_sr_20)
+
+replace read_invented_words_srnumber_of_ = tots if !missing(read_invented_words_srnumber_of_)
+
+egen tots1 = rownonmiss(read_invented_words_sr_1 - read_invented_words_sr_20)
+replace read_invented_words_srnum_att = tots1 if !missing(read_invented_words_srnum_att)
+
+replace read_invented_words_sritems_per_ = round(60*(read_invented_words_srnumber_of_/(read_invented_words_srduration-read_invented_words_srtime_remai))) if !missing(read_invented_words_srtime_remai)
+
+drop tots tots1
+
+*pr
+foreach x in read_invented_words_pr_15	read_invented_words_pr_16	read_invented_words_pr_17	read_invented_words_pr_18	read_invented_words_pr_19	read_invented_words_pr_20{
+	replace `x' = 0 if interview_ID == "7e41401a-2629-47d3-989b-331096ec30d2"
+
+}
+replace read_invented_words_pr_20 = 0 if interview_ID == "5f727244-96b2-401e-8b19-5a3b5bb464ce"
+replace read_invented_words_pr_10 = . if interview_ID == "a958a897-82f2-4ffb-b404-19d74922ba2c"
+
+egen tots = rowtotal(read_invented_words_pr_1 - read_invented_words_pr_20)
+
+replace read_invented_words_prnumber_of_ = tots if !missing(read_invented_words_prnumber_of_)
+
+egen tots1 = rownonmiss(read_invented_words_pr_1 - read_invented_words_pr_20)
+replace read_invented_words_prnum_att = tots1 if !missing(read_invented_words_prnum_att)
+
+replace read_invented_words_pritems_per_ = round(60*(read_invented_words_prnumber_of_/(read_invented_words_prduration-read_invented_words_prtime_remai))) if !missing(read_invented_words_prtime_remai)
+
+drop tots tots1
+
+ren (read_invented_words_frtime_remai read_invented_words_frnumber_of_ read_invented_words_fritems_per_ read_invented_words_fr_Bnumber_o read_invented_words_fr_Bitems_pe read_invented_words_wftime_remai read_invented_words_wfnumber_of_ read_invented_words_wfitems_per_ read_invented_words_wf_Bnumber_o read_invented_words_wf_Bitems_pe read_invented_words_srtime_remai read_invented_words_srnumber_of_ read_invented_words_sritems_per_ read_invented_words_sr_Bnumber_o read_invented_words_sr_Bitems_pe read_invented_words_prtime_remai read_invented_words_prnumber_of_ read_invented_words_pritems_per_ read_invented_words_pr_Bnumber_o read_invented_words_pr_Bitems_pe) (read_invented_words_frtime_rem read_invented_words_frnum_corr read_invented_words_fr_permin read_invented_words_fr_Bnum_corr read_invented_words_fr_B_permin read_invented_words_wftime_rem read_invented_words_wfnum_corr read_invented_words_wf_permin read_invented_words_wf_Bnum_corr read_invented_words_wf_B_permin read_invented_words_srtime_rem read_invented_words_srnum_corr read_invented_words_sr_permin read_invented_words_sr_Bnum_corr read_invented_words_sr_B_permin read_invented_words_prtime_rem read_invented_words_prnum_corr read_invented_words_pr_permin read_invented_words_pr_Bnum_corr read_invented_words_pr_B_permin)
+
+drop if inlist(interview_ID,"5f3c57b5-a7b6-4031-b106-64c6a4969f01","1b90b4f4-a457-46b3-9339-c1a565f9ad1e","2322ffe1-bc85-4769-99f5-57cf3156f581","6e2f6dad-354e-4bf6-8452-21008ad88ca7") //---check on data why only 1 interview done.
+
+*Oral fluency
+replace oral_reading_fluency_fr_5 = 1 if interview_ID == "e7cc05fb-fdd9-47f8-aae1-39ca408d019a"
+foreach x in oral_reading_fluency_fr_6	oral_reading_fluency_fr_7	oral_reading_fluency_fr_8	oral_reading_fluency_fr_9{
+	replace `x' = 0 if interview_ID == "e7cc05fb-fdd9-47f8-aae1-39ca408d019a"
+}
+				
+egen tots = rowtotal(oral_reading_fluency_fr_1 - oral_reading_fluency_fr_43)
+
+replace oral_reading_fluency_frnumber_of = tots if !missing(oral_reading_fluency_frnumber_of)
+
+egen tots1 = rownonmiss(oral_reading_fluency_fr_1 - oral_reading_fluency_fr_43)
+replace oral_reading_fluency_frnum_att = tots1 if !missing(oral_reading_fluency_frnum_att)
+
+replace oral_reading_fluency_fritems_per = round(60*(oral_reading_fluency_frnumber_of/(oral_reading_fluency_frduration-oral_reading_fluency_frtime_rema))) if !missing(oral_reading_fluency_frtime_rema)
+
+drop tots tots1
+
+*wf
+foreach x in oral_reading_fluency_wf_5	oral_reading_fluency_wf_6	oral_reading_fluency_wf_7	oral_reading_fluency_wf_8	oral_reading_fluency_wf_9{
+	replace `x' = 0 if inlist(interview_ID,"987e3c29-0aa1-4a9c-8aac-916cbc79c550","ab219bc7-b750-4c74-bff8-2bb8aca3abef")
+}
+
+foreach x in oral_reading_fluency_wf_3	oral_reading_fluency_wf_4	oral_reading_fluency_wf_5	oral_reading_fluency_wf_6	oral_reading_fluency_wf_7	oral_reading_fluency_wf_8	oral_reading_fluency_wf_9{
+	replace `x' = 0 if inlist(interview_ID,"e7745731-8ebf-4eeb-8ee6-0cc3f33d7d02")
+}
+
+egen tots = rowtotal(oral_reading_fluency_wf_1 - oral_reading_fluency_wf_43)
+
+replace oral_reading_fluency_wfnumber_of = tots if !missing(oral_reading_fluency_wfnumber_of)
+
+egen tots1 = rownonmiss(oral_reading_fluency_wf_1 - oral_reading_fluency_wf_43)
+replace oral_reading_fluency_wfnum_att = tots1 if !missing(oral_reading_fluency_wfnum_att)
+
+replace oral_reading_fluency_wfitems_per = round(60*(oral_reading_fluency_wfnumber_of/(oral_reading_fluency_wfduration-oral_reading_fluency_wftime_rema))) if !missing(oral_reading_fluency_wftime_rema)
+
+drop tots tots1
+
+*sr
+foreach x in oral_reading_fluency_sr_5	oral_reading_fluency_sr_6	oral_reading_fluency_sr_7	oral_reading_fluency_sr_8	oral_reading_fluency_sr_9{
+	replace `x' = 0 if inlist(interview_ID,"18be914a-c4ca-402a-8c5e-219db207aafc")
+}
+
+egen tots = rowtotal(oral_reading_fluency_sr_1 - oral_reading_fluency_sr_43)
+
+replace oral_reading_fluency_srnumber_of = tots if !missing(oral_reading_fluency_srnumber_of)
+
+egen tots1 = rownonmiss(oral_reading_fluency_sr_1 - oral_reading_fluency_sr_43)
+replace oral_reading_fluency_srnum_att = tots1 if !missing(oral_reading_fluency_srnum_att)
+
+replace oral_reading_fluency_sritems_per = round(60*(oral_reading_fluency_srnumber_of/(oral_reading_fluency_srduration-oral_reading_fluency_srtime_rema))) if !missing(oral_reading_fluency_srtime_rema)
+
+drop tots tots1
+
+*renaming
+ren (oral_reading_fluency_prtime_rema oral_reading_fluency_prnumber_of oral_reading_fluency_pritems_per oral_reading_fluency_sritems_per oral_reading_fluency_srnumber_of oral_reading_fluency_srtime_rema oral_reading_fluency_wfitems_per oral_reading_fluency_wfnumber_of oral_reading_fluency_wftime_rema oral_reading_fluency_fritems_per oral_reading_fluency_frnumber_of oral_reading_fluency_frtime_rema) (oral_reading_fluency_prtime_rem oral_reading_fluency_prnum_corr oral_reading_fluency_pr_permin oral_reading_fluency_sr_permin oral_reading_fluency_srnum_corr oral_reading_fluency_srtime_rem oral_reading_fluency_wf_permin oral_reading_fluency_wfnum_corr oral_reading_fluency_wftime_rem oral_reading_fluency_fr_permin oral_reading_fluency_frnum_corr oral_reading_fluency_frtime_rem)
+
+***Oral  - Decoding 13 and above corr
+
+br interview_ID survey_language official_language read_familiar_words_prnum_corr read_invented_words_prnum_corr oral_reading_fluency_pr_1
 
 *saving data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 03-01 v01.dta",replace
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 07-01 v01.dta",replace
 
-global var_kept "interview_ID INT_DATE INT_STARTTIME INT_ENDTIME survey_language ENUM_NAME assessment_type interviewer_type IA IEF Arrondissement Commune Echantillon Ecole Groupe Language official_language teaching_language Student_Name B2 B3 B4"
 
-export excel $var_kept using "MOHEBS student list v01.xlsx", sheet(data,replace)firstrow(variables)
+//
+// global var_kept "interview_ID INT_DATE INT_STARTTIME INT_ENDTIME survey_language ENUM_NAME assessment_type interviewer_type IA IEF Arrondissement Commune Echantillon Ecole Groupe Language official_language teaching_language Student_Name B2 B3 B4"
+//
+// export excel $var_kept using "MOHEBS student list v01.xlsx", sheet(data,replace)firstrow(variables)
 
 
 // Semantic - No auto stop
@@ -3662,15 +4630,28 @@ replace Grade = "3" if inlist(KEY,"uuid:6becb33a-3322-4c9b-936b-633a76834ae2")
 replace Grade_3 = 1 if inlist(KEY,"uuid:6becb33a-3322-4c9b-936b-633a76834ae2")
 replace Grade_96 = 0 if inlist(KEY,"uuid:6becb33a-3322-4c9b-936b-633a76834ae2")
 
-// drop START_TIME_str END_TIME_str grppp1 lan1 Calc1 Calc2 Calc3 Calc4 Calc5 Calc6 Calc7 Calc8 Calc9 Calc10 Calc11 Calc12 lang_calc1 Policy_calc Firstname	Lastname RES_NAME
+*correct RH questions
+replace RH_hoursa = . if RH_school != 1 & Grade_1 != 1
+replace RH_hoursb = . if RH_school != 1 & Grade_1 != 1
+replace RH_hoursc = . if RH_school != 1 & (Grade_2 != 1 | Grade_2 == 1)
+replace RH_hoursd = . if RH_school != 1 & (Grade_2 != 1 | Grade_2 == 1)
+replace MM_hoursa = . if Grade_1 != 1
 
-// global var_kept "KEY INT_DATE START_TIME END_TIME  SUP_NAME ENUM_NAME Region School RH_school RES_NAME female Age Grade Grade_1 Grade_2 Grade_3 Grade_96 Grade_S"
+replace Lang_1a_S = trim(strproper(Lang_1a_S))
 
-// export excel $var_kept using "MOHEBS Teachers v01.xlsx", sheet(Teachers_Data,replace)firstrow(variables)
+replace Policy_4b_4 = . if Grade_2 == 1 & Policy_4a_4 == 0
+
+replace nl_3b = 1 if inlist(KEY,"uuid:64b1fcd7-d356-4ff7-9959-8c818807f32e","uuid:c8085662-7c0e-48a7-93c2-426eb32a2fc0","uuid:d5e6fee4-148b-4fda-a182-f56707099642","uuid:ba063100-5b26-4d24-a1f1-bf998da8de2e")
+
+replace Lang_8b = 64 if KEY == "uuid:3d113855-3d00-44ba-819e-270dea1b95e8"
+replace Lang_7b = 69 if KEY == "uuid:7895a853-c1ad-4085-802e-e46cec5fb867"
+replace Lang_7b = 61 if KEY == "uuid:aa99b9e2-e6bf-4eb1-b87d-778468a20d4d"
+
+drop START_TIME_str END_TIME_str grppp1 lan1 Calc1 Calc2 Calc3 Calc4 Calc5 Calc6 Calc7 Calc8 Calc9 Calc10 Calc11 Calc12 lang_calc1 Policy_calc 
 
 *save dataset
 cd "${gsdData}\Raw"
-save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 05-01 v01.dta",replace
+save "Main\Teachers\MOHEBS Teachers Baseline Processed Dataset 06-01 v02.dta",replace
 
 ***************************************************************************************QC checks-Flaggings
 ***************************************************************************************

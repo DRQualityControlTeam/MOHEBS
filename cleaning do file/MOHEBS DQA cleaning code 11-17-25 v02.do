@@ -5132,11 +5132,70 @@ lab var position_tracking_score"Position tracking scores"
 lab var rc_pm_stop_sr"Interviewer: Was the stop rule triggered Picture matching?"
 lab var oral_reading_fluency_stop_sr"Interviewer: Was the stop rule triggered Oral reading fluency words?"
 
+replace B9_S = "Funeral ceremony" if interview_ID =="5b6d1a91-e454-45a3-9170-9a2eec4edbf8"
+replace B9_S = "Registration problem" if interview_ID =="1ccccc68-0735-4dab-b908-a0d3a80a4c9a"
+replace B9_S = "Her mother had gone to a funeral and locked the room, so she couldn't get her bag or clothes out" if interview_ID =="5875efa2-2b0b-4353-b809-e69b1c767cc7"
+replace B9_S = "Going to Koranic school" if interview_ID =="b876096e-74c4-47c5-a8a6-c231acfb3c19"
+replace B9_S = "My grandmother asked me not to go" if interview_ID =="323e8c24-dd56-4749-a507-d0699efc9619"
+replace B9_S = "I just registered for school." if interview_ID =="a4a6f75f-1744-4db0-80b0-57c6ac0efdd4"
+replace B9_S = "My father had forbidden me to go." if interview_ID =="9d01a6dd-da25-4d18-9744-db374ab09077"
+replace B9_S = "There was a ceremony at home." if interview_ID =="754b931b-ece0-41f4-a665-b9019bcc32ca"
+replace B9_S = "I was traveling." if interview_ID =="694ca3cc-60ec-41ad-a1c5-67d80e575560"
+replace B9_S = "Ceremony at home." if interview_ID =="b6828548-ca8c-4d29-ae1a-7907eb5a9024"
+replace B9_S = "There was a funeral next to our house." if interview_ID =="de9a04ad-61ff-4dca-96fe-11636ad44752"
+replace B9_S = "I had gone to visit my father." if interview_ID =="69dd2e9c-6b09-4bc0-b7cb-a72c261efa79"
+replace B9_S = "There was a wedding at my house." if interview_ID =="4bb7a987-02b3-4411-ad86-fd9e959c4302"
+replace B9_S = "Visiting my father." if interview_ID =="7e41401a-2629-47d3-989b-331096ec30d2"
+replace B9_S = "Traveling." if interview_ID =="9f7659dc-9afe-4a82-8543-73740869cdf0"
+replace B9_S = "There was a test for the 5th grade students at school." if interview_ID =="0f8e2f43-6bb2-4f63-9ba0-21563437c026"
+
+foreach x in phonological_awareness_sr_1 phonological_awareness_sr_2 phonological_awareness_sr_3 phonological_awareness_sr_4 phonological_awareness_sr_5 phonological_awareness_sr_6 phonological_awareness_sr_7 phonological_awareness_sr_8 phonological_awareness_sr_9 phonological_awareness_sr_10 phonological_awareness_srnumCorr phonological_awareness_srnum_att phonological_awareness_srgridAut phonological_awareness_srautoSto phonological_stop_sr{
+	replace `x' = . if interview_ID == "78a49041-d127-4435-8039-b1b24678b8d2"
+}
+
+replace rc_picture_matching_fr_q6=. if inlist(interview_ID,"1eeedaaf-eecb-45b0-a69d-ea362dd1c425")
+
+replace rc_picture_matching_fr_q6 = 4 if inlist(interview_ID,"8177163f-7625-4dbd-809d-b732d2a7e147","934c7889-6a58-4c21-804a-3051544df184","503806bb-0442-41e5-84a8-c98d8934a9dd","8c21f71d-6af5-489c-b9c0-71360d00efce","b32b66aa-4135-42d6-9c0f-a0310a39823c")
+
+replace rc_pm_stop_fr = 1 if inlist(interview_ID,"1eeedaaf-eecb-45b0-a69d-ea362dd1c425","8177163f-7625-4dbd-809d-b732d2a7e147","934c7889-6a58-4c21-804a-3051544df184","503806bb-0442-41e5-84a8-c98d8934a9dd","8c21f71d-6af5-489c-b9c0-71360d00efce","b32b66aa-4135-42d6-9c0f-a0310a39823c")
+
+replace rc_pm_stop_wf = 1 if inlist(interview_ID,"8687f9cd-5f4b-4e86-8eb0-4983e57fb21a","fac43095-6f57-476e-bc3f-6364aab4708e","ca332f93-3166-4d0a-90ef-44d651ebf19a","c7293c71-cd66-4df0-a180-3d65dec93a28","e7745731-8ebf-4eeb-8ee6-0cc3f33d7d02","787eba5e-b59b-412f-9a0a-053d9de91c2b")
+
+replace rc_picture_matching_sr_q6 = 1 if inlist(interview_ID,"5bf46475-9bde-473d-9fbb-de4437f4a567","dd15a588-de50-4999-8783-8cced1670d3c")
+
+replace rc_pm_stop_sr = 1 if inlist(interview_ID,"503806bb-0442-41e5-84a8-c98d8934a9dd","57e40005-7add-4dd2-bb9d-5759c2981aa1","9e98747a-68bf-476c-9371-4abb80a696a8","5bf46475-9bde-473d-9fbb-de4437f4a567","dd15a588-de50-4999-8783-8cced1670d3c","6a2eb10d-f264-45a4-ac35-1f2a8e8dbc49")
+
+replace rc_pm_stop_pr = 1 if inlist(interview_ID,"d0d60e91-9075-49c3-902c-c19440c1de60")
+
+replace rc_pm_stop_fr = 1 if inlist(interview_ID,"9721ed24-ebf4-492b-aa39-86be19a76a04","0df49203-ad76-4492-83bb-5e34f74c9a26","72d458bc-35dc-4ff2-bbf0-8f201aa7911a","cc915cfd-626a-4f61-b79d-e34a81182e05","aabccf1f-e403-4a35-b875-e7499fd42791","412e9994-6895-4fd4-bd03-9e7bf6549add")
+
+replace B1a = trim(strproper(B1a))
+replace B1b = trim(strproper(B1b))
+replace Student_Name = trim(strproper(Student_Name))
+
+replace Intro_Q1 = trim(Intro_Q1)
+replace Intro_Q2 = trim(Intro_Q2)
+
+replace Intro_Q1 ="" if Intro_Q1 == "-999"
+replace Intro_Q2 ="" if Intro_Q2 == "8"
+gen inter = upper(substr(Intro_Q1,1,1)) + lower(substr(Intro_Q1,2,.)) if !missing(Intro_Q1)
+replace Intro_Q1 = inter
+
+drop inter
+
+gen inter = upper(substr(Intro_Q2,1,1)) + lower(substr(Intro_Q2,2,.)) if !missing(Intro_Q2)
+replace Intro_Q2 = inter
+
+drop inter
+
 drop tabletUserName Duration_mins GPSlatitude GPSlongitude GPSaccuracy Comments SUP_NAME ENUM_NAME
+
+// replace B1a = "" if interview_ID == "635b341c-b288-4928-9e48-b0293dbdaf43"
+// replace Student_Name = "" if interview_ID == "635b341c-b288-4928-9e48-b0293dbdaf43"
 
 *saving data to raw data
 cd "${gsdData}\Raw"
-save "Main\Student\MOHEBS Student Baseline Processed Dataset 09-01 v01.dta",replace
+save "Main\Student\MOHEBS Student Baseline Processed Dataset 09-01 v02.dta",replace
 
 *saving data to processed data
 cd "${gsdData}\Processed"

@@ -5190,8 +5190,8 @@ drop inter
 
 drop tabletUserName Duration_mins GPSlatitude GPSlongitude GPSaccuracy Comments SUP_NAME ENUM_NAME
 
-// replace B1a = "" if interview_ID == "635b341c-b288-4928-9e48-b0293dbdaf43"
-// replace Student_Name = "" if interview_ID == "635b341c-b288-4928-9e48-b0293dbdaf43"
+replace B1a = "Awa" if interview_ID == "635b341c-b288-4928-9e48-b0293dbdaf43"
+replace Student_Name = "Awa Ba" if interview_ID == "635b341c-b288-4928-9e48-b0293dbdaf43"
 
 *saving data to raw data
 cd "${gsdData}\Raw"
